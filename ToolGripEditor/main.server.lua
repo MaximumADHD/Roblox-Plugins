@@ -26,8 +26,8 @@ local FOCAL_OFFSET = Vector3.new(1.5, 0.5, -2)
 ------------------------------------------------------------------------------------------------------
 
 local preview, button do
-    local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
-    preview = plugin:CreateDockWidgetPluginGui(project.Name, config)
+	local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
+	preview = plugin:CreateDockWidgetPluginGui(project.Name, config)
 	preview.Title = PLUGIN_NAME
 	preview.Name = project.Name
 	
