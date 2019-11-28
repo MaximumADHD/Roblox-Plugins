@@ -5,7 +5,7 @@
     [
         {
             "type": "shell",
-            "label": "Upload Game",
+            "label": "Build Local Plugin",
             "command": "powershell -ExecutionPolicy ByPass -File build.ps1",
             
             "group":
