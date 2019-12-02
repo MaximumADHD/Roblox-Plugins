@@ -7,9 +7,13 @@ local FFlags = require(Project.FFlags)
 local ToolEditor = {}
 ToolEditor.__index = ToolEditor
 
-function ToolEditor.new()
+local function createDummy()
     -- CAUTION: This will likely break in the future.
-    local dummy = game:GetObjects("rbxasset://avatar/characterR15V3.rbxm")[1]
+    return game:GetObjects("rbxasset://avatar/characterR15V3.rbxm")[1]
+end
+
+function ToolEditor.new()
+    local dummy = createDummy()
     
     local humanoid = dummy:WaitForChild("Humanoid")
     humanoid:BuildRigFromAttachments()
@@ -62,13 +66,18 @@ function ToolEditor.new()
     return editor
 end
 
-function ToolEditor:SetParent(parent)
+function ToolEditor:GetContainer()
     local target = self.WorldModel
 
     if not target then
         target = self.Dummy
     end
 
+    return target
+end 
+
+function ToolEditor:SetParent(parent)
+    local target = self:GetContainer()
     target.Parent = parent
 end
 
@@ -191,6 +200,34 @@ function ToolEditor:ClearTool()
     self.Tool = nil
 end
 
+function ToolEditor:CreateGhostArm()
+    local dummy = createDummy()
+    local humanoid = dummy.Humanoid
+    
+    for _,child in pairs(dummy:GetChildren()) do
+        if child:IsA("BasePart") then
+            local limb = humanoid:GetLimb(child)
+
+            if limb == Enum.Limb.RightArm then
+                child:ClearAllChildren()
+                child.Anchored = true
+                child.Locked = true
+                
+                if child.Name == "RightHand" then
+                    dummy.PrimaryPart = child
+                end
+            else
+                child:Destroy()
+            end
+        end
+    end
+
+    dummy.Archivable = false
+    dummy.Name = "PreviewArm"
+
+    return dummy
+end
+
 function ToolEditor:BindTool(tool)
     if tool == nil then
         self:ClearTool()
@@ -226,6 +263,8 @@ function ToolEditor:BindTool(tool)
 
     local newHandle = handle:Clone()
     newHandle.Parent = self.Dummy
+    newHandle.Anchored = false
+
     rightGrip.Part1 = newHandle
 
     local gripEditor = Instance.new("Attachment")
@@ -248,26 +287,56 @@ function ToolEditor:BindTool(tool)
 end
 
 function ToolEditor:EditGrip(plugin)
+    local tool = self.Tool
     local handle = self.DirectHandle
     local gripEditor = self.GripEditor
 
-    if handle and gripEditor then
-        self.InUse = true
-        ChangeHistoryService:SetWaypoint("Begin Grip Edit")
-
+    if tool and handle and gripEditor then
         gripEditor.Parent = handle
-        Selection:Set{gripEditor}
+        self.InUse = true
 
+        if not tool:IsDescendantOf(workspace) then
+            handle.Parent = workspace
+            Selection:Set{}
+        end
+
+        local camera = workspace.CurrentCamera
+        local locked = handle.Locked
+
+        if camera then
+            local cf = camera.CFrame
+            local focus = gripEditor.WorldPosition
+
+            local lookVector = cf.LookVector
+            local extents = handle.Size.Magnitude
+
+            camera.CFrame = CFrame.new(focus - (lookVector * extents * 1.5), focus)
+            camera.Focus = CFrame.new(focus)
+        end
+
+        local ghostArm = self:CreateGhostArm()
+        ghostArm.Parent = handle
+        self.GhostArm = ghostArm
+        
+        handle.Locked = true
+        Selection:Set{gripEditor}
+        
         if plugin:GetSelectedRibbonTool() ~= Enum.RibbonTool.Move then
             plugin:SelectRibbonTool("Move", UDim2.new())
         end
-        
-        ChangeHistoryService:SetWaypoint("Grip Editing")
+
+        ChangeHistoryService:SetWaypoint("Begin Grip Edit")
         Selection.SelectionChanged:Wait()
 
-        ChangeHistoryService:SetWaypoint("End Grip Edit")
+        ghostArm.Parent = nil
+        self.GhostArm = nil
+
         gripEditor.Parent = nil
 
+        handle.Parent = tool
+        handle.Locked = locked
+
+        ChangeHistoryService:SetWaypoint("End Grip Edit")
         self.InUse = false
     end
 end

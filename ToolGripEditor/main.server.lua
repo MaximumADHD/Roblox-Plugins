@@ -21,6 +21,10 @@ local PLUGIN_SUMMARY = "A plugin which makes it much easier to edit the grip of 
 
 local FOCAL_OFFSET = Vector3.new(1.5, 0.5, -2)
 
+if plugin.Name:find(".rbxmx") then
+	PLUGIN_NAME = PLUGIN_NAME .. " (LOCAL)"
+end
+
 ------------------------------------------------------------------------------------------------------
 -- Preview Window
 ------------------------------------------------------------------------------------------------------
@@ -108,6 +112,18 @@ local function updatePreview(delta)
 			if currentTool ~= selectedTool then
 				editor.LastRibbonTool = selectedTool
 				updateRibbonButtons(selectedTool)
+			end
+		end
+
+		-- Update the ghost arm
+		if editor.InUse then
+			local handle = editor.DirectHandle
+			local rightGrip = editor.RightGrip
+			local ghostArm = editor.GhostArm
+
+			if handle and rightGrip and ghostArm then
+				local cf = handle.CFrame * rightGrip.C1 * rightGrip.C0:Inverse()
+				ghostArm:SetPrimaryPartCFrame(cf)
 			end
 		end
 	end
