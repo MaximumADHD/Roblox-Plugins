@@ -9,11 +9,8 @@ local RunService = game:GetService("RunService")
 local Selection = game:GetService("Selection")
 local Studio = settings():GetService("Studio")
 
-local project = script.Parent
-local widgets = project.Widgets
-
-local ToolEditor = require(project.ToolEditor)
-local editor = ToolEditor.new()
+local modules = script.Modules
+local editor = require(modules.ToolEditor)
 
 local PLUGIN_NAME = "Tool Grip Editor"
 local PLUGIN_ICON = "rbxassetid://4465723148"
@@ -21,13 +18,15 @@ local PLUGIN_SUMMARY = "A plugin which makes it much easier to edit the grip of 
 
 local FOCAL_OFFSET = Vector3.new(1.5, 0.5, -2)
 
-if plugin.Name:find(".rbxmx") then
+if plugin.Name:find(".rbxm") then
 	PLUGIN_NAME = PLUGIN_NAME .. " (LOCAL)"
 end
 
 ------------------------------------------------------------------------------------------------------
 -- Preview Window
 ------------------------------------------------------------------------------------------------------
+
+local ui = project.UI
 
 local preview, button do
 	local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
@@ -49,13 +48,13 @@ vpFrame.Size = UDim2.new(1, 0, 1, 0)
 vpFrame.CurrentCamera = camera
 vpFrame.Parent = preview
 
-local editButton = widgets.EditButton
+local editButton = ui.EditButton
 editButton.Parent = preview
 
-local selectATool = widgets.SelectATool
+local selectATool = ui.SelectATool
 selectATool.Parent = preview
 
-local ribbonTools = widgets.RibbonTools
+local ribbonTools = ui.RibbonTools
 ribbonTools.Parent = preview
 
 local function updateTheme()

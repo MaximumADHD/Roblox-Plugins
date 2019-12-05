@@ -1,8 +1,8 @@
 {
     "name": "ToolGripEditor",
-
+	
     "tree": 
     {
-        "$path": "ToolGripEditor"
+        "$path": "."
     }
 }

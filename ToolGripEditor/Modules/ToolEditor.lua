@@ -1,8 +1,8 @@
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
 
-local Project = script.Parent
-local FFlags = require(Project.FFlags)
+local Modules = script.Parent
+local FFlags = require(Modules.FFlags)
 
 local ToolEditor = {}
 ToolEditor.__index = ToolEditor
@@ -341,4 +341,10 @@ function ToolEditor:EditGrip(plugin)
     end
 end
 
-return ToolEditor
+-----------------------------------------------------------
+-- TODO: If this module is ever constructed multiple times
+--       then return the ToolEditor table itself. At the
+--       present moment, it acts more like a singleton.
+-----------------------------------------------------------
+
+return ToolEditor.new()

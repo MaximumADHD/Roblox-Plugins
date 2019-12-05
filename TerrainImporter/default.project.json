@@ -1,0 +1,23 @@
+{
+	"name": "ImportTerrain",
+	
+	"tree":
+	{
+		"$className": "Folder",
+		
+		"Plugin":
+		{
+			"$path": "Plugin"
+		},
+		
+		"Modules":
+		{
+			"$path": "Modules"
+		},
+		
+		"PNG":
+		{
+			"$path": "PNG/PNG.rbxm"
+		}
+	}
+}
