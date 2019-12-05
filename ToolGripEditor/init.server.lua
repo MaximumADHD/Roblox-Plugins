@@ -26,7 +26,7 @@ end
 -- Preview Window
 ------------------------------------------------------------------------------------------------------
 
-local ui = project.UI
+local ui = script.UI
 
 local preview, button do
 	local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
