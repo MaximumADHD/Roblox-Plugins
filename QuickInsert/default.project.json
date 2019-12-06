@@ -1,0 +1,18 @@
+{
+    "name": "QuickInsert",
+
+    "tree": 
+    {
+        "$path": "init.server.lua",
+
+        "Modules":
+        {
+            "$path": "Modules"
+        },
+
+        "UI":
+        {
+            "$path": "UI"
+        }
+    }
+}
