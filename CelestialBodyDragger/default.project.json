@@ -1,0 +1,8 @@
+{
+    "name": "Celestial Body Dragger",
+
+    "tree": 
+    {
+        "$path": "."
+    }
+}
