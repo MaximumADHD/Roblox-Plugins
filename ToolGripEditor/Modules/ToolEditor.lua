@@ -33,7 +33,7 @@ function ToolEditor.new()
     editor.RootPart.Anchored = true
     setmetatable(editor, ToolEditor)
 
-    if FFlags.AllowWorldModelCreation then
+    if FFlags.AllowWorldModelCreationV2 then
         local worldModel = Instance.new("WorldModel")
         editor.WorldModel = worldModel
 
@@ -119,7 +119,7 @@ function ToolEditor:StepAnimator(delta)
 end
 
 function ToolEditor:StartAnimations()
-    if not FFlags.AllowWorldModelCreation then
+    if not FFlags.AllowWorldModelCreationV2 then
         return
     end
 
@@ -156,7 +156,7 @@ function ToolEditor:RefreshGrip()
         local grip = tool.Grip
         rightGrip.C1 = grip
         
-        if not FFlags.AllowWorldModelCreation then
+        if not FFlags.AllowWorldModelCreationV2 then
             local rightHand = rightGrip.Parent
             handle.CFrame = rightHand.CFrame * rightGrip.C0 * grip:Inverse()
         end
