@@ -2,6 +2,8 @@ local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
 
 local Modules = script.Parent
+local Project = Modules.Parent
+
 local FFlags = require(Modules.FFlags)
 
 local ToolEditor = {}
@@ -346,5 +348,5 @@ end
 --       then return the ToolEditor table itself. At the
 --       present moment, it acts more like a singleton.
 -----------------------------------------------------------
-
+
 return ToolEditor.new()

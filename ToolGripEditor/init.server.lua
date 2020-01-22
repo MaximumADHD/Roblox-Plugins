@@ -30,9 +30,9 @@ local ui = script.UI
 
 local preview, button do
 	local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
-	preview = plugin:CreateDockWidgetPluginGui(project.Name, config)
+	preview = plugin:CreateDockWidgetPluginGui(script.Name, config)
 	preview.Title = PLUGIN_NAME
-	preview.Name = project.Name
+	preview.Name = script.Name
 	
 	local toolbar = plugin:CreateToolbar("CloneTrooper1019")
 	button = toolbar:CreateButton(PLUGIN_NAME, PLUGIN_SUMMARY, PLUGIN_ICON)
