@@ -1,10 +1,7 @@
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
 
-local Modules = script.Parent
-local FFlags = require(Modules.FFlags)
-
-local ToolEditor = {}
+local ToolEditor = { WORLD_MODELS_ENABLED = false }
 ToolEditor.__index = ToolEditor
 
 local function createDummy()
@@ -33,7 +30,7 @@ function ToolEditor.new()
     editor.RootPart.Anchored = true
     setmetatable(editor, ToolEditor)
 
-    if FFlags.AllowWorldModelCreation then
+    if ToolEditor.WORLD_MODELS_ENABLED then
         local worldModel = Instance.new("WorldModel")
         editor.WorldModel = worldModel
 
@@ -119,7 +116,7 @@ function ToolEditor:StepAnimator(delta)
 end
 
 function ToolEditor:StartAnimations()
-    if not FFlags.AllowWorldModelCreation then
+    if not self.WORLD_MODELS_ENABLED then
         return
     end
 
@@ -156,7 +153,7 @@ function ToolEditor:RefreshGrip()
         local grip = tool.Grip
         rightGrip.C1 = grip
         
-        if not FFlags.AllowWorldModelCreation then
+        if not self.WORLD_MODELS_ENABLED then
             local rightHand = rightGrip.Parent
             handle.CFrame = rightHand.CFrame * rightGrip.C0 * grip:Inverse()
         end
@@ -346,5 +343,5 @@ end
 --       then return the ToolEditor table itself. At the
 --       present moment, it acts more like a singleton.
 -----------------------------------------------------------
-
+
 return ToolEditor.new()
