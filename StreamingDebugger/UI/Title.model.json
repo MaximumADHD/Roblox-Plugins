@@ -1,0 +1,17 @@
+{
+    "ClassName": "TextLabel",
+
+    "Properties":
+    {
+        "AnchorPoint": [0.5, 1],
+        "BackgroundTransparency": 1,
+
+        "Position": [0.5, 0, 0.4, 0],
+        "Size": [0.8, 0, 0.4, 0],
+        
+        "Font": "SourceSansBold",
+        "TextScaled": true,
+        
+        "Text": "Streaming Memory Limit"
+    }
+}
