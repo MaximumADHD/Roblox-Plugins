@@ -13,10 +13,13 @@ local Studio = settings():GetService("Studio")
 
 local PLUGIN_TITLE = "Streaming Debugger"
 local PLUGIN_DESC  = "Toggles the Streaming Debugger widget."
-local PLUGIN_ICON  = "rbxassetid://5313153339"
+local PLUGIN_ICON  = "rbxassetid://5313525223"
 
 local WIDGET_ID = "StreamingDebuggerGui"
 local WIDGET_INFO  = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
+
+local IS_EDIT = RunService:IsEdit()
+local IS_SERVER = RunService:IsServer()
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Interface
@@ -37,14 +40,21 @@ local errorLbl = ui.Error
 local background = ui.Background
 local themeConfig = require(script.ThemeConfig)
 
-local toolbar = plugin:CreateToolbar("CloneTrooper1019")
-local button = toolbar:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
+if not _G.Toolbar2032622 then
+	_G.Toolbar2032622 = plugin:CreateToolbar("CloneTrooper1019")
+end
+
+local button = _G.StreamingDebuggerButton
+local memoryLimit
+
+if not button then
+	button = _G.Toolbar2032622:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
+	_G.StreamingDebuggerButton = button
+end
 
 local pluginGui = plugin:CreateDockWidgetPluginGui(WIDGET_ID, WIDGET_INFO)
 pluginGui.Title = PLUGIN_TITLE
 pluginGui.Name = WIDGET_ID
-
-local memoryLimit
 ui.Parent = pluginGui
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -73,14 +83,16 @@ local function onButtonClick()
 	pluginGui.Enabled = not pluginGui.Enabled
 end
 
-local function setError(e)
-	if e then
+local function setError(message)
+	local visible = errorLbl.Visible
+
+	if message and not visible then
 		background.ZIndex = 3
 		errorLbl.ZIndex = 4
 		
-		errorLbl.Text = e
+		errorLbl.Text = message
 		errorLbl.Visible = true
-	else
+	elseif visible then
 		background.ZIndex = 1
 		errorLbl.Visible = false
 	end
@@ -91,11 +103,11 @@ local function canApplyLimit()
 		return false, "Streaming is not enabled!"
 	end
 
-	if not RunService:IsRunning() then
-		return false, "Game is not running!"
+	if IS_EDIT then
+		return false, "Game must be running!"
 	end
 
-	if RunService:IsServer() then
+	if IS_SERVER then
 		return false, "Server perspective not available."
 	end
 
@@ -111,26 +123,31 @@ local function canApplyLimit()
 end
 
 local function update()
-	local canApply, errorMsg = canApplyLimit()
+	local canLimit, errorMsg = canApplyLimit()
+	local canApply = not (IS_EDIT or IS_SERVER)
+
+	if errorMsg then
+		background.ZIndex = 3
+		errorLbl.ZIndex = 4
+		
+		errorLbl.Text = errorMsg
+		errorLbl.Visible = true
+	else
+		background.ZIndex = 1
+		errorLbl.Visible = false
+	end
 
 	if canApply then
-		local available = NetworkSettings.FreeMemoryMBytes
-		
-		if errorLbl.Visible then
-			setError(nil)
-		end
-		
-		NetworkSettings.ExtraMemoryUsed = available - memoryLimit
-	else
-		setError(errorMsg)
-		
-		if not RunService:IsServer() then
+		if canLimit then
+			local available = NetworkSettings.FreeMemoryMBytes
+			NetworkSettings.ExtraMemoryUsed = available - memoryLimit
+		else
 			NetworkSettings.ExtraMemoryUsed = 0
 		end
-	end
-	
-	if RunService:IsRunning() and not RunService:IsServer() then
-		NetworkSettings.RenderStreamedRegions = pluginGui.Enabled
+
+		if RunService:IsRunning() then
+			NetworkSettings.RenderStreamedRegions = pluginGui.Enabled
+		end
 	end
 end
 
@@ -156,7 +173,7 @@ onEnabledChanged()
 onThemeChanged()
 
 Studio.ThemeChanged:Connect(onThemeChanged)
-RunService.Heartbeat:Connect(update)
+RunService.RenderStepped:Connect(update)
 
 input.FocusLost:Connect(onFocusLost)
 button.Click:Connect(onButtonClick)

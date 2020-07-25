@@ -34,8 +34,16 @@ local preview, button do
 	preview.Title = PLUGIN_NAME
 	preview.Name = script.Name
 	
-	local toolbar = plugin:CreateToolbar("CloneTrooper1019")
-	button = toolbar:CreateButton(PLUGIN_NAME, PLUGIN_SUMMARY, PLUGIN_ICON)
+	if not _G.Toolbar2032622 then
+		_G.Toolbar2032622 = plugin:CreateToolbar("CloneTrooper1019")
+	end
+	
+	button = _G.ToolGripEditorButton
+	
+	if not button then
+		button = _G.Toolbar2032622:CreateButton(PLUGIN_NAME, PLUGIN_SUMMARY, PLUGIN_ICON)
+		_G.ToolGripEditorButton = button
+	end
 end
 
 local camera = Instance.new("Camera")

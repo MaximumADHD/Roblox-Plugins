@@ -42,8 +42,11 @@ local modules = script.Modules
 local assetNames = require(modules.AssetNames)
 local themeConfig = require(modules.ThemeConfig)
 
-local toolbar = plugin:CreateToolbar("CloneTrooper1019")
-local button = toolbar:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
+if not _G.Toolbar2032622 then
+	_G.Toolbar2032622 = plugin:CreateToolbar("CloneTrooper1019")
+end
+
+local button = _G.Toolbar2032622:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
 
 local pluginGui = plugin:CreateDockWidgetPluginGui(WIDGET_ID,WIDGET_INFO)
 pluginGui.Title = PLUGIN_TITLE

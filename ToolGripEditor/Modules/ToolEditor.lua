@@ -1,12 +1,15 @@
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
 
-local ToolEditor = { WORLD_MODELS_ENABLED = false }
+local Modules = script.Parent
+local Project = Modules.Parent
+
+local ToolEditor = { WORLD_MODELS_ENABLED = true }
 ToolEditor.__index = ToolEditor
 
 local function createDummy()
     -- CAUTION: This will likely break in the future.
-    return game:GetObjects("rbxasset://avatar/characterR15V3.rbxm")[1]
+    return game:GetObjects("rbxasset://avatar/characterR15V2.rbxm")[1]
 end
 
 function ToolEditor.new()
