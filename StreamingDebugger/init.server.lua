@@ -83,21 +83,6 @@ local function onButtonClick()
 	pluginGui.Enabled = not pluginGui.Enabled
 end
 
-local function setError(message)
-	local visible = errorLbl.Visible
-
-	if message and not visible then
-		background.ZIndex = 3
-		errorLbl.ZIndex = 4
-		
-		errorLbl.Text = message
-		errorLbl.Visible = true
-	elseif visible then
-		background.ZIndex = 1
-		errorLbl.Visible = false
-	end
-end
-
 local function canApplyLimit()
 	if not workspace.StreamingEnabled then
 		return false, "Streaming is not enabled!"
