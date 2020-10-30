@@ -4,85 +4,47 @@ local Selection = game:GetService("Selection")
 local Modules = script.Parent
 local Project = Modules.Parent
 
-local ToolEditor = { WORLD_MODELS_ENABLED = true }
+local ToolEditor = {}
 ToolEditor.__index = ToolEditor
 
-local function createDummy()
-    -- CAUTION: This will likely break in the future.
-    return game:GetObjects("rbxasset://avatar/characterR15V2.rbxm")[1]
-end
-
 function ToolEditor.new()
-    local dummy = createDummy()
+    -- CAUTION: This will likely break in the future.
+    local dummy = game:GetObjects("rbxasset://avatar/characterR15.rbxm")[1]
     
     local humanoid = dummy:WaitForChild("Humanoid")
     humanoid:BuildRigFromAttachments()
 
     local animator = Instance.new("Animator")
     animator.Parent = humanoid
+
+    local worldModel = Instance.new("WorldModel")
+    dummy.Parent = worldModel
+
+    local rootPart = humanoid.RootPart
+    rootPart.Anchored = true
     
     local editor = 
     {
         Dummy = dummy;
+
         Humanoid = humanoid;
+        RootPart = rootPart;
 
         Animator = animator;
-        RootPart = humanoid.RootPart;
+        WorldModel = worldModel;
     }
 
-    editor.RootPart.Anchored = true
-    setmetatable(editor, ToolEditor)
-
-    if ToolEditor.WORLD_MODELS_ENABLED then
-        local worldModel = Instance.new("WorldModel")
-        editor.WorldModel = worldModel
-
-        dummy.Parent = worldModel
-    else
-        local arm = dummy.RightUpperArm
-        local armCF = arm.CFrame
-        local limbOffsets = {}
-        
-        for _,part in pairs(dummy:GetChildren()) do
-            if part:IsA("BasePart") then
-                local limb = humanoid:GetLimb(part)
-
-                if limb.Name == "RightArm" then
-                    local partCF = part.CFrame
-                    limbOffsets[part] = armCF:ToObjectSpace(partCF)
-                end
-            end
-        end
-
-        arm.CFrame = armCF
-                   * CFrame.new(0, 0.15, -0.1)
-                   * CFrame.Angles(math.pi / 2, 0, 0)
-        
-        for part, offset in pairs(limbOffsets) do
-            part.CFrame = arm.CFrame * offset
-        end
-    end
-
-    return editor
+    return setmetatable(editor, ToolEditor)
 end
 
-function ToolEditor:GetContainer()
-    local target = self.WorldModel
-
-    if not target then
-        target = self.Dummy
-    end
-
-    return target
-end 
-
 function ToolEditor:SetParent(parent)
-    local target = self:GetContainer()
-    target.Parent = parent
+    local worldModel = self.WorldModel
+    worldModel.Parent = parent
 end
 
 function ToolEditor:FindObject(className, name)
-    local child = self.Dummy:FindFirstChild(name, true)
+    local dummy = self.Dummy
+    local child = dummy:FindFirstChild(name, true)
 
     if child and child:IsA(className) then
         return child
@@ -118,11 +80,12 @@ function ToolEditor:StepAnimator(delta)
     animator:StepAnimations(delta)
 end
 
-function ToolEditor:StartAnimations()
-    if not self.WORLD_MODELS_ENABLED then
-        return
-    end
+function ToolEditor:ApplyDescription(hDesc)
+    local humanoid = self.Humanoid
+    humanoid:ApplyDescription(hDesc)
+end
 
+function ToolEditor:StartAnimations()
     local anims = Project.Animations
     local animator = self.Animator
 
@@ -155,11 +118,6 @@ function ToolEditor:RefreshGrip()
     if rightGrip and handle then
         local grip = tool.Grip
         rightGrip.C1 = grip
-        
-        if not self.WORLD_MODELS_ENABLED then
-            local rightHand = rightGrip.Parent
-            handle.CFrame = rightHand.CFrame * rightGrip.C0 * grip:Inverse()
-        end
     end
 end
 
@@ -201,14 +159,14 @@ function ToolEditor:ClearTool()
 end
 
 function ToolEditor:CreateGhostArm()
-    local dummy = createDummy()
+    local dummy = self.Dummy:Clone()
     local humanoid = dummy.Humanoid
     
     for _,child in pairs(dummy:GetChildren()) do
         if child:IsA("BasePart") then
             local limb = humanoid:GetLimb(child)
 
-            if limb == Enum.Limb.RightArm then
+            if limb.Name == "RightArm" then
                 child:ClearAllChildren()
                 child.Anchored = true
                 child.Locked = true
@@ -219,6 +177,8 @@ function ToolEditor:CreateGhostArm()
             else
                 child:Destroy()
             end
+        elseif child:IsA("Accoutrement") then
+            child:Destroy()
         end
     end
 
@@ -240,6 +200,7 @@ function ToolEditor:BindTool(tool)
         self:ClearTool()
     end
 
+    local dummy = self.Dummy
     local handle = tool:FindFirstChild("Handle")
     
     if not (handle and handle.Archivable and handle:IsA("BasePart")) then
@@ -249,7 +210,7 @@ function ToolEditor:BindTool(tool)
     local rightHand = self:FindLimb("RightHand")
     local rightGrip = self.RightGrip
     
-    if not rightGrip then
+    if not (rightGrip and rightGrip:IsDescendantOf(dummy)) then
         local gripAtt = self:FindAttachment("RightGripAttachment")
 
         rightGrip = Instance.new("Motor6D")
@@ -264,13 +225,38 @@ function ToolEditor:BindTool(tool)
     local newHandle = handle:Clone()
     newHandle.Parent = self.Dummy
     newHandle.Anchored = false
-
+    newHandle.Locked = true
     rightGrip.Part1 = newHandle
 
     local gripEditor = Instance.new("Attachment")
     gripEditor.CFrame = tool.Grip
     gripEditor.Archivable = false
     gripEditor.Name = "Grip"
+
+    for _,part in pairs(handle:GetConnectedParts(true)) do
+        if part == handle then
+            continue
+        end
+
+        if not part.Archivable then
+            continue
+        end
+
+        if not part:IsDescendantOf(tool) then
+            continue
+        end
+        
+        local copy = part:Clone()
+        copy.Anchored = false
+        copy.Locked = true
+        copy.Parent = newHandle
+
+        local weld = Instance.new("Weld")
+        weld.C0 = handle.CFrame:ToObjectSpace(part.CFrame)
+        weld.Part0 = newHandle
+        weld.Part1 = copy
+        weld.Parent = copy
+    end
 
     self.GripRefresh = self:BindProperty(tool, "Grip", "RefreshGrip")
     self.GripReflect = self:BindProperty(gripEditor, "CFrame", "ReflectGrip")
@@ -292,16 +278,17 @@ function ToolEditor:EditGrip(plugin)
     local gripEditor = self.GripEditor
 
     if tool and handle and gripEditor then
+        local oldParent = tool.Parent
         gripEditor.Parent = handle
         self.InUse = true
 
         if not tool:IsDescendantOf(workspace) then
-            handle.Parent = workspace
+            tool.Parent = workspace
             Selection:Set{}
         end
 
         local camera = workspace.CurrentCamera
-        local locked = handle.Locked
+        local lockMap = {}
 
         if camera then
             local cf = camera.CFrame
@@ -316,9 +303,8 @@ function ToolEditor:EditGrip(plugin)
 
         local ghostArm = self:CreateGhostArm()
         ghostArm.Parent = handle
+
         self.GhostArm = ghostArm
-        
-        handle.Locked = true
         Selection:Set{gripEditor}
         
         if plugin:GetSelectedRibbonTool() ~= Enum.RibbonTool.Move then
@@ -326,18 +312,28 @@ function ToolEditor:EditGrip(plugin)
         end
 
         ChangeHistoryService:SetWaypoint("Begin Grip Edit")
+        
+        for _,desc in pairs(tool:GetDescendants()) do
+            if desc:IsA("BasePart") then
+                lockMap[desc] = desc.Locked
+                desc.Locked = true
+            end
+        end
+        
         Selection.SelectionChanged:Wait()
-
-        ghostArm.Parent = nil
-        self.GhostArm = nil
+        tool.Parent = oldParent
 
         gripEditor.Parent = nil
+        ghostArm.Parent = nil
+        
+        self.GhostArm = nil
+        self.InUse = false
 
-        handle.Parent = tool
-        handle.Locked = locked
+        for part, locked in pairs(lockMap) do
+            part.Locked = locked
+        end
 
         ChangeHistoryService:SetWaypoint("End Grip Edit")
-        self.InUse = false
     end
 end
 

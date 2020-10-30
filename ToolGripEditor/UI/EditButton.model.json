@@ -15,7 +15,8 @@
         "TextSize": 24,
         "TextColor3": [1, 1, 1],
 
-        "Visible": false
+        "Visible": false,
+        "ZIndex": 10
     },
 
     "Children":

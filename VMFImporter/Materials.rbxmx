@@ -1,0 +1,2627 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RBX86B5B3D5538645E0B47CA22BEFDA8C63">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<string name="Name">Materials</string>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="Folder" referent="RBXB38BBA3CD64D4C289348ED646AE26436">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">generic</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="Folder" referent="RBXA1AE0B4BF85947E9808256CDEC57206C">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">tile</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4FBFAB4D9D9147B0B3C8C82C1DFDD1A8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.686274529</R>
+							<G>0.580392182</G>
+							<B>0.513725519</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX03FB6D1B850840C28A6BA42E10D6A413">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXF2F63E7300CB434BB56553FC5A2CE6CE">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">hazard</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX8091BAC7BD654778B2ADADA4BF99FBA8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>1</R>
+							<G>1</G>
+							<B>0</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX2E6D4DDDAD6645D0914181509B5203FF">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">SmoothPlastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXF247D09E9EBF4D4A885C29D027C8AB3F">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">poster</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX7CE4B97A5F8C4D3BA810511A5F6AFAD3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.972549081</R>
+							<G>0.972549081</G>
+							<B>0.972549081</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXCC7CC046121448C5A1DE15EBB9760437">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Fabric</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXB3F024AE5437460F96E38106FAC277D6">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">concrete</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX1ADE9844ABFE4702AC294A8726BCF0FD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX4CE46EDF9FEC49D9B40E405394D5B8CF">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX8FBC179A99644EB79E7BB66944051836">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">black</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX7D5FECB43904469DA6F5528567AE68B6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.0666666701</R>
+							<G>0.0666666701</G>
+							<B>0.0666666701</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX686358A3FD5A4B529027B0136A179FD9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">SmoothPlastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX5B516546943E48CA98C4F2055CBB6403">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">beam</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX056F5386FFE44815A94F018AF1614C4F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX2B46C50A3AF44FC9A4C9F01D6AAA0EB8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">DiamondPlate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXFB4B0804F34D475A997DD08423F8E216">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">window</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4A6F6C5EF02C421CB56F669A24E691A6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX496FE993ACD74903B7C9B297801B32FC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Glass</string>
+					</Properties>
+				</Item>
+				<Item class="NumberValue" referent="RBX290DE32E9F32480AAFBF51CC860445C7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Transparency</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<double name="Value">0.75</double>
+					</Properties>
+				</Item>
+				<Item class="NumberValue" referent="RBX5E888CB1201E4C3D8F36F1EFA9AC26C3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Reflectance</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<double name="Value">0.5</double>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX4DE50C6861DF463D85FFAD51A5A24AEB">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">wood</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX7D71EE8A698A42A995EC584EC9E62ADA">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.800000072</R>
+							<G>0.556862772</G>
+							<B>0.411764741</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXDFA72E886BF3480887358A700B3E0C59">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Wood</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD8516797076B4F5B84E3228AEB0B0371">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">stone</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX618BC9B344E847F6BB624BCF2F76C6D0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.388235331</R>
+							<G>0.372549027</G>
+							<B>0.384313762</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX5DD4A731A64C4352A4E4F0648CC1BA51">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX6FF5A6E3AD7B466AA8CEB49A241FFE8D">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">mud</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4466627B6A1B4F0B8153D9EAE4887D7E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.337254912</R>
+							<G>0.258823544</G>
+							<B>0.211764723</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX4D12170DA31842F5A54D869BAB040D8C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Granite</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX4D4F04A5A7B14D5386F7A93BB3A8768A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">halflife</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX73C2507379974EEEA944846F2C4F52DD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.854902029</R>
+							<G>0.521568656</G>
+							<B>0.254901975</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXEF825A6292FC49B6B1C63B07150E3DCB">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">DiamondPlate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXCDCB7A3CE6EC47F08A098373A5ED0B93">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">reeds</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX620E65ACB456444AA12D7DDD8F5094B3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.352941185</R>
+							<G>0.298039228</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX0999F3267C9E4A28A597A76B982611F3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Pebble</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD67D9D7B498349B48B1D009D1E3A5829">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">floorplate</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXAB61F4AB9FCA4B9A81DCE145CE3AF907">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX3361D8D8C33E4654B5D8DC69CB149E8F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">DiamondPlate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEAEA5FFABA1844EEADE66D24E897961E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">metal</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXB3F3FA7917F048C8A71D2B4AB2F9CA07">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX87B3F297A0B743A6BD9460ADB4084CC9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">DiamondPlate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXB928BD8A38E9461EA2AA2EF2BE5B82E9">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">wall</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX81B9F22B06B0492E8970D70CD15FC717">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX84DFC526BDB54AA39D86910019568127">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1891945AF95F4AD897A36BAC8E05EB2E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">station</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXCEBC00EF685B4BF3B12EB84F33C524A5">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXE0DCAA2E744046B0A24084337008981A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Metal</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXDA88EA53090F4B069300C5E422168451">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">dirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX6E43A3650A654219BAEE64AC85FD2E67">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.337254912</R>
+							<G>0.258823544</G>
+							<B>0.211764723</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXBC7683263ECD4758A370DFA6CB93602F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXDB06D5A949F34F3092750C332BBA3638">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">rubber</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4EC74CF61C9E4C4ABC264D1356EDFF68">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.105882362</R>
+							<G>0.164705887</G>
+							<B>0.207843155</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX14044CF03FBD468FB1B67B5BAE78F4E7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX849246C5A45E490CA578468240774811">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">plastic</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXBE26483FA3D2449B8B8A17FC3E21895C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX4549F69ECEAD4C83B285F4F6E53F86D5">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Plastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX798210E438A24CE09C4340AE0D9BD579">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">sand</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXA2BE2CD47F2E4018A23C55339472484F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.843137324</R>
+							<G>0.772549093</G>
+							<B>0.603921592</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX1A687425EAC849379281E8DD70F980B0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX428A2D8882A14B2D8C412630E9FCD37E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">truss</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX8A7DB3580B214E44ABC9EE74C239BAB9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXDD8C85F61458463C822D545843CBF852">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">DiamondPlate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXAC0C3A7E780246A6B3CBC1F372FC2873">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">toxic</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX58A1B294E68B48F2A79B3EEA66E7BCAD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.643137276</R>
+							<G>0.741176486</G>
+							<B>0.278431386</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX7850D2BB71044BB2B80152CA16276FB3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">CorrodedMetal</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEECF2D09749C4F1984542B818254CA2C">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">plaster</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXFC9DC1A466CB4B23AB7223200C9D67E1">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX36756167B4434CB4B6858C283D6B8E82">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX9473AB84D2A84844A92A34A17CCB2D69">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">canal</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX0B364CA3F4BE4BC0ABE3636F3607C68C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.352941185</R>
+							<G>0.298039228</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX8790E87DF2B6427C9A5E5A3A83C78A28">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Sand</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1F5FB854F1224A1EBAEC37F2F410830B">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">shield</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX670191D3738C44E8BFE4F5F0153B4BE7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0</R>
+							<G>1</G>
+							<B>1</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX340C4367905A4278B5468DACDE9CDCE3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Neon</string>
+					</Properties>
+				</Item>
+				<Item class="NumberValue" referent="RBX38A927C32E5E48DB9D6161D7731D9E48">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Transparency</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<double name="Value">0.75</double>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX3AB559856C5D437D93E6466BD9CC6EEC">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">sign</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX2D5F87B0CEF9410BA120E53CCB9402ED">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.0666666701</R>
+							<G>0.0666666701</G>
+							<B>0.0666666701</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX5EB65847B11F411588492150EEB60961">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Fabric</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXACE7CBFB9EEE487281658617DDE9E5ED">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">reflectivity</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX2D82A4B9A3C74E799C64487D57DBC45A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX13BE59F214944CAABDD924A33289B1C0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">SmoothPlastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX0F1412E669314F64B667DE76CED7E89B">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">storefront</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4990FF5932044F3BB305DD248994B4B2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX4827A490B44B491E815016AABCB3CDEC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXA08BDD254FF54408B1FDBAE3D2B7F445">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">gravel</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX084B4CEEEE374B379B758218B98B5633">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.635294139</G>
+							<B>0.647058845</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXF8D04834A14D4F3BA27922C6DC682650">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Pebble</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1B477AB4B2A1437FA26927F618531632">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">cliff</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXA2BFAF46CA7F46BE998E98212D95662A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.388235331</R>
+							<G>0.372549027</G>
+							<B>0.384313762</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXF981C541FC64481396A67E7B089FFBCE">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Cobblestone</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX3CA6F02A917B42D887E32C2904C9869B">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">rock</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX5312761E00D446CEAE752B12AD547E23">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.388235331</R>
+							<G>0.372549027</G>
+							<B>0.384313762</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX5598B8EFCC094585BBF8B3102F5EAEDA">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXCEB3A3D657764DE4A2A343F5B1EAE315">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">brick</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX3C9C558B552744449FA16F9C7F12F1D4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.294117659</G>
+							<B>0.294117659</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXBCB24F266C264E4694A92D4CF5E70AA8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXFA47159DF18F4C1A86F0BD1E339B1429">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">ground</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4C2E424EB4204F45B8216A1C914F249E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.800000072</R>
+							<G>0.556862772</G>
+							<B>0.411764741</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX71728D667B1743B198241D8C43DF21F0">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX0332DE6A47CE4AE6B4C9C70DAD864953">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">grass</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXCE19F102A6F74CB1B97EBEE787A8B0B4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.498039246</R>
+							<G>0.556862772</G>
+							<B>0.392156899</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX0C01EA706649452EB0020D19038B4665">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Grass</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXC111AF472AF54F3DBA588D3F035B30D1">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">white</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXE8A61E91B2B642118B177BDD36CF644C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.972549081</R>
+							<G>0.972549081</G>
+							<B>0.972549081</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX508FF6AA17D14008BA47BC99AF150EDE">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">SmoothPlastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXB947A03BFC6749CBA7F39CB6FD7284B2">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">water</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="BoolValue" referent="RBX6721920619454665B169F2F2250044FA">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">UseWater</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<bool name="Value">true</bool>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXA62D4DE29CDF47BF95D057BB299ADDCE">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">tool</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="BoolValue" referent="RBX20C7892B5A2B44178E09925BE735D5C2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Skip</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<bool name="Value">true</bool>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX34DFF8A9C9074C0992E9264AF4CA03A4">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">dev</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="BoolValue" referent="RBX9550F956755E4686A9F674743C55DBFA">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Skip</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<bool name="Value">true</bool>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX105B3296BA7B4123A0961FA36D2055A6">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">sky</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="BoolValue" referent="RBXFE5B242848F14D319F2D196627F5F110">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Skip</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<bool name="Value">true</bool>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Folder" referent="RBX4B0A41774A954B18872186B47ABF6979">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">building_template</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="Folder" referent="RBXBD032F8F9F004090954CB318205106EB">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template024</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXFE7F38F76ED0472B9788169B09B9245E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.639215708</R>
+							<G>0.294117659</G>
+							<B>0.294117659</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXB409CFA9A7884026A385B43DDB936C0B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX7C45A2ACF6764EE19AB87CB482E3A045">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">roof_template001</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXA40E498685D844AA932B5A2794114230">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.0666666701</R>
+							<G>0.0666666701</G>
+							<B>0.0666666701</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXAC59E96C2BE74DC8B81F911CF7D87370">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEFB7BF750C854A56AAB41350048D82F0">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">courtyard_template006</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX1E405C25FC1B414194CBE2FC9CAAD4D4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.78039223</R>
+							<G>0.674509823</G>
+							<B>0.470588267</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX23D174D4ED8C4F03B391CB6D0D37E9FF">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX7CA894EA8E4D4DACA5B0F1029D77A914">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">courtyard_template005</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX255CB65D0B6D4DA5B56B8CEF522A89BC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.627451003</R>
+							<G>0.372549027</G>
+							<B>0.207843155</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX5D36C0595B9A4AC0A67854A3A29810CD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXB28F4945639A4551A4EF817252D2C6CA">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">courtyard_template003</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX65C9AF3D74484F3DBE23C645E45AE4B7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.596078455</R>
+							<G>0.760784388</G>
+							<B>0.858823597</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX910D8D2447D840A2875BE30C39D5B70C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1929BCA32FC24784915462F47F0454F4">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template001</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXBAF634D44AAB43F6BE72C1BCC249400D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.352941185</R>
+							<G>0.298039228</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX8C12C41FA1724CC7862FCC035431EB5A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">WoodPlanks</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX28493EFF37CD4EFAB3C54EA0A43D42D7">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template004</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXD7AC0F071C6843C3B2429B7EBEB6E435">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXA8220F6B34E04358A523289988E1C08F">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX441828C2E66842C6966BAC69928427DB">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">courtyard_template002</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX518B2720EED340EB808D76E467C5D30A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.996078491</R>
+							<G>0.952941239</G>
+							<B>0.733333349</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXFE29DEC90F604D7ABEEBC8412C19FB57">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX9D4702F2CCB44EC08C6920ADB35EC7A9">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">courtyard_template001</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX340F2D3A21DD4B20965061C92C41FCD9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXA4230198340C4E0A92C3ED9C277D8247">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXFAF649ED06B142A08F6D4BA0C7335D69">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template002</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX5AC063AC8CE24FF39E07CD57744BEE97">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>1</R>
+							<G>1</G>
+							<B>0.800000072</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX669B5759F0D5497CB2FB381975326C78">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX381C1A16C80B44CB9796FDC27B47BB70">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template012</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX1BF65A220FA744DF86B16E3B6652C3CB">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.972549081</R>
+							<G>0.850980461</G>
+							<B>0.427451015</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX75D58049F4444F5280851E9D524FCCFF">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX4A3CE91BEA2D46ADB4D8D3181F421EF8">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_trainstation_window002</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXC5F24A1CA69C44C7AE0481E75E13958A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.105882362</R>
+							<G>0.164705887</G>
+							<B>0.207843155</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX5ECB8DCFF9BD4F03B487A325667D9585">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">SmoothPlastic</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1F6A6AEFAFB046138E957C41B2C17177">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template008</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX3E5B9C2FB80342E6A6B0E2422DEC6EEB">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXD1BBD0B64F314A16B1215594300216E4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD1546A35FAC04908BBAA4FB63AC3D74B">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template013</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXAF4A18DB5B63497595B0C2C695B1E303">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.792156935</R>
+							<G>0.749019623</G>
+							<B>0.639215708</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX18B7D28190A7426AB2D795B04B563992">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXDFBA973D9BA5411F95293C8037A90263">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template025</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXBD636FA60A3142619FE8FDE1A9DB1DB4">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>1</R>
+							<G>1</G>
+							<B>0.800000072</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX2472ECB1F6BF4734A310E86669583C82">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX42065900FDF3422E8123697CC30B8856">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template010</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX803006E412E64126864EAC2DDD644F89">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX234BC862E9BA4985BCECEC556B6027E3">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1354CB8D50F14AC7803C89DB07447D00">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template029</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXFB3D1A3973204BB093A88EEF16FA983A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.733333349</R>
+							<G>0.701960802</G>
+							<B>0.698039234</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX01FFCA72C3574BC4B2FD235DEB2BEA3A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXCFB5F484BC424924B3780ED53DE45B01">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template028</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXFE9A74F136DC4C04890DB91F82E80A26">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.352941185</R>
+							<G>0.298039228</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX88420F10DEEE4C5996DBEDCB3D230CDD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX5D739DE57D3F49AB86E47752CBB0A8C4">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template027</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX17D069B640F44DF7A5D6C74D0B5559EC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.996078491</R>
+							<G>0.952941239</G>
+							<B>0.733333349</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXAD7E03828D15436C9215E3B37256FE07">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX264477CB8D324E85AA4865A6F6EB0255">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template007</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX377DAA79F2C7469C8553C02869E55927">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXEB09FAAA136C4D979FCE0FC8773FEB01">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXF19F66FEAADA4C22A43C421FB051455E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template014</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX781BB5AF699E47828A17F716E7D9D188">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.756862819</R>
+							<G>0.745098054</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX134F09E7AD6D48FD8A5ECD8851EB5B94">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX38C0A5A3ED3047C5B0C4112731E09957">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template003</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX638028E08B264E17ADB80DA8860FB161">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.623529434</R>
+							<G>0.631372571</G>
+							<B>0.674509823</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXA67C164D377643E19FFEA40CC94A5373">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Brick</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXAF80E337958B4786AF083190A774B7E7">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template022</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX761EAD07936C49089E1407EE91791590">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.996078491</R>
+							<G>0.952941239</G>
+							<B>0.733333349</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX58ED43C99D5A4FA6B43A07857BE83358">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX90DFAF507207444B81E4DA13BC6E7B71">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template021</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX7E29DD46F3564CE3BF32E5A2F3FCFC19">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.388235331</R>
+							<G>0.372549027</G>
+							<B>0.384313762</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXE0E0FC550C42471D87691542F5C02B45">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Slate</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXCFE64E75DB834A558EFA12694FB62E46">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template020</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX4DF78012E94641BCA7969B1E980578F6">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.48627454</R>
+							<G>0.360784322</G>
+							<B>0.274509817</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXD85C110F3ACB4C76BA6F24E437121F18">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX9BF202F51C15443DA7398AE107DE2965">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template019</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX85CF725E23EE4613B608F8ACAF462A4A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.792156935</R>
+							<G>0.749019623</G>
+							<B>0.639215708</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX6E21F2861BFA484FA40506F9A5EC27F8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX0EDF7BB9B0BA46EE8B3EA25CDC3B4266">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template015</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX9887E68B3F3B45DA8D3631D4A9282EF2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.756862819</R>
+							<G>0.745098054</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX513E16AF598E44289FB22FFF4EFDEB1A">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD93221C30B0B4513A698CFA734FF326E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template017</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBXAB6E328886DB44E085B7C0B4B9CACF18">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.756862819</R>
+							<G>0.745098054</G>
+							<B>0.258823544</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX1E9B2744B56B41B4883149419DE51383">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD8CC9C80E75A4D10B26FFD7AD56ED1FA">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template005</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX1A58FBC7386F45AF98572037AA6B513B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.992156923</R>
+							<G>0.917647123</G>
+							<B>0.552941203</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX9BC59608D3594F7A88F5AA21C1B4852C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX9A41173CBACF4A6C931A1E90D9FCDCFB">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template009</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX5EFAF96A46BF4DBA8CA5E99C450C2241">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.105882362</R>
+							<G>0.164705887</G>
+							<B>0.207843155</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX7ABE13C0F00B4C65B826BD0CC361C9EE">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Fabric</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXE4564E79E88246E9B8036D7CBEC2D4C8">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template011</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX276B5532D0D445E798BEFFFC1B0A8FFE">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.56078434</R>
+							<G>0.298039228</G>
+							<B>0.164705887</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBXB0DE7A2D356A4F48BD971507FA39DAF8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Concrete</string>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX621C99D873784CC1B3B52076D052250F">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">building_template006</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="Color3Value" referent="RBX565DFACE0EFB4D619CADB20220C0F37B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Color</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Color3 name="Value">
+							<R>0.905882418</R>
+							<G>0.905882418</G>
+							<B>0.92549026</B>
+						</Color3>
+					</Properties>
+				</Item>
+				<Item class="StringValue" referent="RBX9358B98C98E14EF482A71968AACCD010">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">Material</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<string name="Value">Marble</string>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+		<Item class="Folder" referent="RBXF4A246BAF40F4AA9AC314BEBE96C061C">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<string name="Name">nature</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+			<Item class="Folder" referent="RBX2D33ED1FB89B48B9890999D3EBBE9A4A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">canal_reeds</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX081D437A3BAF4DBF90E71FC8F3578BFC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX9473AB84D2A84844A92A34A17CCB2D69</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXF86B64AB63DE4AAC9769F5561C881844">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXCDCB7A3CE6EC47F08A098373A5ED0B93</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX7FDA4B7D81FC48F9BEC05AA1F994E17E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blenddirtmud</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX19580F46C4624CA3AFD4273CF3553B32">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXDE7AF6A40D3D45169D9F039A26E918B7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEE1BEBDE217C4F938235B081A9CB20C5">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendmudmud</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXE095EFDBBD03485B95E066A776873D1E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXF606098BC5164151885D3407656A8F88">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX7F88FE4AD84B473CB18B98886C4561A3">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendrockdirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXAF1EC24C32414C7392BA3A6848BB553D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX3CA6F02A917B42D887E32C2904C9869B</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX65447CB08492410E89A9A736EF90C6B9">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXDB4276A4C37A49F2B59C383406740B8E">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendrockgrass</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX5E9590FC41E342ED87076D32A0FFD166">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX3CA6F02A917B42D887E32C2904C9869B</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXCBC8BB7617744FAF8D908060EA03283C">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEB37E3288D3544748A3D91A9939EC60C">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendmuddirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXA48026638BFC4D1A8979AABF20A4DA64">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXFA47159DF18F4C1A86F0BD1E339B1429</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX1E3B45EE7A5F43118334D50CFD1D39AB">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX90EF1BECC7774E8AB17E6DEF153593D8">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendrockgravel</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXF1EB967AE3CB46D6B32A6B65896B4925">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX3CA6F02A917B42D887E32C2904C9869B</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX8BCDC2FF02AC49B5BF637A8A4E2A260D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX5ADCECDFD24B4D0AA23BB35617E42B9A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendgrassgravel</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXF7412871C04741B88FC599084BED0DDD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX6076C1861F754719BE12631EEB0C68AC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX937D2AE719474EB5BEB159489891AFEE">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendcliffdirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX4F9CFFB623FA412995FD2A46B385623B">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX1B477AB4B2A1437FA26927F618531632</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXA6E9D85325BB48D8B6EE81B0593681E7">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX6F4D496B12D74E2BA8FEC99F7E4A471A">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendsandsand</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXD7AA67881AD041989111CBC23EC73041">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX798210E438A24CE09C4340AE0D9BD579</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX557DACC28D2A4A87A6FBA79650D57FA8">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1F737BB2324644C5827D4F46B1612593">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendgrassgrass</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX8B6D2378C5284D6E99AADCF3F1970079">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX00B39F169F8744DEB45F6D15E7E3B51D">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX798210E438A24CE09C4340AE0D9BD579</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX371E2C92C5CE49C6A15C7CB80A685D72">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blenddirtdirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXC9CEA101DFEF4BE8BC1B939CA4A19066">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXECEA082B76544920A71B29490FFCF351">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXFAFDB04100F046DC88578EF105271207">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendtoxictoxic</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX8CF8A452FD0A4C3ABA5B8DF3A69BA6EF">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXBF7C0F41D0FB4964B46CE022F01EBBF2">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXAC0C3A7E780246A6B3CBC1F372FC2873</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX41752B0EE4054D2F87D66BF9B30989A9">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendrocksand</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX2FDA48DF930045399FEC274880EDD139">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX3CA6F02A917B42D887E32C2904C9869B</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX0E19D5BC624E4534B81F5C37E3E97C67">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX798210E438A24CE09C4340AE0D9BD579</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX307CCCA9787B48F283807DA24BA576B0">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendsandrock</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX03E98036E2054812BF876919774DB8C5">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX798210E438A24CE09C4340AE0D9BD579</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX0F8D6A70681E42698A804122715DEB28">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX3CA6F02A917B42D887E32C2904C9869B</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXD3B17164D74744F98329DEC0CE74EBA4">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendgrassdirt</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX6AD607707C65437A98071F76BC9CC647">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXA08BDD254FF54408B1FDBAE3D2B7F445</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXD92B9E35A92A48D88CDCB287105BFDBD">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXE870536F8D1B4C47BBA14C109756DA26">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blenddirtgrass</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBXE7CBBD970C9F406BA536137A91078141">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBXDA88EA53090F4B069300C5E422168451</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBXFB2E03587DAA4A10812D6CFE5591438E">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBX1B782BAC5FC541ACB97E6D08809B46C7">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">blendcliffgrass</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="ObjectValue" referent="RBX71C5785193A343A999EDF90E8182F789">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_A</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX1B477AB4B2A1437FA26927F618531632</Ref>
+					</Properties>
+				</Item>
+				<Item class="ObjectValue" referent="RBX101AA813980C452D93DE2FE5C2EC73CC">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">BlendTarget_B</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<Ref name="Value">RBX0332DE6A47CE4AE6B4C9C70DAD864953</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="Folder" referent="RBXEC9D40A35F8944D89AB1E01642E3EAB0">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<string name="Name">water_canals_water2</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+				<Item class="BoolValue" referent="RBX58F4A34B9E31473594C2FA8ECEBEF890">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<string name="Name">UseWater</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<bool name="Value">true</bool>
+					</Properties>
+				</Item>
+			</Item>
+		</Item>
+	</Item>
+</roblox>
