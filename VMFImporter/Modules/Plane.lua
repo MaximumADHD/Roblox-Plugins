@@ -54,7 +54,8 @@ function Plane.new(a: Vector3, b: Vector3, c: Vector3)
         
         Origin = origin;
         Normal = normal;
-
+        Distance = a:Dot(normal);
+        
         Ray = Ray.new(origin, normal);
         CFrame = CFrame.new(origin, origin + normal);
     }

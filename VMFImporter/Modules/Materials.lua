@@ -150,9 +150,13 @@ function Materials:GetMap()
 	end
 	
 	if not vmf then
-		vmf = Instance.new("Folder")
-		vmf.Name = "VMF Importer"
-		vmf.Parent = ServerStorage
+		vmf = ServerStorage:FindFirstChild("VMF Importer")
+		
+		if not vmf then
+			vmf = Instance.new("Folder")
+			vmf.Name = "VMF Importer"
+			vmf.Parent = ServerStorage
+		end
 		
 		self.VmfFolder = vmf
 	end
@@ -167,9 +171,13 @@ function Materials:GetMap()
 		local modules = script.Parent
 		local root = modules.Parent
 		
-		materials = root.Materials:Clone()
-		materials.Parent = vmf
+		materials = vmf:FindFirstChild("Materials")
 		self.Map = nil
+		
+		if not materials then
+			materials = root.Materials:Clone()
+			materials.Parent = vmf
+		end
 		
 		for _,desc in pairs(materials:GetDescendants()) do
 			self:OnDescendantAdded(desc)

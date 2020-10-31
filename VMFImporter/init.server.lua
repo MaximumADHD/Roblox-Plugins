@@ -434,9 +434,6 @@ local function reportMissingModels()
 	printMissingModels("Highest Usage Counts", sortByUsage)	
 end
 
--- Initialize the model state
-resetModelState()
-
 -------------------------------------------------------------------------------------------------------------------------------
 -- Brushes
 -------------------------------------------------------------------------------------------------------------------------------
