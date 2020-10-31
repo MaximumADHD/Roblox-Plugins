@@ -697,7 +697,7 @@ local function solveCube(planes, bbox)
 			local center = bbox.CFrame.Position
 			local size = {}
 			
-			for i = 1,3 do
+			for i = 1, 3 do
 				local pair = coplanar[i]
 				
 				local planeA = pair[1]
@@ -713,7 +713,7 @@ local function solveCube(planes, bbox)
 			local bestUp = 2
 			local bestProd = 0
 			
-			for i = 1,3 do
+			for i = 1, 3 do
 				local vector = vectors[i]
 				local prod = abs(vector:Dot(upVector))
 				

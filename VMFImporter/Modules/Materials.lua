@@ -16,7 +16,7 @@ local Map = {}
 
 function Linker:__index(key)
 	local link = rawget(self, "__link")
-	local result = false
+	local result
 	
 	local success, at = pcall(function ()
 		return link[key]		
