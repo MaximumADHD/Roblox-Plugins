@@ -15,16 +15,11 @@ local Debug3D =
 
 local setPlayerGui = Instance.new("BindableEvent")
 local adornSet = Instance.new("BindableEvent")
-
-local playerGui
 local debugAdorn
 
 spawn(function ()
 	while true do
-		if not playerGui then
-			playerGui = setPlayerGui.Event:Wait()
-		end
-		
+		local playerGui = setPlayerGui.Event:Wait()
 		debugAdorn = playerGui and playerGui:FindFirstChild("DebugAdorn")
 		
 		if debugAdorn then
@@ -39,7 +34,6 @@ spawn(function ()
 		end
 		
 		adornSet:Fire()
-		playerGui = nil
 	end
 end)
 
@@ -159,6 +153,7 @@ function Debug3D:DrawPlane(plane, color)
 	while not debugAdorn do
 		adornSet.Event:Wait()
 	end
+	
 	if typeof(color) == "string" then
 		color = self.Colors[color]
 	end

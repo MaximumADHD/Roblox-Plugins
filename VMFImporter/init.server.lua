@@ -598,17 +598,18 @@ local function solveBrush(solidPart, cuts, area)
 	for side, cut in pairs(cuts) do
 		local baseCF = cut.CFrame
 		cut.Parent = nil
-		cut.Size = cut.Size * (area * 2)
-		cut.CFrame = cut.CFrame + (cut.CFrame.LookVector * area)
+		cut.Size *= (area * 2)
+		cut.CFrame += (baseCF.LookVector * area)
 		
-		local myMatInfo = Materials:Get(side.material)
+		local material = side.material
+		local info = Materials:Get(material)
 		
-		if myMatInfo and not (myMatInfo.Skip and not side.material:lower():sub(-9) == "toolsclip") then
-			if not materials[side.material] then
-				materials[side.material] = true
+		if info and not (info.Skip and not material:lower():sub(-9) == "toolsclip") then
+			if not materials[material] then
+				materials[material] = true
 			end
 			
-			if myMatInfo.UseWater then
+			if matInfo.UseWater then
 				useWater = true
 			end
 			
@@ -616,16 +617,16 @@ local function solveBrush(solidPart, cuts, area)
 				cut.UsePartColor = true
 			end
 			
-			if myMatInfo.Material then
-				cut.Material = myMatInfo.Material
+			if info.Material then
+				cut.Material = info.Material
 			end
 			
-			if myMatInfo.Color then
-				cut.Color = myMatInfo.Color
+			if info.Color then
+				cut.Color = info.Color
 			end
 			
-			cut.Reflectance = myMatInfo.Reflectance or 0
-			cut.Transparency = myMatInfo.Transparency or 0
+			cut.Reflectance = info.Reflectance or 0
+			cut.Transparency = info.Transparency or 0
 		end
 		
 		table.insert(subtract, cut)
@@ -647,99 +648,139 @@ local function solveBrush(solidPart, cuts, area)
 	return result
 end
 
-local function solveCube(planes, bbox)
-	local marked = {}
-	local coplanar = {}
+local function solveCube(faces, aabb)
+	-- Cubes will only have 6 faces.
+	if #faces ~= 6 then
+		return false
+	end
 	
-	local numPlanes = #planes
+	-- There should be [6 * 4 = 24] points in total.
+	local merge = Winding.new(24)
 	
-	for i = 1, numPlanes do
-		for j = i + 1, numPlanes do
-			local planeA = planes[i]
-			local planeB = planes[j]
+	for i, face in ipairs(faces) do
+		-- All square faces should have 4 points.
+		-- Opt-out early just in case.
+		
+		if face.NumPoints ~= 4 then
+			return false
+		end
+		
+		for j, point in ipairs(face.Points) do
+			merge:AddPoint(point)
+		end
+	end
+	
+	if merge.NumPoints ~= 24 then
+		return false
+	end
+	
+	-- After removing duplicates, there should be
+	-- 8 points representing each corner of the cube.
+
+	merge:RemoveDuplicates(MIN_EDGE_LENGTH_EPSILON)
+	
+	if merge.NumPoints ~= 8 then
+		return false
+	end
+	
+	local count = 0
+	local axes = {}
+	local hit = {}
+	
+	-- Find 3 sets of parallel planes, while simultaneously
+	-- making sure the non-parallel planes are perpendicular.
+	
+	for i = 1, #faces do
+		-- Continue if this face already found a partner.
+		if hit[i] then
+			continue
+		end
+		
+		local f0 = faces[i]
+		local p0 = f0.Plane
+		local n0 = p0.Normal
+		
+		for j = 1, i-1 do
+			local f1 = faces[j]
+			local p1 = f1.Plane
 			
-			if not (marked[planeA] or marked[planeB]) then
-				if planeA:IsCoplanarWith(planeB) then
-					local set = { planeA, planeB }
-					push(coplanar, set)
+			local n1 = p1.Normal
+			local dot = n0:Dot(n1)
+			
+			if dot < -0.999 and not hit[j] then
+				axes[count + 1] = {p0, p1}
+				count += 1
 					
-					marked[planeA] = true
-					marked[planeB] = true
-				end
+				hit[i] = true
+				hit[j] = true
+			elseif math.abs(dot) > 0.001 then
+				-- All touching planes should be
+				-- perpendicular, this is not a cube.
+				return false
 			end
 		end
 	end
 	
-	if #coplanar == 3 then
-		local vectors = {}
-		
-		for a = 1, 3 do
-			local b = (a % 3) + 1
-			local c = (b % 3) + 1
-			
-			local planeA = coplanar[a][1]
-			local planeB = coplanar[b][1]
-			local planeC = coplanar[c][1]
-			
-			local normA = planeA.Normal
-			local normB = planeB.Normal
-			local normC = planeC.Normal
-			
-			local computed = normB:Cross(normC)
-			local dotProd = normA:Dot(computed)
-			
-			if abs(dotProd) > 0.999 then
-				push(vectors, computed)
-			end
-		end
-		
-		if #vectors == 3 then
-			local center = bbox.CFrame.Position
-			local size = {}
-			
-			for i = 1, 3 do
-				local pair = coplanar[i]
-				
-				local planeA = pair[1]
-				local planeB = pair[2]
-				
-				local originA = planeA.Origin
-				local originB = planeB:GetRayIntersection(planeA.Ray)
-				
-				size[i] = (originB - originA).Magnitude
-			end
-			
-			-- Compute best match for the up-axis of the cube.
-			local bestUp = 2
-			local bestProd = 0
-			
-			for i = 1, 3 do
-				local vector = vectors[i]
-				local prod = abs(vector:Dot(upVector))
-				
-				if prod > bestProd then
-					bestProd = prod
-					bestUp = i
-				end
-			end
-			
-			if bestUp ~= 2 then
-				local oldUpVector = vectors[2]
-				vectors[2] = vectors[bestUp]
-				vectors[bestUp] = -oldUpVector
-				
-				local oldUpSize = size[2]
-				size[2] = size[bestUp]
-				size[bestUp] = oldUpSize
-			end
-			
-			-- Return CFrame and Size for the cube.
-			local cf = CFrame.fromMatrix(center, unpack(vectors))
-			return true, Vector3.new(unpack(size)), cf
-		end
+	if count ~= 3 then
+		return false
 	end
 	
-	return false
+	-- Find the closest normal to facing upward,
+	-- we'll explicitly use it as the up axis.
+	
+	local bestUp = -1
+	local bestIndex = -1
+	
+	for i = 1, 3 do
+		local axis = axes[i]
+		local up, down = unpack(axis)
+		
+		local norm = up.Normal
+		local dot = norm:Dot(upVector)
+		
+		if dot < -0.001 then
+			up, down = down, up
+			dot = -dot
+		end
+		
+		if dot > bestUp then
+			bestUp = dot
+			bestIndex = i
+		end
+		
+		local a = up.Origin
+		local b = down:GetRayIntersection(up.Ray)
+		
+		local dist = (a - b).Magnitude
+		axes[i] = { up.Normal, dist }
+	end
+	
+	-- Break down the data into the axes
+	-- and faces we'll be working with.
+	
+	local upDown = pop(axes, bestIndex)
+	local rightLeft, backFront = unpack(axes)
+	
+	local up, height = unpack(upDown)
+	local right, width = unpack(rightLeft)
+	local back, length = unpack(backFront)
+	
+	-- HACK: Use a Tool to ortho-normalize the CFrame.
+	-- TODO: Remove this once CFrame:Orthonormalize() is live.
+	
+	local tool = Instance.new("Tool")
+	tool.GripPos = aabb.CFrame.Position
+	tool.GripForward = -back
+	tool.GripRight = right
+	tool.GripUp = up
+	
+	-- Compose the data we've generated
+	-- and return the final results.
+	
+	local cf = tool.Grip
+	local size = Vector3.new(width, height, length)
+	
+	return true, size, cf
 end
 
 -------------------------------------------------------------------------------------------------------------------------------
@@ -1131,6 +1172,7 @@ local function buildWorld(vmf)
 		-- If any side is a displacement, then don't bother doing CSG.
 		for _, side in ipairs(sides) do
 			local dispInfo = side.dispinfo
+			
 			if dispInfo then
 				hasDisps = true
 				maxPower = math.max(maxPower, dispInfo.power)
@@ -1155,11 +1197,14 @@ local function buildWorld(vmf)
 			bin.Name = binName
 			
 			local matInfo, matName
+			local materials = {}
+			
 			local planes = {}
 			local cuts = {}
 			
 			for _, side in ipairs(sides) do
-				local myMatInfo, myMatName = Materials:Get(side.material)
+				local material = side.material
+				local myMatInfo, myMatName = Materials:Get(material)
 				
 				if myMatInfo and not myMatInfo.Skip then
 					if matInfo == nil then
@@ -1178,10 +1223,10 @@ local function buildWorld(vmf)
 				cut.CFrame = plane.CFrame
 				
 				cuts[side] = cut
+				materials[material] = true
 			end
 			
 			if matInfo then
-				-- Compute the intersection points
 				local faces = solveFaces(planes)
 				local points = {}
 				
@@ -1193,7 +1238,7 @@ local function buildWorld(vmf)
 				
 				-- Compute the extents of these points
 				local aabb = computeAABB(points)
-				local isCube, size, cf = solveCube(planes, aabb)
+				local isCube, size, cf = solveCube(faces, aabb)
 				
 				local solidPart = create "Part"
 				{
@@ -1220,6 +1265,10 @@ local function buildWorld(vmf)
 					else
 						solidPart.Name = "solid_" .. i
 						solidPart.Parent = worldMdl
+					end
+					
+					for material in pairs(materials) do
+						CollectionService:AddTag(solidPart, material)
 					end
 					
 					sidesDone += 6
@@ -1442,6 +1491,19 @@ local function generateEntities(vmf, worldMdl)
 				
 				light.Parent = lightNode
 				entity.object = light
+			elseif classname == "info_landmark" then
+				local landmark = Instance.new("Part")
+				landmark.Size = Vector3.new(1, 1, 1)
+				landmark.Color = Color3.new(1, 0, 0)
+				landmark.Material = "Neon"
+				landmark.CFrame = entityCF
+				landmark.Anchored = true
+				landmark.CanCollide = false
+				landmark.Transparency = 1
+				landmark.Name = name
+				
+				entity.object = landmark
+				landmark.Parent = classBin
 			else
 				-- Unhandled entity, delete the model
 				classBin:Destroy()

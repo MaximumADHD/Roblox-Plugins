@@ -27,8 +27,7 @@ function Linker:__index(key)
 		
 		if typeof(at) == "Instance" then
 			if at:IsA("ValueBase") then
-				local anyCast: any = at
-				result = anyCast.Value
+				result = at.Value
 			end
 		end
 		

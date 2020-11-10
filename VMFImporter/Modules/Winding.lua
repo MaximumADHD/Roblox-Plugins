@@ -68,7 +68,8 @@ function Winding:Copy()
 	local copy = Winding.new(numPoints)
 	
 	for i = 1, numPoints do
-		copy.Points[i] = self.Points[i]
+		local point = self.Points[i]
+		copy:AddPoint(point)
 	end
 	
 	return copy
