@@ -49,7 +49,6 @@ local bodies =
 	}
 }
 
-
 for i, body in ipairs(bodies) do
 	local bodyName = body.Name
 	local title = BASE_TITLE:format(bodyName)
@@ -87,21 +86,6 @@ end
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local setHistoryWaypoint = false
-local timeFormat = "%s:%02d:%02d"
-
-local function toTimeOfDay(clockTime)
-	local hour, minFrac = modf(clockTime)
-	local min = minFrac * 60
-	
-	local minInt, secFrac = modf(min)
-	local sec = secFrac * 60
-	
-	hour = tostring(hour) -- Required to make sure -0 is actually formatted as -0
-	min = abs(min)
-	sec = abs(sec)
-	
-	return timeFormat:format(hour, min, sec)
-end
 
 local function onDeactivation()
 	for _,body in pairs(bodies) do
@@ -133,7 +117,7 @@ local function updateCelesialBodies()
 			local lon = atan2(dir.Y * lf, dir.X * lf)
 			
 			local geoLatitude = (lat / tau) * 360 + 23.5
-			local clockTime = (lon / tau) * 24 - 6
+			local clockTime = ((lon / tau) * 24 - 6) % 24
 			
 			if not setHistoryWaypoint then
 				setHistoryWaypoint = true
@@ -141,7 +125,7 @@ local function updateCelesialBodies()
 			end
 			
 			Lighting.GeographicLatitude = geoLatitude
-			Lighting.TimeOfDay = toTimeOfDay(clockTime)
+			Lighting.ClockTime = clockTime
 		else
 			setHistoryWaypoint = false
 			ChangeHistoryService:SetWaypoint(body.Name .. " Drag End")
