@@ -37,7 +37,7 @@ local importVmf = toolbar:CreateButton(
 	"Import VMF [BETA]"
 )
 
-local VMF_UNITS_PER_STUD = 10
+local VMF_UNITS_PER_STUD = 0.28 / .01905
 local ROUND_VERTEX_EPSILON = 0.01 -- Edges shorter than this are considered degenerate.
 local MIN_EDGE_LENGTH_EPSILON = 0.1 -- Vertices within this many units of an integer value will be rounded to an integer value.
 
