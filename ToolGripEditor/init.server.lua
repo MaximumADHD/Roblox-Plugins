@@ -42,6 +42,7 @@ local preview, button do
 
 	local config = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
 	preview = plugin:CreateDockWidgetPluginGui(widgetName, config)
+	preview.ZIndexBehavior = "Sibling"
 	preview.Title = pluginName
 	preview.Name = widgetName
 	
@@ -337,7 +338,7 @@ end
 
 for _,btn in pairs(ribbonTools:GetChildren()) do
 	if btn:IsA("TextButton") then
-		btn.Activated:Connect(function ()
+		btn.MouseButton1Down:Connect(function ()
 			plugin:SelectRibbonTool(btn.Name, dummyPos)
 		end)
 	end
