@@ -16,11 +16,6 @@ local IDENTITY = Vector3.new()
 local BASE_ANGLE_1 = CFrame.Angles(pi,  0,  pi / 2)
 local BASE_ANGLE_2 = CFrame.Angles(pi, pi, -pi / 2)
 
-local function fromTopBack(at, top, back)
-	local right = top:Cross(back)
-	return CFrame.fromMatrix(at, right, top, back)
-end
-
 function Polygon:__newindex(k, v)
 	assert(k ~= "CFrame" and k ~= "Size", k .. " is not a valid member. Use the Set method.")
 	
@@ -39,7 +34,7 @@ function Polygon:Set(a: Vector3, b: Vector3, c: Vector3, srcNormal: Vector3?)
 		'\      |      /      \
 		  \part1|part2/       |
 		   \   cut   /       / Direction edges point in:
-	   edg3 \       / edg2  /        (clockwise)
+	       edg3 \       / edg2  /        (clockwise)
 		     \     /      |/
 		      \<- /        `
 		       \ /
@@ -90,7 +85,7 @@ function Polygon:Set(a: Vector3, b: Vector3, c: Vector3, srcNormal: Vector3?)
 	local len1 = -ca:Dot(ab) / abm
 	local len2 = abm - len1
 	
-	-- calculate "base" CFrame to pasition parts by
+	-- calculate "base" CFrame to position parts by
 	local back = -ab.Unit
 	local top = ab:Cross(bc).Unit
 	local right = top:Cross(back)
@@ -99,24 +94,27 @@ function Polygon:Set(a: Vector3, b: Vector3, c: Vector3, srcNormal: Vector3?)
 	local width = (ca - back * len1).Magnitude
 	
 	local normal = (a - b):Cross(c - b).Unit
-	local offset = normal * (MIN_SIZE / 2)
+	local inset = normal * (MIN_SIZE / 2)
+	
+	-- If the source normal vector of the triangle was already known,
+	-- test it against the one we calculated and flip the inset if needed.
 	
 	if srcNormal then
 		local dotProd = normal:Dot(srcNormal)
 		
 		if dotProd > 0 then
-			offset = -offset
+			inset = -inset
 		end
 	end
 	
 	-- update parts
 	local mPart1 = self.Part1
 	mPart1.Size = Vector3.new(MIN_SIZE, width, len1)
-	mPart1.CFrame = maincf * BASE_ANGLE_1 * CFrame.new(0, width / 2, len1 / 2) + offset
+	mPart1.CFrame = maincf * BASE_ANGLE_1 * CFrame.new(0, width / 2, len1 / 2) + inset
 	
 	local mPart2 = self.Part2
 	mPart2.Size = Vector3.new(MIN_SIZE, width, len2)
-	mPart2.CFrame = maincf * BASE_ANGLE_2 * CFrame.new(0, width / 2, -len1 - len2 / 2) + offset
+	mPart2.CFrame = maincf * BASE_ANGLE_2 * CFrame.new(0, width / 2, -len1 - len2 / 2) + inset
 end
 
 function Polygon.new(a: Vector3, b: Vector3, c: Vector3, srcNormal: Vector3?)
