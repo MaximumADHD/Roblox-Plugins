@@ -7,7 +7,9 @@
 -- Setup
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local PhysicsSettings = settings():GetService("PhysicsSettings")
+local Selection = game:GetService("Selection")
 local CoreGui = game:GetService("CoreGui")
 
 local PLUGIN_DECOMP_TITLE   = "Show Decomposition Geometry"
@@ -17,6 +19,10 @@ local PLUGIN_DECOMP_ICON    = "rbxassetid://414888901"
 local PLUGIN_BOX_TITLE   = "Transparent Boxes"
 local PLUGIN_BOX_SUMMARY = "Renders nearby TriangleMeshParts (which have their CollisionFidelity set to 'Box') as mostly-transparent boxes."
 local PLUGIN_BOX_ICON    = "rbxassetid://5523395476"
+
+local PLUGIN_PATCH_TITLE   = "Mesh Patcher"
+local PLUGIN_PATCH_SUMMARY = "Allows you to apply certain properties of each MeshPart in the Workspace with a select MeshId."
+local PLUGIN_PATCH_ICON    = "rbxassetid://6284437024"
 
 local PLUGIN_TOOLBAR = "Physics"
 
@@ -180,5 +186,201 @@ local function onBoxClick()
 end
 
 boxButton.Click:Connect(onBoxClick)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Mesh Patcher
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+local ui = script.UI
+local patch = ui.Patch
+
+local other = ui.Other
+local meshId = ui.MeshId
+local collisonTypes = ui.Collision
+
+local input = meshId.Input
+local autoCheck = meshId.AutoSet
+
+local widgetInfo = DockWidgetPluginGuiInfo.new(
+	Enum.InitialDockState.Left,
+	false,  -- Widget will be initially disabled
+	true,   -- Override the previous enabled state
+	250,    -- Default width of the floating window
+	500     -- Default height of the floating window
+)
+
+local pluginGui = plugin:CreateDockWidgetPluginGui("MeshPatcher", widgetInfo)
+pluginGui.ZIndexBehavior = "Sibling"
+pluginGui.Title = "Mesh Patcher"
+
+local patcherButton = toolbar:CreateButton(PLUGIN_PATCH_TITLE, PLUGIN_PATCH_SUMMARY, PLUGIN_PATCH_ICON)
+local enabledChanged = pluginGui:GetPropertyChangedSignal("Enabled")
+
+local collision = nil
+local autoSet = false
+
+local otherProps = {}
+local setters = {}
+
+local function onPatcherButtonClick()
+	pluginGui.Enabled = not pluginGui.Enabled
+end
+
+local function onEnabledChanged()
+	patcherButton:SetActive(pluginGui.Enabled)
+end
+
+local function registerCheckBox(button, title, init, callback)
+	local checked
+
+	local function setChecked(value)
+		if typeof(value) ~= "boolean" then
+			value = (not not value)
+		end
+		
+		if checked == value then
+			return
+		else
+			checked = value
+		end
+
+		if checked then
+			button.Text = "☑ " .. title
+		else
+			button.Text = "☐ " .. title
+		end
+
+		if callback then
+			callback(value, title)
+		end
+	end
+
+	local function onActivated()
+		setChecked(not checked)
+	end
+	
+	setChecked(init)
+	setters[title] = setChecked
+	button.Activated:Connect(onActivated)
+end
+
+local function onCollisionChecked(checked, target)
+	if checked then
+		local setOld = setters[collision]
+		
+		if setOld then
+			setOld(false)
+		end
+
+		collision = target
+	elseif collision == target then
+		collision = nil
+	end
+end
+
+local function onOtherChecked(value, title)
+	otherProps[title] = value
+end
+
+local function onSelectionChanged()
+	if not autoSet then
+		return
+	end
+
+	if not pluginGui.Enabled then
+		return
+	end
+
+	local selected = Selection:Get()
+	local target
+
+	for i = #selected, 1, -1 do
+		local object = selected[i]
+
+		if object:IsA("MeshPart") then
+			target = object
+			break
+		end
+	end
+
+	if not target then
+		return
+	end
+
+	local meshId = target.MeshId
+	input.Text = meshId
+
+	if collision == nil then
+		local setCollision = target.CollisionFidelity.Name
+		onCollisionChecked(true, setCollision)
+	end
+
+	for prop in pairs(otherProps) do
+		local value = target[prop]
+		onOtherChecked(value, prop)
+	end
+end
+
+local function onPatch()
+	local targetId = input.Text
+
+	if targetId:gsub(" ", "") == "" then
+		warn("No Target MeshId provided?")
+		return
+	end
+
+	local targets = {}
+
+	for _,desc in pairs(workspace:GetDescendants()) do
+		if desc:IsA("MeshPart") and desc.MeshId == targetId then
+			targets[desc] = true
+		end
+	end
+	
+	if not next(targets) then
+		warn("No MeshParts found with Target MeshId:", targetId)
+		return
+	end
+
+	ChangeHistoryService:SetWaypoint("Before Mesh Patch")
+
+	for meshPart in pairs(targets) do
+		if collision then
+			meshPart.CollisionFidelity = collision
+		end
+
+		for prop, value in pairs(otherProps) do
+			meshPart[prop] = value
+		end
+	end
+
+	ChangeHistoryService:SetWaypoint("After Mesh Patch")
+end
+
+for _,check in pairs(collisonTypes:GetChildren()) do
+	if check:IsA("TextButton") then
+		registerCheckBox(check, check.Name, false, onCollisionChecked)
+	end
+end
+
+for _,check in pairs(other:GetChildren()) do
+	if check:IsA("TextButton") then
+		registerCheckBox(check, check.Name, true, onOtherChecked)
+	end
+end
+
+registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", false, function (checked)
+	autoSet = checked
+
+	if autoSet then
+		onSelectionChanged()
+	end
+end)
+
+ui.Parent = pluginGui
+patch.Activated:Connect(onPatch)
+enabledChanged:Connect(onEnabledChanged)
+patcherButton.Click:Connect(onPatcherButtonClick)
+Selection.SelectionChanged:Connect(onSelectionChanged)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
