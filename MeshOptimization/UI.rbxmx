@@ -2,7 +2,7 @@
 	<Meta name="ExplicitAutoJoints">true</Meta>
 	<External>null</External>
 	<External>nil</External>
-	<Item class="ScrollingFrame" referent="RBX7DC0D11779054A3093BD067807004860">
+	<Item class="ScrollingFrame" referent="3">
 		<Properties>
 			<bool name="Active">true</bool>
 			<Vector2 name="AnchorPoint">
@@ -14,15 +14,15 @@
 			<token name="AutomaticCanvasSize">0</token>
 			<token name="AutomaticSize">0</token>
 			<Color3 name="BackgroundColor3">
-				<R>0.172549024</R>
-				<G>0.172549024</G>
-				<B>0.172549024</B>
+				<R>1</R>
+				<G>1</G>
+				<B>1</B>
 			</Color3>
 			<float name="BackgroundTransparency">0</float>
 			<Color3 name="BorderColor3">
-				<R>0.498039216</R>
-				<G>0.498039216</G>
-				<B>0.498039216</B>
+				<R>0.784313798</R>
+				<G>0.784313798</G>
+				<B>0.784313798</B>
 			</Color3>
 			<token name="BorderMode">0</token>
 			<int name="BorderSizePixel">1</int>
@@ -35,7 +35,7 @@
 				<XS>0</XS>
 				<XO>0</XO>
 				<YS>0</YS>
-				<YO>450</YO>
+				<YO>504</YO>
 			</UDim2>
 			<bool name="ClipsDescendants">true</bool>
 			<bool name="Draggable">false</bool>
@@ -75,14 +75,14 @@
 			</UDim2>
 			<token name="SizeConstraint">0</token>
 			<int64 name="SourceAssetId">-1</int64>
-			<BinaryString name="Tags"></BinaryString>
+			<BinaryString name="Tags">TWVzaFBhdGNoZXJfV2luZG93</BinaryString>
 			<Content name="TopImage"><url>rbxasset://textures/ui/Scroll/scroll-middle.png</url></Content>
 			<token name="VerticalScrollBarInset">1</token>
 			<token name="VerticalScrollBarPosition">0</token>
 			<bool name="Visible">true</bool>
 			<int name="ZIndex">1</int>
 		</Properties>
-		<Item class="Frame" referent="RBXF59DD63DD8174F01B3A85BD187A0266C">
+		<Item class="Frame" referent="4">
 			<Properties>
 				<bool name="Active">false</bool>
 				<Vector2 name="AnchorPoint">
@@ -127,7 +127,7 @@
 					<XS>1</XS>
 					<XO>0</XO>
 					<YS>0</YS>
-					<YO>100</YO>
+					<YO>86</YO>
 				</UDim2>
 				<token name="SizeConstraint">0</token>
 				<int64 name="SourceAssetId">-1</int64>
@@ -136,7 +136,7 @@
 				<bool name="Visible">true</bool>
 				<int name="ZIndex">1</int>
 			</Properties>
-			<Item class="TextLabel" referent="RBXCDE7123AF9AD4123A2F2D63F0EA07860">
+			<Item class="TextLabel" referent="5">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -183,17 +183,17 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.200000003</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">Target MeshId:</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -212,7 +212,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextBox" referent="RBXE38817E12289417DA539E44E6DE76240">
+			<Item class="TextBox" referent="6">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -268,12 +268,12 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.300000012</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>30</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfSW5wdXQ=</BinaryString>
 					<string name="Text"></string>
 					<Color3 name="TextColor3">
 						<R>1</R>
@@ -298,7 +298,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBX7750C75DD33D413F9E8966C146CDA2E2">
+			<Item class="TextButton" referent="7">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -316,9 +316,9 @@
 					</Color3>
 					<float name="BackgroundTransparency">1</float>
 					<Color3 name="BorderColor3">
-						<R>0.105882362</R>
-						<G>0.164705887</G>
-						<B>0.207843155</B>
+						<R>0.784313798</R>
+						<G>0.784313798</G>
+						<B>0.784313798</B>
 					</Color3>
 					<token name="BorderMode">0</token>
 					<int name="BorderSizePixel">0</int>
@@ -348,18 +348,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.333000004</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">&#226;&#152;&#144; Auto-set from selected MeshPart?</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0.800000072</R>
+						<G>0.800000072</G>
+						<B>0.800000072</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -372,21 +372,21 @@
 					<float name="TextTransparency">0</float>
 					<token name="TextTruncate">0</token>
 					<bool name="TextWrapped">true</bool>
-					<token name="TextXAlignment">2</token>
+					<token name="TextXAlignment">0</token>
 					<token name="TextYAlignment">1</token>
 					<bool name="Visible">true</bool>
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="UIListLayout" referent="RBX3A1B13A3AB6848FC9F2895D1F6FE1D86">
+			<Item class="UIListLayout" referent="8">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<token name="FillDirection">1</token>
 					<token name="HorizontalAlignment">0</token>
-					<string name="Name">UIListLayout</string>
+					<string name="Name">List</string>
 					<UDim name="Padding">
-						<S>0.0500000007</S>
-						<O>0</O>
+						<S>0</S>
+						<O>5</O>
 					</UDim>
 					<token name="SortOrder">2</token>
 					<int64 name="SourceAssetId">-1</int64>
@@ -394,7 +394,7 @@
 					<token name="VerticalAlignment">2</token>
 				</Properties>
 			</Item>
-			<Item class="Frame" referent="RBX63EF1F27A6BE41F0A9D24CB38FEF00B3">
+			<Item class="Frame" referent="9">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -405,9 +405,9 @@
 					<bool name="AutoLocalize">true</bool>
 					<token name="AutomaticSize">0</token>
 					<Color3 name="BackgroundColor3">
-						<R>0.498039216</R>
-						<G>0.498039216</G>
-						<B>0.498039216</B>
+						<R>0.784313798</R>
+						<G>0.784313798</G>
+						<B>0.784313798</B>
 					</Color3>
 					<float name="BackgroundTransparency">0</float>
 					<Color3 name="BorderColor3">
@@ -444,21 +444,21 @@
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfRGl2</BinaryString>
 					<bool name="Visible">true</bool>
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="UIListLayout" referent="RBX70ABF9D1A6804EC4846E35A48197270E">
+		<Item class="UIListLayout" referent="10">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<token name="FillDirection">1</token>
 				<token name="HorizontalAlignment">0</token>
-				<string name="Name">UIListLayout</string>
+				<string name="Name">List</string>
 				<UDim name="Padding">
 					<S>0</S>
-					<O>15</O>
+					<O>10</O>
 				</UDim>
 				<token name="SortOrder">2</token>
 				<int64 name="SourceAssetId">-1</int64>
@@ -466,10 +466,10 @@
 				<token name="VerticalAlignment">1</token>
 			</Properties>
 		</Item>
-		<Item class="UIPadding" referent="RBXFB8D289D098E4C778300B6E109030879">
+		<Item class="UIPadding" referent="11">
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
-				<string name="Name">UIPadding</string>
+				<string name="Name">Padding</string>
 				<UDim name="PaddingBottom">
 					<S>0</S>
 					<O>12</O>
@@ -490,7 +490,7 @@
 				<BinaryString name="Tags"></BinaryString>
 			</Properties>
 		</Item>
-		<Item class="Frame" referent="RBXF31260547B434C069E986B50547FC85D">
+		<Item class="Frame" referent="12">
 			<Properties>
 				<bool name="Active">false</bool>
 				<Vector2 name="AnchorPoint">
@@ -535,7 +535,7 @@
 					<XS>1</XS>
 					<XO>0</XO>
 					<YS>0</YS>
-					<YO>125</YO>
+					<YO>126</YO>
 				</UDim2>
 				<token name="SizeConstraint">0</token>
 				<int64 name="SourceAssetId">-1</int64>
@@ -544,7 +544,7 @@
 				<bool name="Visible">true</bool>
 				<int name="ZIndex">1</int>
 			</Properties>
-			<Item class="TextLabel" referent="RBX81B778FFFD6741DFBBF89E514642E6E9">
+			<Item class="TextLabel" referent="13">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -591,17 +591,17 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.174999997</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">Set CollisionFidelity:</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -620,15 +620,15 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="UIListLayout" referent="RBX1FC426D405FB4E3EA90413A36F959067">
+			<Item class="UIListLayout" referent="14">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<token name="FillDirection">1</token>
 					<token name="HorizontalAlignment">0</token>
-					<string name="Name">UIListLayout</string>
+					<string name="Name">List</string>
 					<UDim name="Padding">
-						<S>0.0500000007</S>
-						<O>0</O>
+						<S>0</S>
+						<O>5</O>
 					</UDim>
 					<token name="SortOrder">2</token>
 					<int64 name="SourceAssetId">-1</int64>
@@ -636,7 +636,7 @@
 					<token name="VerticalAlignment">1</token>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBX2771324F10054B2DB2E71F0D80FF72B6">
+			<Item class="TextButton" referent="15">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -686,18 +686,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.150000006</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">&#226;&#152;&#144; Box</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -716,7 +716,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBX18AA1422EA6344919A53264063FDC730">
+			<Item class="TextButton" referent="16">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -766,18 +766,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.150000006</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">&#226;&#152;&#144; Hull</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -796,7 +796,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBX53C8DC2B42A74FC09DC85A0E1E303CCC">
+			<Item class="TextButton" referent="17">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -846,18 +846,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.150000006</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">&#226;&#152;&#144; Default</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -876,7 +876,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBXB3F75693F7FA4D22B0EE342D5009D019">
+			<Item class="TextButton" referent="18">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -926,18 +926,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.150000006</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">&#226;&#152;&#144; PreciseConvexDecomposition</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -956,7 +956,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Frame" referent="RBX0CF44B5339ED4BD7A936BBF82C93F518">
+			<Item class="Frame" referent="19">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -967,9 +967,9 @@
 					<bool name="AutoLocalize">true</bool>
 					<token name="AutomaticSize">0</token>
 					<Color3 name="BackgroundColor3">
-						<R>0.498039216</R>
-						<G>0.498039216</G>
-						<B>0.498039216</B>
+						<R>0.784313798</R>
+						<G>0.784313798</G>
+						<B>0.784313798</B>
 					</Color3>
 					<float name="BackgroundTransparency">0</float>
 					<Color3 name="BorderColor3">
@@ -1006,13 +1006,13 @@
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfRGl2</BinaryString>
 					<bool name="Visible">true</bool>
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="Frame" referent="RBX2C08BDB794434386A8EE2E6A44408408">
+		<Item class="Frame" referent="20">
 			<Properties>
 				<bool name="Active">false</bool>
 				<Vector2 name="AnchorPoint">
@@ -1057,7 +1057,7 @@
 					<XS>1</XS>
 					<XO>0</XO>
 					<YS>0</YS>
-					<YO>100</YO>
+					<YO>126</YO>
 				</UDim2>
 				<token name="SizeConstraint">0</token>
 				<int64 name="SourceAssetId">-1</int64>
@@ -1066,7 +1066,7 @@
 				<bool name="Visible">true</bool>
 				<int name="ZIndex">1</int>
 			</Properties>
-			<Item class="TextLabel" referent="RBX83E8DCA0954648C781A469ED695FBFA8">
+			<Item class="TextLabel" referent="21">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -1113,17 +1113,17 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.21875</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
 					<string name="Text">Other Options:</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -1142,15 +1142,15 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="UIListLayout" referent="RBXD0ADD223E06A4D2EA703F4EF56DA97FA">
+			<Item class="UIListLayout" referent="22">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<token name="FillDirection">1</token>
 					<token name="HorizontalAlignment">0</token>
-					<string name="Name">UIListLayout</string>
+					<string name="Name">List</string>
 					<UDim name="Padding">
-						<S>0.0500000007</S>
-						<O>0</O>
+						<S>0</S>
+						<O>5</O>
 					</UDim>
 					<token name="SortOrder">2</token>
 					<int64 name="SourceAssetId">-1</int64>
@@ -1158,7 +1158,7 @@
 					<token name="VerticalAlignment">1</token>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBXF4AE74CD91F7407FBBFA54AA06ECC0A0">
+			<Item class="TextButton" referent="23">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -1208,18 +1208,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.1875</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
-					<string name="Text">&#226;&#152;&#144; CanCollide</string>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#145; CanCollide</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -1238,7 +1238,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBX8394F3EE42CC43D282223D6454B220ED">
+			<Item class="TextButton" referent="24">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -1288,18 +1288,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.1875</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
-					<string name="Text">&#226;&#152;&#144; CanTouch</string>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#145; CanTouch</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -1318,7 +1318,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="TextButton" referent="RBXD9A61EE25F9A424196A470078ADEA5C0">
+			<Item class="TextButton" referent="25">
 				<Properties>
 					<bool name="Active">true</bool>
 					<Vector2 name="AnchorPoint">
@@ -1368,18 +1368,18 @@
 					<UDim2 name="Size">
 						<XS>1</XS>
 						<XO>0</XO>
-						<YS>0.1875</YS>
-						<YO>0</YO>
+						<YS>0</YS>
+						<YO>20</YO>
 					</UDim2>
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
-					<string name="Text">&#226;&#152;&#144; CastShadow</string>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#145; CastShadow</string>
 					<Color3 name="TextColor3">
-						<R>1</R>
-						<G>1</G>
-						<B>1</B>
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
 					</Color3>
 					<bool name="TextScaled">true</bool>
 					<float name="TextSize">14</float>
@@ -1398,7 +1398,7 @@
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
-			<Item class="Frame" referent="RBXCD5D1BEE29BF4661AD7ADF542BC09F77">
+			<Item class="Frame" referent="26">
 				<Properties>
 					<bool name="Active">false</bool>
 					<Vector2 name="AnchorPoint">
@@ -1409,9 +1409,9 @@
 					<bool name="AutoLocalize">true</bool>
 					<token name="AutomaticSize">0</token>
 					<Color3 name="BackgroundColor3">
-						<R>0.498039216</R>
-						<G>0.498039216</G>
-						<B>0.498039216</B>
+						<R>0.784313798</R>
+						<G>0.784313798</G>
+						<B>0.784313798</B>
 					</Color3>
 					<float name="BackgroundTransparency">0</float>
 					<Color3 name="BorderColor3">
@@ -1448,13 +1448,93 @@
 					<token name="SizeConstraint">0</token>
 					<int64 name="SourceAssetId">-1</int64>
 					<token name="Style">0</token>
-					<BinaryString name="Tags"></BinaryString>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfRGl2</BinaryString>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
+			<Item class="TextButton" referent="27">
+				<Properties>
+					<bool name="Active">true</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0</X>
+						<Y>1</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoButtonColor">true</bool>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">1</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<token name="Font">3</token>
+					<int name="LayoutOrder">0</int>
+					<float name="LineHeight">1</float>
+					<bool name="Modal">false</bool>
+					<string name="Name">DoubleSided</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>1</YS>
+						<YO>0</YO>
+					</UDim2>
+					<bool name="RichText">false</bool>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">true</bool>
+					<bool name="Selected">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>20</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#145; DoubleSided</string>
+					<Color3 name="TextColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="TextScaled">true</bool>
+					<float name="TextSize">14</float>
+					<Color3 name="TextStrokeColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<float name="TextStrokeTransparency">1</float>
+					<float name="TextTransparency">0</float>
+					<token name="TextTruncate">0</token>
+					<bool name="TextWrapped">true</bool>
+					<token name="TextXAlignment">0</token>
+					<token name="TextYAlignment">1</token>
 					<bool name="Visible">true</bool>
 					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="TextButton" referent="RBX1ACDCFAE048748FCB64B443B58D06F72">
+		<Item class="TextButton" referent="28">
 			<Properties>
 				<bool name="Active">true</bool>
 				<Vector2 name="AnchorPoint">
@@ -1466,9 +1546,9 @@
 				<bool name="AutoLocalize">true</bool>
 				<token name="AutomaticSize">0</token>
 				<Color3 name="BackgroundColor3">
-					<R>0.247058824</R>
-					<G>1</G>
-					<B>0.498039216</B>
+					<R>0</R>
+					<G>0.666666687</G>
+					<B>1</B>
 				</Color3>
 				<float name="BackgroundTransparency">0</float>
 				<Color3 name="BorderColor3">
@@ -1533,7 +1613,7 @@
 				<bool name="Visible">true</bool>
 				<int name="ZIndex">1</int>
 			</Properties>
-			<Item class="UICorner" referent="RBX1C8433CC560F4C21B126A54BF8706C48">
+			<Item class="UICorner" referent="29">
 				<Properties>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<UDim name="CornerRadius">
@@ -1543,6 +1623,448 @@
 					<string name="Name">UICorner</string>
 					<int64 name="SourceAssetId">-1</int64>
 					<BinaryString name="Tags"></BinaryString>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Frame" referent="30">
+			<Properties>
+				<bool name="Active">false</bool>
+				<Vector2 name="AnchorPoint">
+					<X>0</X>
+					<Y>0</Y>
+				</Vector2>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<bool name="AutoLocalize">true</bool>
+				<token name="AutomaticSize">0</token>
+				<Color3 name="BackgroundColor3">
+					<R>1</R>
+					<G>1</G>
+					<B>1</B>
+				</Color3>
+				<float name="BackgroundTransparency">1</float>
+				<Color3 name="BorderColor3">
+					<R>0.105882362</R>
+					<G>0.164705887</G>
+					<B>0.207843155</B>
+				</Color3>
+				<token name="BorderMode">0</token>
+				<int name="BorderSizePixel">1</int>
+				<bool name="ClipsDescendants">false</bool>
+				<bool name="Draggable">false</bool>
+				<int name="LayoutOrder">2</int>
+				<string name="Name">Rendering</string>
+				<Ref name="NextSelectionDown">null</Ref>
+				<Ref name="NextSelectionLeft">null</Ref>
+				<Ref name="NextSelectionRight">null</Ref>
+				<Ref name="NextSelectionUp">null</Ref>
+				<UDim2 name="Position">
+					<XS>0</XS>
+					<XO>0</XO>
+					<YS>0</YS>
+					<YO>0</YO>
+				</UDim2>
+				<Ref name="RootLocalizationTable">null</Ref>
+				<float name="Rotation">0</float>
+				<bool name="Selectable">false</bool>
+				<Ref name="SelectionImageObject">null</Ref>
+				<UDim2 name="Size">
+					<XS>1</XS>
+					<XO>0</XO>
+					<YS>0</YS>
+					<YO>101</YO>
+				</UDim2>
+				<token name="SizeConstraint">0</token>
+				<int64 name="SourceAssetId">-1</int64>
+				<token name="Style">0</token>
+				<BinaryString name="Tags"></BinaryString>
+				<bool name="Visible">true</bool>
+				<int name="ZIndex">1</int>
+			</Properties>
+			<Item class="TextLabel" referent="31">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0</X>
+						<Y>0</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">1</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<token name="Font">45</token>
+					<int name="LayoutOrder">0</int>
+					<float name="LineHeight">1</float>
+					<string name="Name">Title</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>0</YO>
+					</UDim2>
+					<bool name="RichText">false</bool>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>20</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">Set RenderFidelity:</string>
+					<Color3 name="TextColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="TextScaled">true</bool>
+					<float name="TextSize">14</float>
+					<Color3 name="TextStrokeColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<float name="TextStrokeTransparency">1</float>
+					<float name="TextTransparency">0</float>
+					<token name="TextTruncate">0</token>
+					<bool name="TextWrapped">true</bool>
+					<token name="TextXAlignment">0</token>
+					<token name="TextYAlignment">1</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
+			<Item class="UIListLayout" referent="32">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<token name="FillDirection">1</token>
+					<token name="HorizontalAlignment">0</token>
+					<string name="Name">List</string>
+					<UDim name="Padding">
+						<S>0</S>
+						<O>5</O>
+					</UDim>
+					<token name="SortOrder">2</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<token name="VerticalAlignment">1</token>
+				</Properties>
+			</Item>
+			<Item class="TextButton" referent="33">
+				<Properties>
+					<bool name="Active">true</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0</X>
+						<Y>1</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoButtonColor">true</bool>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">1</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<token name="Font">3</token>
+					<int name="LayoutOrder">0</int>
+					<float name="LineHeight">1</float>
+					<bool name="Modal">false</bool>
+					<string name="Name">Precise</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>1</YS>
+						<YO>0</YO>
+					</UDim2>
+					<bool name="RichText">false</bool>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">true</bool>
+					<bool name="Selected">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>20</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#144; Precise</string>
+					<Color3 name="TextColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="TextScaled">true</bool>
+					<float name="TextSize">14</float>
+					<Color3 name="TextStrokeColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<float name="TextStrokeTransparency">1</float>
+					<float name="TextTransparency">0</float>
+					<token name="TextTruncate">0</token>
+					<bool name="TextWrapped">true</bool>
+					<token name="TextXAlignment">0</token>
+					<token name="TextYAlignment">1</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
+			<Item class="TextButton" referent="34">
+				<Properties>
+					<bool name="Active">true</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0</X>
+						<Y>1</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoButtonColor">true</bool>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">1</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<token name="Font">3</token>
+					<int name="LayoutOrder">0</int>
+					<float name="LineHeight">1</float>
+					<bool name="Modal">false</bool>
+					<string name="Name">Automatic</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>1</YS>
+						<YO>0</YO>
+					</UDim2>
+					<bool name="RichText">false</bool>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">true</bool>
+					<bool name="Selected">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>20</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#144; Automatic</string>
+					<Color3 name="TextColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="TextScaled">true</bool>
+					<float name="TextSize">14</float>
+					<Color3 name="TextStrokeColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<float name="TextStrokeTransparency">1</float>
+					<float name="TextTransparency">0</float>
+					<token name="TextTruncate">0</token>
+					<bool name="TextWrapped">true</bool>
+					<token name="TextXAlignment">0</token>
+					<token name="TextYAlignment">1</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
+			<Item class="TextButton" referent="35">
+				<Properties>
+					<bool name="Active">true</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0</X>
+						<Y>1</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoButtonColor">true</bool>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>1</R>
+						<G>1</G>
+						<B>1</B>
+					</Color3>
+					<float name="BackgroundTransparency">1</float>
+					<Color3 name="BorderColor3">
+						<R>0.105882362</R>
+						<G>0.164705887</G>
+						<B>0.207843155</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<token name="Font">3</token>
+					<int name="LayoutOrder">0</int>
+					<float name="LineHeight">1</float>
+					<bool name="Modal">false</bool>
+					<string name="Name">Performance</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>1</YS>
+						<YO>0</YO>
+					</UDim2>
+					<bool name="RichText">false</bool>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">true</bool>
+					<bool name="Selected">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>1</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>20</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfVGV4dA==</BinaryString>
+					<string name="Text">&#226;&#152;&#144; Performance</string>
+					<Color3 name="TextColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="TextScaled">true</bool>
+					<float name="TextSize">14</float>
+					<Color3 name="TextStrokeColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<float name="TextStrokeTransparency">1</float>
+					<float name="TextTransparency">0</float>
+					<token name="TextTruncate">0</token>
+					<bool name="TextWrapped">true</bool>
+					<token name="TextXAlignment">0</token>
+					<token name="TextYAlignment">1</token>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
+			<Item class="Frame" referent="36">
+				<Properties>
+					<bool name="Active">false</bool>
+					<Vector2 name="AnchorPoint">
+						<X>0.5</X>
+						<Y>0</Y>
+					</Vector2>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<bool name="AutoLocalize">true</bool>
+					<token name="AutomaticSize">0</token>
+					<Color3 name="BackgroundColor3">
+						<R>0.784313798</R>
+						<G>0.784313798</G>
+						<B>0.784313798</B>
+					</Color3>
+					<float name="BackgroundTransparency">0</float>
+					<Color3 name="BorderColor3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<token name="BorderMode">0</token>
+					<int name="BorderSizePixel">0</int>
+					<bool name="ClipsDescendants">false</bool>
+					<bool name="Draggable">false</bool>
+					<int name="LayoutOrder">1000000</int>
+					<string name="Name">Div</string>
+					<Ref name="NextSelectionDown">null</Ref>
+					<Ref name="NextSelectionLeft">null</Ref>
+					<Ref name="NextSelectionRight">null</Ref>
+					<Ref name="NextSelectionUp">null</Ref>
+					<UDim2 name="Position">
+						<XS>0</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>0</YO>
+					</UDim2>
+					<Ref name="RootLocalizationTable">null</Ref>
+					<float name="Rotation">0</float>
+					<bool name="Selectable">false</bool>
+					<Ref name="SelectionImageObject">null</Ref>
+					<UDim2 name="Size">
+						<XS>2</XS>
+						<XO>0</XO>
+						<YS>0</YS>
+						<YO>1</YO>
+					</UDim2>
+					<token name="SizeConstraint">0</token>
+					<int64 name="SourceAssetId">-1</int64>
+					<token name="Style">0</token>
+					<BinaryString name="Tags">TWVzaFBhdGNoZXJfRGl2</BinaryString>
+					<bool name="Visible">true</bool>
+					<int name="ZIndex">1</int>
 				</Properties>
 			</Item>
 		</Item>

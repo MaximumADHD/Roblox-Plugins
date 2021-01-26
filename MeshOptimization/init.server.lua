@@ -1,16 +1,17 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- @ CloneTrooper1019, 2016-2020
---   Decomposition Geometry Plugin
---   Allows you to toggle the Decomposition Geometry 
---   of TriangleMeshParts
+-- @ CloneTrooper1019, 2016-2021
+--   Mesh Optimization Tools
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Setup
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
-local PhysicsSettings = settings():GetService("PhysicsSettings")
+local CollectionService = game:GetService("CollectionService")
 local Selection = game:GetService("Selection")
 local CoreGui = game:GetService("CoreGui")
+
+local Studio = settings():GetService("Studio")
+local PhysicsSettings = settings():GetService("PhysicsSettings")
 
 local PLUGIN_DECOMP_TITLE   = "Show Decomposition Geometry"
 local PLUGIN_DECOMP_SUMMARY = "Toggles the visibility of Decomposition Geometry for TriangleMeshParts."
@@ -24,7 +25,7 @@ local PLUGIN_PATCH_TITLE   = "Mesh Patcher"
 local PLUGIN_PATCH_SUMMARY = "Allows you to apply certain properties of each MeshPart in the Workspace with a select MeshId."
 local PLUGIN_PATCH_ICON    = "rbxassetid://6284437024"
 
-local PLUGIN_TOOLBAR = "Physics"
+local PLUGIN_TOOLBAR = "Mesh Optimization Tools"
 
 if plugin.Name:find(".rbxm") then
 	PLUGIN_TOOLBAR ..= " (LOCAL)"
@@ -194,9 +195,11 @@ boxButton.Click:Connect(onBoxClick)
 local ui = script.UI
 local patch = ui.Patch
 
-local other = ui.Other
 local meshId = ui.MeshId
-local collisonTypes = ui.Collision
+local otherTypes = ui.Other
+
+local collisionTypes = ui.Collision
+local renderingTypes = ui.Rendering
 
 local input = meshId.Input
 local autoCheck = meshId.AutoSet
@@ -209,17 +212,26 @@ local widgetInfo = DockWidgetPluginGuiInfo.new(
 	500     -- Default height of the floating window
 )
 
-local pluginGui = plugin:CreateDockWidgetPluginGui("MeshPatcher", widgetInfo)
+local guiGuid = "MeshPatcher"
+local themes = require(script.Themes)
+
+if plugin.Name:find(".rbxm") then
+	guiGuid ..= " (LOCAL)"
+end  
+
+local pluginGui = plugin:CreateDockWidgetPluginGui(guiGuid, widgetInfo)
 pluginGui.ZIndexBehavior = "Sibling"
 pluginGui.Title = "Mesh Patcher"
+pluginGui.Name = guiGuid
 
 local patcherButton = toolbar:CreateButton(PLUGIN_PATCH_TITLE, PLUGIN_PATCH_SUMMARY, PLUGIN_PATCH_ICON)
 local enabledChanged = pluginGui:GetPropertyChangedSignal("Enabled")
 
 local collision = nil
+local rendering = nil
 local autoSet = false
 
-local otherProps = {}
+local props = {}
 local setters = {}
 
 local function onPatcherButtonClick()
@@ -230,7 +242,42 @@ local function onEnabledChanged()
 	patcherButton:SetActive(pluginGui.Enabled)
 end
 
-local function registerCheckBox(button, title, init, callback)
+local function applyList(element)
+	local list = element:FindFirstChildWhichIsA("UIListLayout")
+
+	if list then
+		local size = list.AbsoluteContentSize
+		
+		if element:IsA("ScrollingFrame") then
+			element.CanvasSize = UDim2.new(0, 0, 0, size.Y + 50)
+		else
+			element.Size = UDim2.new(1, 0, 0, size.Y)
+		end
+	end
+end
+
+local function applyTheme()
+	local theme = Studio.Theme
+
+	for _,element in pairs(pluginGui:GetDescendants()) do
+		local tags = CollectionService:GetTags(element)
+
+		for _,tag in pairs(tags) do
+			local config = themes[tag]
+
+			if not config then
+				continue
+			end
+			
+			for prop, style in pairs(config) do
+				local color = theme:GetColor(style)
+				element[prop] = color
+			end
+		end
+	end
+end
+
+local function registerCheckBox(button, title, init, callback, group)
 	local checked
 
 	local function setChecked(value)
@@ -251,7 +298,7 @@ local function registerCheckBox(button, title, init, callback)
 		end
 
 		if callback then
-			callback(value, title)
+			callback(value, title, group)
 		end
 	end
 
@@ -264,22 +311,31 @@ local function registerCheckBox(button, title, init, callback)
 	button.Activated:Connect(onActivated)
 end
 
-local function onCollisionChecked(checked, target)
+local function registerCheckBoxes(bin, ...)
+	for _,check in pairs(bin:GetChildren()) do
+		if check:IsA("TextButton") then
+			registerCheckBox(check, check.Name, ...)
+		end
+	end
+end
+
+local function onMultiToggle(checked, propName)
+	props[propName] = checked
+end
+
+local function onSingleToggle(checked, newValue, prop)
 	if checked then
-		local setOld = setters[collision]
+		local oldValue = props[prop]
+		local setOld = setters[oldValue]
 		
 		if setOld then
 			setOld(false)
 		end
-
-		collision = target
-	elseif collision == target then
-		collision = nil
+		
+		props[prop] = newValue
+	else
+		props[prop] = nil
 	end
-end
-
-local function onOtherChecked(value, title)
-	otherProps[title] = value
 end
 
 local function onSelectionChanged()
@@ -310,14 +366,19 @@ local function onSelectionChanged()
 	local meshId = target.MeshId
 	input.Text = meshId
 
-	if collision == nil then
-		local setCollision = target.CollisionFidelity.Name
-		onCollisionChecked(true, setCollision)
-	end
-
-	for prop in pairs(otherProps) do
+	local rendering = target.RenderFidelity.Name
+	setters[rendering](true)
+	
+	local collision = target.CollisionFidelity.Name
+	setters[collision](true)
+	
+	for prop, set in pairs(props) do
 		local value = target[prop]
-		onOtherChecked(value, prop)
+		local valueType = typeof(value)
+		
+		if valueType == "boolean" then
+			setters[prop](value)
+		end
 	end
 end
 
@@ -341,15 +402,11 @@ local function onPatch()
 		warn("No MeshParts found with Target MeshId:", targetId)
 		return
 	end
-
+	
 	ChangeHistoryService:SetWaypoint("Before Mesh Patch")
 
 	for meshPart in pairs(targets) do
-		if collision then
-			meshPart.CollisionFidelity = collision
-		end
-
-		for prop, value in pairs(otherProps) do
+		for prop, value in pairs(props) do
 			meshPart[prop] = value
 		end
 	end
@@ -357,19 +414,18 @@ local function onPatch()
 	ChangeHistoryService:SetWaypoint("After Mesh Patch")
 end
 
-for _,check in pairs(collisonTypes:GetChildren()) do
-	if check:IsA("TextButton") then
-		registerCheckBox(check, check.Name, false, onCollisionChecked)
+ui.Parent = pluginGui
+
+for _,frame in pairs(ui:GetChildren()) do
+	if frame:IsA("Frame") then
+		applyList(frame)
 	end
 end
 
-for _,check in pairs(other:GetChildren()) do
-	if check:IsA("TextButton") then
-		registerCheckBox(check, check.Name, true, onOtherChecked)
-	end
-end
+applyTheme()
+applyList(ui)
 
-registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", false, function (checked)
+registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", true, function (checked)
 	autoSet = checked
 
 	if autoSet then
@@ -377,8 +433,12 @@ registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", false, function 
 	end
 end)
 
-ui.Parent = pluginGui
+registerCheckBoxes(collisionTypes, false, onSingleToggle, "CollisionFidelity")
+registerCheckBoxes(renderingTypes, false, onSingleToggle, "RenderFidelity")
+registerCheckBoxes(otherTypes,     true,  onMultiToggle,  "Other")
+
 patch.Activated:Connect(onPatch)
+Studio.ThemeChanged:Connect(applyTheme)
 enabledChanged:Connect(onEnabledChanged)
 patcherButton.Click:Connect(onPatcherButtonClick)
 Selection.SelectionChanged:Connect(onSelectionChanged)
