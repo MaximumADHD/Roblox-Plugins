@@ -224,16 +224,25 @@ function ToolEditor:BindTool(tool)
 
     local newHandle = handle:Clone()
     newHandle.Parent = self.Dummy
-    newHandle.Anchored = false
+
+    for _,joint in pairs(newHandle:GetJoints()) do
+        joint:Destroy()
+    end
+
     newHandle.Locked = true
+    newHandle.Anchored = false
     rightGrip.Part1 = newHandle
 
     local gripEditor = Instance.new("Attachment")
-    gripEditor.CFrame = tool.Grip
     gripEditor.Archivable = false
+    gripEditor.CFrame = tool.Grip
     gripEditor.Name = "Grip"
+    
+    for _,part in pairs(tool:GetDescendants()) do
+        if not part:IsA("BasePart") then
+            continue
+        end
 
-    for _,part in pairs(handle:GetConnectedParts(true)) do
         if part == handle then
             continue
         end
@@ -251,6 +260,10 @@ function ToolEditor:BindTool(tool)
         copy.Locked = true
         copy.Parent = newHandle
 
+        for _,joint in pairs(copy:GetJoints()) do
+            joint:Destroy()
+        end
+        
         local weld = Instance.new("Weld")
         weld.C0 = handle.CFrame:ToObjectSpace(part.CFrame)
         weld.Part0 = newHandle
@@ -274,21 +287,40 @@ end
 
 function ToolEditor:EditGrip(plugin)
     local tool = self.Tool
-    local handle = self.DirectHandle
+    local handle = self.Handle
+
     local gripEditor = self.GripEditor
+    local directHandle = self.DirectHandle
 
     if tool and handle and gripEditor then
-        local oldParent = tool.Parent
-        gripEditor.Parent = handle
-        self.InUse = true
+        local editor = Instance.new("Model")
+        editor.Name = "Tool Grip Editor"
+        editor.Archivable = false
+        editor.Parent = workspace
 
-        if not tool:IsDescendantOf(workspace) then
-            tool.Parent = workspace
-            Selection:Set{}
+        local proxyHandle = handle:Clone()
+        proxyHandle.Locked = true
+        proxyHandle.Anchored = true
+        proxyHandle.Parent = editor
+        
+        for _,desc in pairs(proxyHandle:GetDescendants()) do
+            if desc:IsA("BasePart") then
+                if tool:IsDescendantOf(workspace) then
+                    desc:Destroy()
+                else 
+                    desc.Locked = true
+                    desc.Anchored = true
+                    desc.Parent = editor
+                end
+            end
         end
-
+        
+        gripEditor.Parent = proxyHandle
+        editor.PrimaryPart = proxyHandle
+        editor:SetPrimaryPartCFrame(directHandle.CFrame)
+        
         local camera = workspace.CurrentCamera
-        local lockMap = {}
+        self.InUse = true
 
         if camera then
             local cf = camera.CFrame
@@ -301,8 +333,18 @@ function ToolEditor:EditGrip(plugin)
             camera.Focus = CFrame.new(focus)
         end
 
+        if tool:IsDescendantOf(workspace) then
+            proxyHandle.Transparency = 1
+            
+            for _,child in pairs(proxyHandle:GetChildren()) do
+                if child ~= gripEditor then
+                    child:Destroy()
+                end
+            end
+        end
+        
         local ghostArm = self:CreateGhostArm()
-        ghostArm.Parent = handle
+        ghostArm.Parent = editor
 
         self.GhostArm = ghostArm
         Selection:Set{gripEditor}
@@ -312,28 +354,16 @@ function ToolEditor:EditGrip(plugin)
         end
 
         ChangeHistoryService:SetWaypoint("Begin Grip Edit")
-        
-        for _,desc in pairs(tool:GetDescendants()) do
-            if desc:IsA("BasePart") then
-                lockMap[desc] = desc.Locked
-                desc.Locked = true
-            end
-        end
-        
         Selection.SelectionChanged:Wait()
-        tool.Parent = oldParent
-
+            
         gripEditor.Parent = nil
         ghostArm.Parent = nil
         
         self.GhostArm = nil
         self.InUse = false
 
-        for part, locked in pairs(lockMap) do
-            part.Locked = locked
-        end
-
         ChangeHistoryService:SetWaypoint("End Grip Edit")
+        editor:Destroy()
     end
 end
 
