@@ -229,6 +229,12 @@ function ToolEditor:BindTool(tool)
         joint:Destroy()
     end
 
+    for _,child in pairs(newHandle:GetChildren()) do
+        if child:IsA("Sound") then
+            child.PlayOnRemove = false
+        end
+    end
+
     newHandle.Locked = true
     newHandle.Anchored = false
     rightGrip.Part1 = newHandle
@@ -338,6 +344,10 @@ function ToolEditor:EditGrip(plugin)
             
             for _,child in pairs(proxyHandle:GetChildren()) do
                 if child ~= gripEditor then
+                    if child:IsA("Sound") then
+                        child.PlayOnRemove = false
+                    end
+
                     child:Destroy()
                 end
             end
