@@ -207,17 +207,6 @@ local function parseVector3(v3str)
 	return Vector3.new(unpack(coords))
 end
 
-local function tupleGroupCall(obj, methodName, ...)
-	local input = {...}
-	local result = obj[methodName](obj, input)
-	
-	if typeof(result) == "table" then
-		return unpack(result)
-	else
-		return result
-	end
-end
-
 local function create(ty)
 	return function (data)
 		local obj = Instance.new(ty)
