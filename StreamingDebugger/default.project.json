@@ -3,16 +3,6 @@
 
     "tree": 
     {
-        "$path": "init.server.lua",
-
-        "UI":
-        {
-            "$path": "UI"
-        },
-
-        "ThemeConfig":
-        {
-            "$path": "ThemeConfig.lua"
-        }
+        "$path": "Plugin"
     }
 }
