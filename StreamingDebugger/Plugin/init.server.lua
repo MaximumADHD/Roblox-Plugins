@@ -4,7 +4,6 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Setup
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 local NetworkSettings = settings():GetService("NetworkSettings")
 local PluginGuiService = game:GetService("PluginGuiService")
 
@@ -20,6 +19,8 @@ local WIDGET_INFO  = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, tru
 
 local IS_EDIT = RunService:IsEdit()
 local IS_SERVER = RunService:IsServer()
+
+local REAL_MEMORY_LIMIT = NetworkSettings.EmulatedTotalMemoryInMB
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Interface
@@ -63,10 +64,10 @@ ui.Parent = pluginGui
 
 local function onThemeChanged()
 	local theme = Studio.Theme
-	
+
 	for name, config in pairs(themeConfig) do
 		local element = ui:FindFirstChild(name)
-		
+
 		if element then
 			for prop, guideColor in pairs(config) do
 				element[prop] = theme:GetColor(guideColor)
@@ -114,7 +115,7 @@ local function update()
 	if errorMsg then
 		background.ZIndex = 3
 		errorLbl.ZIndex = 4
-		
+
 		errorLbl.Text = errorMsg
 		errorLbl.Visible = true
 	else
@@ -124,10 +125,9 @@ local function update()
 
 	if canApply then
 		if canLimit then
-			local available = NetworkSettings.FreeMemoryMBytes
-			NetworkSettings.ExtraMemoryUsed = available - memoryLimit
+			NetworkSettings.EmulatedTotalMemoryInMB = memoryLimit
 		else
-			NetworkSettings.ExtraMemoryUsed = 0
+			NetworkSettings.EmulatedTotalMemoryInMB = REAL_MEMORY_LIMIT
 		end
 
 		if RunService:IsRunning() then
@@ -136,9 +136,9 @@ local function update()
 	end
 end
 
-local function onFocusLost(enterPressed)
+local function onFocusLost()
 	local limit = tonumber(input.Text:match("%d+"))
-	
+
 	if limit and limit > 0 then
 		memoryLimit = limit
 	else
