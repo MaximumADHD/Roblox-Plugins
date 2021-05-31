@@ -3,6 +3,6 @@
 	
     "tree": 
     {
-        "$path": "."
+        "$path": "Plugin"
     }
 }
