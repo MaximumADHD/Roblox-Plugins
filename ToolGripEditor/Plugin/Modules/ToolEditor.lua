@@ -9,8 +9,8 @@ ToolEditor.__index = ToolEditor
 
 function ToolEditor.new()
     -- CAUTION: This will likely break in the future.
-    local dummy = game:GetObjects("rbxasset://avatar/characterR15.rbxm")[1]
-    
+    local dummy = game:GetObjects("rbxasset://avatar/characterR15V5.rbxm")[1]
+
     local humanoid = dummy:WaitForChild("Humanoid")
     humanoid:BuildRigFromAttachments()
 
@@ -22,9 +22,8 @@ function ToolEditor.new()
 
     local rootPart = humanoid.RootPart
     rootPart.Anchored = true
-    
-    local editor = 
-    {
+
+    local editor = {
         Dummy = dummy;
 
         Humanoid = humanoid;
@@ -71,7 +70,7 @@ function ToolEditor:GetCameraZoom()
         return math.max(4, size.Magnitude * 1.5)
     end
 
-    local cf, size = self.Dummy:GetBoundingBox()
+    local _,size = self.Dummy:GetBoundingBox()
     return size.Magnitude
 end
 
@@ -161,7 +160,7 @@ end
 function ToolEditor:CreateGhostArm()
     local dummy = self.Dummy:Clone()
     local humanoid = dummy.Humanoid
-    
+
     for _,child in pairs(dummy:GetChildren()) do
         if child:IsA("BasePart") then
             local limb = humanoid:GetLimb(child)
@@ -170,7 +169,7 @@ function ToolEditor:CreateGhostArm()
                 child:ClearAllChildren()
                 child.Anchored = true
                 child.Locked = true
-                
+
                 if child.Name == "RightHand" then
                     dummy.PrimaryPart = child
                 end
@@ -202,14 +201,14 @@ function ToolEditor:BindTool(tool)
 
     local dummy = self.Dummy
     local handle = tool:FindFirstChild("Handle")
-    
+
     if not (handle and handle.Archivable and handle:IsA("BasePart")) then
         return
     end
-    
+
     local rightHand = self:FindLimb("RightHand")
     local rightGrip = self.RightGrip
-    
+
     if not (rightGrip and rightGrip:IsDescendantOf(dummy)) then
         local gripAtt = self:FindAttachment("RightGripAttachment")
 
@@ -243,7 +242,7 @@ function ToolEditor:BindTool(tool)
     gripEditor.Archivable = false
     gripEditor.CFrame = tool.Grip
     gripEditor.Name = "Grip"
-    
+
     for _,part in pairs(tool:GetDescendants()) do
         if not part:IsA("BasePart") then
             continue
@@ -260,7 +259,7 @@ function ToolEditor:BindTool(tool)
         if not part:IsDescendantOf(tool) then
             continue
         end
-        
+
         local copy = part:Clone()
         copy.Anchored = false
         copy.Locked = true
@@ -269,7 +268,7 @@ function ToolEditor:BindTool(tool)
         for _,joint in pairs(copy:GetJoints()) do
             joint:Destroy()
         end
-        
+
         local weld = Instance.new("Weld")
         weld.C0 = handle.CFrame:ToObjectSpace(part.CFrame)
         weld.Part0 = newHandle
@@ -279,10 +278,10 @@ function ToolEditor:BindTool(tool)
 
     self.GripRefresh = self:BindProperty(tool, "Grip", "RefreshGrip")
     self.GripReflect = self:BindProperty(gripEditor, "CFrame", "ReflectGrip")
-    
+
     self.GripEditor = gripEditor
     self.DirectHandle = handle
-    
+
     self.Handle = newHandle
     self.Tool = tool
 
@@ -308,7 +307,7 @@ function ToolEditor:EditGrip(plugin)
         proxyHandle.Locked = true
         proxyHandle.Anchored = true
         proxyHandle.Parent = editor
-        
+
         for _,desc in pairs(proxyHandle:GetDescendants()) do
             if desc:IsA("BasePart") then
                 if tool:IsDescendantOf(workspace) then
@@ -320,11 +319,11 @@ function ToolEditor:EditGrip(plugin)
                 end
             end
         end
-        
+
         gripEditor.Parent = proxyHandle
         editor.PrimaryPart = proxyHandle
         editor:SetPrimaryPartCFrame(directHandle.CFrame)
-        
+
         local camera = workspace.CurrentCamera
         self.InUse = true
 
@@ -341,7 +340,7 @@ function ToolEditor:EditGrip(plugin)
 
         if tool:IsDescendantOf(workspace) then
             proxyHandle.Transparency = 1
-            
+
             for _,child in pairs(proxyHandle:GetChildren()) do
                 if child ~= gripEditor then
                     if child:IsA("Sound") then
@@ -352,23 +351,23 @@ function ToolEditor:EditGrip(plugin)
                 end
             end
         end
-        
+
         local ghostArm = self:CreateGhostArm()
         ghostArm.Parent = editor
 
         self.GhostArm = ghostArm
         Selection:Set{gripEditor}
-        
+
         if plugin:GetSelectedRibbonTool() ~= Enum.RibbonTool.Move then
             plugin:SelectRibbonTool("Move", UDim2.new())
         end
 
         ChangeHistoryService:SetWaypoint("Begin Grip Edit")
         Selection.SelectionChanged:Wait()
-            
+
         gripEditor.Parent = nil
         ghostArm.Parent = nil
-        
+
         self.GhostArm = nil
         self.InUse = false
 
