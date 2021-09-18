@@ -1,5 +1,6 @@
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local Selection = game:GetService("Selection")
+local Players = game:GetService("Players")
 
 local Modules = script.Parent
 local Project = Modules.Parent
@@ -8,15 +9,23 @@ local ToolEditor = {}
 ToolEditor.__index = ToolEditor
 
 function ToolEditor.new()
-    -- CAUTION: This will likely break in the future.
-    local dummy = game:GetObjects("rbxasset://avatar/characterR15.rbxm")[1]
+    local hDesc = Instance.new("HumanoidDescription")
+    local gray = BrickColor.new(-1).Color
     
+    for _,limb in pairs(Enum.BodyPart:GetEnumItems()) do
+        hDesc[limb.Name .. "Color"] = gray
+    end
+    
+    local dummy = Players:CreateHumanoidModelFromDescription(hDesc, "R15")
     local humanoid = dummy:WaitForChild("Humanoid")
-    humanoid:BuildRigFromAttachments()
 
+	-- Avoid unintended script injection.
+    local animate = dummy:WaitForChild("Animate")
+    animate:Destroy()
+    
     local animator = Instance.new("Animator")
     animator.Parent = humanoid
-
+    
     local worldModel = Instance.new("WorldModel")
     dummy.Parent = worldModel
 

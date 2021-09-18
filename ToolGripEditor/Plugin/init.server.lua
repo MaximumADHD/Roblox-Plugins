@@ -49,7 +49,7 @@ local preview, button do
 	if not _G.Toolbar2032622 then
 		_G.Toolbar2032622 = plugin:CreateToolbar("CloneTrooper1019")
 	end
-
+	
 	local buttonId = getId("ToolGripEditorButton")
 	button = _G[buttonId]
 	
