@@ -1,17 +1,26 @@
 {
-    "ClassName": "TextLabel",
+  "ClassName": "TextLabel",
 
-    "Properties":
-    {
-        "AnchorPoint": [0.5, 0],
-        "BackgroundTransparency": 1,
+  "Properties": {
+    "AnchorPoint": [0.5, 0],
+    "BackgroundTransparency": 1,
 
-        "Position": [0.5, 0, 0.25, 0],
-        "Size": [0.8, 0, 0.25, 0],
-        
-        "Font": "SourceSansSemibold",
-        "TextScaled": true,
+    "Position": {
+      "UDim2": [
+        [0.5, 0],
+        [0.25, 0]
+      ]
+    },
+    "Size": {
+      "UDim2": [
+        [0.8, 0],
+        [0.25, 0]
+      ]
+    },
 
-        "Text": "Paste an AssetId and press enter:"
-    }
+    "Font": "SourceSansSemibold",
+    "TextScaled": true,
+
+    "Text": "Paste an AssetId and press enter:"
+  }
 }

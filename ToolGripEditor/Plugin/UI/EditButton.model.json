@@ -24,8 +24,7 @@
     "Visible": false,
     "ZIndex": 10
   },
-  "Children":
-   [
+  "Children": [
     {
       "Name": "SizeCap",
       "ClassName": "UISizeConstraint",
