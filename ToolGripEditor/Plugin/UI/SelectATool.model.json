@@ -1,17 +1,21 @@
 {
-    "ClassName": "TextLabel",
+  "ClassName": "TextLabel",
 
-    "Properties":
-    {
-        "BackgroundColor3": [0.125, 0.125, 0.125],
-        "BackgroundTransparency": 0.1,
+  "Properties": {
+    "BackgroundColor3": [0.125, 0.125, 0.125],
+    "BackgroundTransparency": 0.1,
 
-        "TextColor3": [1, 1, 1],
-        "Size": [1, 0, 1, 0],
+    "TextColor3": [1, 1, 1],
+    "Size": {
+      "UDim2": [
+        [1, 0],
+        [1, 0]
+      ]
+    },
 
-        "Font": "SourceSansSemibold",
-        "Text": "Select a Tool\n",
+    "Font": "SourceSansSemibold",
+    "Text": "Select a Tool\n",
 
-        "TextSize": 36
-    }
+    "TextSize": 36
+  }
 }
