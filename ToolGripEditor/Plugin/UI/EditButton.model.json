@@ -1,34 +1,37 @@
 {
-    "ClassName": "TextButton",
-
-    "Properties":
-    {
-        "Text": "Edit Tool Grip",
-        "AnchorPoint": [0.5, 1],
-
-        "Position": [0.5, 0, 1, -20],
-        "Size": [1, -50, 0, 40],
-
-        "Font": "SourceSansSemibold",
-        "Style": "RobloxRoundDefaultButton",
-
-        "TextSize": 24,
-        "TextColor3": [1, 1, 1],
-
-        "Visible": false,
-        "ZIndex": 10
+  "ClassName": "TextButton",
+  "Properties": {
+    "Text": "Edit Tool Grip",
+    "AnchorPoint": [0.5, 1],
+    "Position": {
+      "UDim2": [
+        [0.5, 0],
+        [1, -20]
+      ]
     },
+    "Size": {
+      "UDim2": [
+        [1, -50],
+        [0, 40]
+      ]
+    },
+    "Font": "SourceSansSemibold",
+    "Style": "RobloxRoundDefaultButton",
 
-    "Children":
-    [
-        {
-            "Name": "SizeCap",
-            "ClassName": "UISizeConstraint",
+    "TextSize": 24,
+    "TextColor3": [1, 1, 1],
 
-            "Properties":
-            {
-                "MaxSize": [300, 40]
-            }
-        }
-    ]
+    "Visible": false,
+    "ZIndex": 10
+  },
+  "Children": [
+    {
+      "Name": "SizeCap",
+      "ClassName": "UISizeConstraint",
+
+      "Properties": {
+        "MaxSize": [300, 40]
+      }
+    }
+  ]
 }

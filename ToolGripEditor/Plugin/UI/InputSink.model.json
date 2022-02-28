@@ -1,10 +1,14 @@
 {
-    "ClassName": "TextButton",
+  "ClassName": "TextButton",
 
-    "Properties":
-    {
-        "Text": "",
-        "Size": [1, 0, 1, 0],
-        "BackgroundTransparency": 1
-    }
+  "Properties": {
+    "Text": "",
+    "Size": {
+      "UDim2": [
+        [1, 0],
+        [1, 0]
+      ]
+    },
+    "BackgroundTransparency": 1
+  }
 }

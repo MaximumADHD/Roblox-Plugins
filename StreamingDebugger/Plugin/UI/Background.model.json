@@ -1,10 +1,14 @@
 {
-    "ClassName": "Frame",
+  "ClassName": "Frame",
 
-    "Properties":
-    {
-        "AnchorPoint": [0.5, 0.5],
-        "Size": [20, 0, 20, 0],
-        "ZIndex": 0
-    }
+  "Properties": {
+    "AnchorPoint": [0.5, 0.5],
+    "Size": {
+      "UDim2": [
+        [20, 0],
+        [20, 0]
+      ]
+    },
+    "ZIndex": 0
+  }
 }
