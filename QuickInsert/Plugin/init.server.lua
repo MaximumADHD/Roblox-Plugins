@@ -1,37 +1,41 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
--- @ CloneTrooper1019, 2018-2019
+-- @ MaximumADHD, 2018-2022
 --   Quick Insert Plugin
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Setup
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+--!strict
 
-local AssetService = game:GetService("AssetService")
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
-local CollectionService = game:GetService("CollectionService")
+local AvatarEditorService = game:GetService("AvatarEditorService")
 local MarketplaceService = game:GetService("MarketplaceService")
 local PluginGuiService = game:GetService("PluginGuiService")
 local InsertService = game:GetService("InsertService")
-local Selection = game:GetService("Selection") 
-local Studio = settings():GetService("Studio")
+local AssetService = game:GetService("AssetService")
+local Selection = game:GetService("Selection")
+local Players = game:GetService("Players")
+local Studio = settings().Studio
 
 local PLUGIN_TITLE = "Quick Insert"
 local PLUGIN_DESC  = "Toggles the Quick Insert widget, which lets you paste any assetid and insert an asset."
 local PLUGIN_ICON  = "rbxassetid://425778638"
 
 local WIDGET_ID = "QuickInsertGui"
-local WIDGET_INFO  = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
+local WIDGET_INFO = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 if plugin.Name:find(".rbxm") then
-	WIDGET_ID = WIDGET_ID .. "_Local"
-	PLUGIN_TITLE = PLUGIN_TITLE .. " (LOCAL)"
+	WIDGET_ID ..= "_Local"
+	PLUGIN_TITLE ..= " (LOCAL)"
 end
 
-if PluginGuiService:FindFirstChild(WIDGET_ID) then
-	PluginGuiService[WIDGET_ID]:Destroy()
+local old = PluginGuiService:FindFirstChild(WIDGET_ID)
+
+if old then
+	old:Destroy()
 end
 
 local ui = script.UI
@@ -39,16 +43,21 @@ local input = ui.Input
 local errorLbl = ui.Error
 
 local modules = script.Modules
-local assetNames = require(modules.AssetNames)
+local assetMap = require(modules.AssetMap)
 local themeConfig = require(modules.ThemeConfig)
 
-if not _G.Toolbar2032622 then
-	_G.Toolbar2032622 = plugin:CreateToolbar("CloneTrooper1019")
+
+local toolbar: PluginToolbar do
+	if not _G.Toolbar2032622 then
+		_G.Toolbar2032622 = plugin:CreateToolbar("MaximumADHD")
+	end
+
+	toolbar = _G.Toolbar2032622
 end
 
-local button = _G.Toolbar2032622:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
+local button: PluginToolbarButton = toolbar:CreateButton(PLUGIN_TITLE, PLUGIN_DESC, PLUGIN_ICON)
+local pluginGui = plugin:CreateDockWidgetPluginGui(WIDGET_ID, WIDGET_INFO)
 
-local pluginGui = plugin:CreateDockWidgetPluginGui(WIDGET_ID,WIDGET_INFO)
 pluginGui.Title = PLUGIN_TITLE
 pluginGui.Name = WIDGET_ID
 
@@ -59,7 +68,7 @@ ui.Parent = pluginGui
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local function onThemeChanged()
-	local theme = Studio.Theme
+	local theme: StudioTheme = Studio.Theme
 	
 	for name, config in pairs(themeConfig) do
 		local element = ui:FindFirstChild(name)
@@ -87,70 +96,96 @@ end
 
 local function onErrorTextChanged()
 	local text = errorLbl.Text
-	wait(2)
+	task.wait(2)
 	
 	if errorLbl.Text == text then
 		errorLbl.Text = ""
 	end
 end
 
+local function isHeadAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-4) == "Head"
+end
+
+local function isAccessoryAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-9) == "Accessory"
+end
+
 local function onFocusLost(enterPressed)
 	if enterPressed then
-		ChangeHistoryService:SetWaypoint("Insert")
-		
-		local success,errorMsg = pcall(function ()
-			local baseAssetId = tonumber(input.Text:match("%d+"))
+		local success, errorMsg = pcall(function ()
+			local assetId = tonumber(input.Text:match("%d+"))
+			ChangeHistoryService:SetWaypoint("Insert")
 			
-			if not (baseAssetId and baseAssetId > 770) then
+			if not (assetId and assetId > 770) then
 				error("Invalid AssetId!", 2)
 			end
 
-			local info = MarketplaceService:GetProductInfo(baseAssetId)
-			local assetIds
+			local info = MarketplaceService:GetProductInfo(assert(assetId))
+			local assetType = assetMap[info.AssetTypeId]
+
+			local isHead = isHeadAsset(assetType)
+			local isAccessory = isAccessoryAsset(assetType)
 			
-			if assetNames[info.AssetTypeId] == "Package" then
-				assetIds = AssetService:GetAssetIdsForPackage(baseAssetId)
-			else
-				assetIds = { baseAssetId }
-			end
-		
-			local everything = {}
-			local hasMultiple = (#assetIds > 1)
-			
-			for _,assetId in pairs(assetIds) do
-				local success, errorMsg = pcall(function ()
-					local parent
-					
-					if hasMultiple then
-						local assetInfo = MarketplaceService:GetProductInfo(assetId)
-						local assetName = assetNames[assetInfo.AssetTypeId]
-						
-						parent = Instance.new("Folder")
-						parent.Name = assetName
-						parent.Parent = workspace
-						
-						table.insert(everything, parent)
-					else
-						parent = workspace
-					end
-					
-					local asset = InsertService:LoadAsset(assetId)
-					
-					for _,item in pairs(asset:GetChildren()) do
-						if not hasMultiple then
-							table.insert(everything, item)
-						end
-						
-						item.Parent = parent
-					end
-				end)
+			local success, errorMsg = pcall(function ()
+				local asset: Instance
 				
-				if not success then
-					setError(errorMsg)
+				if isHead or isAccessory then
+					local hDesc = Instance.new("HumanoidDescription")
+					
+					if isHead then
+						hDesc.Head = assetId
+					elseif isAccessory then
+						hDesc.HatAccessory = tostring(assetId)
+					end
+
+					local dummy = Players:CreateHumanoidModelFromDescription(hDesc, Enum.HumanoidRigType.R15)
+					asset = Instance.new("Folder")
+
+					if isHead then
+						local head = dummy:FindFirstChild("Head")
+
+						if head and head:IsA("BasePart") then
+							head.BrickColor = BrickColor.Gray()
+							head.Parent = asset
+						end
+					elseif isAccessory then
+						local accessory = dummy:FindFirstChildWhichIsA("Accoutrement", true)
+
+						if accessory then
+							accessory.Parent = asset
+						end
+					end
+					
+					for i, desc in asset:GetDescendants() do
+						if desc:IsA("Vector3Value") then
+							local parent = desc.Parent
+
+							if parent and desc.Name:sub(1, 8) == "Original" then
+								if parent:IsA("Attachment") then
+									parent.Position = desc.Value
+								elseif parent:IsA("BasePart") then
+									parent.Size = desc.Value
+								end
+							end
+						end
+					end
+				else
+					asset = InsertService:LoadAsset(assetId)
 				end
-			end
+
+				local everything = asset:GetChildren()
+
+				for i, item in everything do
+					item.Parent = workspace
+				end
+
+				Selection:Set(everything)
+			end)
 			
-			Selection:Set(everything)
+			if not success then
+				setError(errorMsg)
+			end
 		end)
 		
 		if success then

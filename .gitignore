@@ -300,3 +300,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Luau Language Server
+*/sourcemap.json
