@@ -1,85 +1,100 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- @ CloneTrooper1019, 2017 - 2019
+-- @ MaximumADHD, 2017 - 2022
 --   Celestial Body Dragger
 --   A plugin that lets you drag 
 --   the sun and moon around
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Constants
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--!strict
 
 local Lighting = game:GetService("Lighting")
 local RunService = game:GetService("RunService")
 local UserInputService = game:GetService("UserInputService")
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 
-local abs = math.abs
 local atan2 = math.atan2
-local modf = math.modf
 local sqrt = math.sqrt
-local rad = math.rad
 local tau = math.pi * 2
+
+type CelestialBody = {
+	Name: string,
+	Button: PluginToolbarButton,
+	LongitudeFactor: number,
+}
+
+type BodyConfig = {
+	Name: string,
+	IconId: number,
+	LongitudeFactor: number,
+}
+
+local BASE_TITLE = "Drag %s"
+local BASE_ASSET = "rbxassetid://%i"
+
+local BASE_DESC  = "Click and drag to adjust the angle of the %s\n\n" ..
+                   "(NOTE: Dragging one celesial body affects the angle of the other one)"
+
+if plugin.Name:find(".rbxm") then
+	BASE_TITLE ..= " (LOCAL)"
+end
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Plugin Toggles
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-local BASE_TITLE = "Drag %s"
-local BASE_DESC  = "Click and drag to adjust the angle of the %s\n\n" ..
-                   "(NOTE: Dragging one celesial body affects the angle of the other one)"
-
-if plugin.Name:find(".rbxm") then
-	BASE_TITLE = BASE_TITLE .. " (LOCAL)"
-end
-	
 local toolbar = plugin:CreateToolbar("Celestial Body Dragger")
-local activeBody = -1
+local bodies = {} :: { CelestialBody }
+local currBody: CelestialBody?
 
-local bodies = 
-{
-	{
-		Name = "Sun";
-		LongitudeFactor = -1;
-		Icon = "rbxassetid://1458865781";
-	},
-	
-	{
-		Name = "Moon";
-		LongitudeFactor = 1;
-		Icon = "rbxassetid://1458866313";
+local function createBody(config: BodyConfig)
+	local name = config.Name
+	local desc = BASE_DESC:format(name)
+	local title = BASE_TITLE:format(name)
+
+	local lf = config.LongitudeFactor
+	local icon = BASE_ASSET:format(config.IconId)
+	local button = toolbar:CreateButton(title, desc, icon)
+
+	local body: CelestialBody = {
+		Name = name,
+		Button = button,
+		LongitudeFactor = lf,
 	}
-}
 
-for i, body in ipairs(bodies) do
-	local bodyName = body.Name
-	local title = BASE_TITLE:format(bodyName)
-	
-	local desc = BASE_DESC:format(bodyName)
-	local button = toolbar:CreateButton(title, desc, body.Icon)
-	
-	local function onClick()
-		if activeBody ~= i then
-			local prevBody = bodies[activeBody]
-			
-			if prevBody then
-				prevBody.Button:SetActive(false)
-				wait()
-			end
-			
+	button.Click:Connect(function()
+		if currBody ~= body then
 			button:SetActive(true)
-			activeBody = i
-			
-			plugin:Activate(true)
+
+			if currBody then
+				currBody.Button:SetActive(false)
+			else
+				plugin:Activate(true)
+			end
+
+			currBody = body
 		else
 			button:SetActive(false)
-			activeBody = -1
+			currBody = nil
 			
 			plugin:Deactivate()
 		end
-	end
-	
-	body.Button = button
-	button.Click:Connect(onClick)
+	end)
+
+	table.insert(bodies, body)
 end
+
+createBody({
+	Name = "Sun",
+	IconId = 1458865781,
+	LongitudeFactor = -1,
+})
+
+createBody({
+	Name = "Moon",
+	IconId = 1458866313,
+	LongitudeFactor = 1,
+})
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Celestial Body Updater
@@ -88,47 +103,33 @@ end
 local setHistoryWaypoint = false
 
 local function onDeactivation()
-	for _,body in pairs(bodies) do
-		local button = body.Button
-		
-		if button then
-			button:SetActive(false)
-		end
+	for name, body in bodies do
+		body.Button:SetActive(false)
 	end
 	
-	activeBody = -1
+	currBody = nil
 end
 
 local function updateCelesialBodies()
-	if activeBody < 1 then
-		return
-	end
-	
-	if plugin:IsActivatedWithExclusiveMouse() then
-		local body = bodies[activeBody]
-		local mouseDown = UserInputService:IsMouseButtonPressed("MouseButton1")
-		
-		if mouseDown then
-			local pluginMouse = plugin:GetMouse()
-			local dir = pluginMouse.UnitRay.Direction
-			
-			local lf = body.LongitudeFactor
-			local lat = atan2(dir.Z, sqrt(dir.X^2 + dir.Y^2))
-			local lon = atan2(dir.Y * lf, dir.X * lf)
-			
-			local geoLatitude = (lat / tau) * 360 + 23.5
-			local clockTime = ((lon / tau) * 24 - 6) % 24
-			
+	if currBody and plugin:IsActivatedWithExclusiveMouse() then
+		if UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then
 			if not setHistoryWaypoint then
 				setHistoryWaypoint = true
-				ChangeHistoryService:SetWaypoint(body.Name .. " Drag Begin")
+				ChangeHistoryService:SetWaypoint(currBody.Name .. " Drag Begin")
 			end
+
+			local mouse = plugin:GetMouse()
+			local dir = mouse.UnitRay.Direction
+
+			local lf = currBody.LongitudeFactor
+			local lon = atan2(dir.Y * lf, dir.X * lf)
+			local lat = atan2(dir.Z, sqrt(dir.X^2 + dir.Y^2))
 			
-			Lighting.GeographicLatitude = geoLatitude
-			Lighting.ClockTime = clockTime
+			Lighting.ClockTime = ((lon / tau) * 24 - 6) % 24
+			Lighting.GeographicLatitude = (lat / tau) * 360 + 23.5
 		else
 			setHistoryWaypoint = false
-			ChangeHistoryService:SetWaypoint(body.Name .. " Drag End")
+			ChangeHistoryService:SetWaypoint(currBody.Name .. " Drag End")
 		end
 	else
 		onDeactivation()

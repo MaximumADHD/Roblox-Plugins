@@ -1,25 +1,18 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- @ CloneTrooper1019, 2016-2021
+-- @ MaximumADHD, 2016-2022
 --   Mesh Optimization Tools
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Setup
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--!strict
 
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
 local CollectionService = game:GetService("CollectionService")
 local Selection = game:GetService("Selection")
 local CoreGui = game:GetService("CoreGui")
 
-local Studio = settings():GetService("Studio")
-local PhysicsSettings = settings():GetService("PhysicsSettings")
-
-local PLUGIN_DECOMP_TITLE   = "Show Decomposition Geometry"
-local PLUGIN_DECOMP_SUMMARY = "Toggles the visibility of Decomposition Geometry for TriangleMeshParts."
-local PLUGIN_DECOMP_ICON    = "rbxassetid://414888901"
-
-local PLUGIN_BOX_TITLE   = "Transparent Boxes"
-local PLUGIN_BOX_SUMMARY = "Renders nearby TriangleMeshParts (which have their CollisionFidelity set to 'Box') as mostly-transparent boxes."
-local PLUGIN_BOX_ICON    = "rbxassetid://5523395476"
+local Studio = settings().Studio
+local PhysicsSettings = settings().Physics
 
 local PLUGIN_PATCH_TITLE   = "Mesh Patcher"
 local PLUGIN_PATCH_SUMMARY = "Allows you to apply certain properties of each MeshPart in the Workspace with a select MeshId."
@@ -38,9 +31,13 @@ local toolbar = plugin:CreateToolbar(PLUGIN_TOOLBAR)
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 local decompOn = PhysicsSettings.ShowDecompositionGeometry
-
 local updateSignal = PhysicsSettings:GetPropertyChangedSignal("ShowDecompositionGeometry")
-local decompButton = toolbar:CreateButton(PLUGIN_DECOMP_TITLE, PLUGIN_DECOMP_SUMMARY, PLUGIN_DECOMP_ICON)
+
+local decompButton = toolbar:CreateButton(
+	"Show Decomposition Geometry",
+	"Toggles the visibility of Decomposition Geometry for TriangleMeshParts.",
+	"rbxassetid://414888901"
+)
 
 local function onDecompClick()
 	PhysicsSettings.ShowDecompositionGeometry = not PhysicsSettings.ShowDecompositionGeometry
@@ -69,14 +66,18 @@ decompButton.Click:Connect(onDecompClick)
 -- Transparent Boxes
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-local boxButton = toolbar:CreateButton(PLUGIN_BOX_TITLE, PLUGIN_BOX_SUMMARY, PLUGIN_BOX_ICON)
-local boxArea = Vector3.new(200, 200, 200)
+local boxButton = toolbar:CreateButton(
+	"Transparent Boxes",
+	"Renders nearby TriangleMeshParts (which have their CollisionFidelity set to 'Box') as mostly-transparent boxes.", 
+	"rbxassetid://5523395476"
+)
+
 local boxBin
 
 local boxOn = false
 local boxes = {}
 
-local function createBox(part)
+local function createBox(part: BasePart)
 	if boxes[part] then
 		return boxes[part]
 	end
@@ -91,7 +92,7 @@ local function createBox(part)
 	end
 	
 	local box = Instance.new("BoxHandleAdornment")
-	box.Color = BrickColor.random()
+	box.Color3 = BrickColor.random().Color
 	box.Transparency = 0.875
 	box.Size = part.Size
 	box.Adornee = part
@@ -101,10 +102,10 @@ local function createBox(part)
 		box.Size = part.Size
 	end)
 
-	local data =
-	{
-		Adorn = box;
-		Signal = signal;
+	local data = {
+		Adorn = box,
+		Signal = signal,
+		LastUpdate = 0,
 	}
 	
 	boxes[part] = data
@@ -126,18 +127,13 @@ local function destroyBox(part)
 end
 
 local function updateBoxes()
-	local now = tick()
-	
-	local camera = workspace.CurrentCamera
+	local now = os.clock()
+	local camera = assert(workspace.CurrentCamera)
+
 	local pos = camera.CFrame.Position
+	local parts = workspace:GetPartBoundsInRadius(pos, 400)
 
-	local a0 = pos - boxArea
-	local a1 = pos + boxArea
-	
-	local region = Region3.new(a0, a1)
-	local parts = workspace:FindPartsInRegion3(region, nil, math.huge)
-
-	for _,part in pairs(parts) do
+	for i, part in pairs(parts) do
 		if part:IsA("TriangleMeshPart") then
 			local collision = part.CollisionFidelity.Name
 
@@ -148,7 +144,7 @@ local function updateBoxes()
 		end
 	end
 	
-	for part, box in pairs(boxes) do
+	for part, box in boxes do
 		if box.LastUpdate ~= now then
 			destroyBox(part)
 		end
@@ -179,7 +175,7 @@ local function onBoxClick()
 	if boxOn then
 		while boxOn do
 			updateBoxes()
-			wait(1)
+			task.wait(1)
 		end
 	else
 		clearBoxes()
@@ -220,15 +216,12 @@ if plugin.Name:find(".rbxm") then
 end  
 
 local pluginGui = plugin:CreateDockWidgetPluginGui(guiGuid, widgetInfo)
-pluginGui.ZIndexBehavior = "Sibling"
+pluginGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 pluginGui.Title = "Mesh Patcher"
 pluginGui.Name = guiGuid
 
 local patcherButton = toolbar:CreateButton(PLUGIN_PATCH_TITLE, PLUGIN_PATCH_SUMMARY, PLUGIN_PATCH_ICON)
 local enabledChanged = pluginGui:GetPropertyChangedSignal("Enabled")
-
-local collision = nil
-local rendering = nil
 local autoSet = false
 
 local props = {}
