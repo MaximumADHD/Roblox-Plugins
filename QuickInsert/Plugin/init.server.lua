@@ -111,6 +111,15 @@ local function isAccessoryAsset(assetType: Enum.AssetType)
 	return assetType.Name:sub(-9) == "Accessory"
 end
 
+
+local function isImageAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-5) == "Image"
+end
+
+local function isAudioAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-5) == "Audio"
+end
+
 local function onFocusLost(enterPressed)
 	if enterPressed then
 		local success, errorMsg = pcall(function ()
@@ -127,10 +136,11 @@ local function onFocusLost(enterPressed)
 			local isHead = isHeadAsset(assetType)
 			local isAccessory = isAccessoryAsset(assetType)
 			
-			local success, errorMsg = pcall(function ()
-				local asset: Instance
-				
+			local success, errorMsg = pcall(function()
+				local everything = {}
+
 				if isHead or isAccessory then
+					local asset: Instance
 					local hDesc = Instance.new("HumanoidDescription")
 					
 					if isHead then
@@ -157,7 +167,7 @@ local function onFocusLost(enterPressed)
 						end
 					end
 					
-					for i, desc in asset:GetDescendants() do
+					for _, desc in asset:GetDescendants() do
 						if desc:IsA("Vector3Value") then
 							local parent = desc.Parent
 
@@ -170,13 +180,27 @@ local function onFocusLost(enterPressed)
 							end
 						end
 					end
+
+					everything = asset:GetChildren()
+				elseif isImageAsset(assetType) then
+					local decal = Instance.new("Decal")
+
+					decal.Name = tostring(info.Name)
+					decal.Texture = "rbxassetid://"..tostring(assetId)
+
+					table.insert(everything, decal)
+				elseif isAudioAsset(assetType) then
+					local sound = Instance.new("Sound")
+
+					sound.Name = tostring(info.Name)
+					sound.SoundId = "rbxassetid://"..tostring(assetId)
+
+					table.insert(everything, sound)
 				else
-					asset = InsertService:LoadAsset(assetId)
+					everything = game:GetObjects("rbxassetid://"..tostring(assetId))
 				end
 
-				local everything = asset:GetChildren()
-
-				for i, item in everything do
+				for _, item in everything do
 					item.Parent = workspace
 				end
 
