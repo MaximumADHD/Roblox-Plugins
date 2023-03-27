@@ -137,7 +137,7 @@ local function onFocusLost(enterPressed)
 			local isAccessory = isAccessoryAsset(assetType)
 			
 			local success, errorMsg = pcall(function()
-				local everything = {}
+				local everything: {Instance} = {}
 
 				if isHead or isAccessory then
 					local asset: Instance
