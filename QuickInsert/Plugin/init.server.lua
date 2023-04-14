@@ -83,6 +83,7 @@ ui.Parent = pluginGui
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+-- UTF-8 BOMs were the worst invention ever
 local function stripBom(str: string): string
 	return string.gsub(string.gsub(str, "^\226\129\160", ""), "^\239\187\191", "")
 end
