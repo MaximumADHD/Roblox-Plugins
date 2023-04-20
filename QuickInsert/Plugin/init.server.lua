@@ -41,6 +41,7 @@ end
 local ui = script.UI
 local input = ui.Input
 local errorLbl = ui.Error
+local assetInfoCache = {}
 
 local modules = script.Modules
 local assetMap = require(modules.AssetMap)
@@ -111,6 +112,21 @@ local function isAccessoryAsset(assetType: Enum.AssetType)
 	return assetType.Name:sub(-9) == "Accessory"
 end
 
+local function getProductInfo(assetId)
+	if assetInfoCache[assetId] then
+		return assetInfoCache[assetId]
+	else
+		local success, info = pcall(MarketplaceService.GetProductInfo, MarketplaceService, assetId)
+
+		if success and info then
+			assetInfoCache[assetId] = info
+			return info
+		else
+			error("Error occured while trying to get product info"..tostring(info), 2)
+		end
+	end
+end
+
 local function onFocusLost(enterPressed)
 	if enterPressed then
 		local success, errorMsg = pcall(function ()
@@ -121,7 +137,7 @@ local function onFocusLost(enterPressed)
 				error("Invalid AssetId!", 2)
 			end
 
-			local info = MarketplaceService:GetProductInfo(assert(assetId))
+			local info = getProductInfo(assetId)
 			local assetType = assetMap[info.AssetTypeId]
 
 			local isHead = isHeadAsset(assetType)
