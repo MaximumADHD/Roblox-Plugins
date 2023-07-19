@@ -161,9 +161,9 @@ local function getProductInfo(assetId)
 	if success and info then
 		assetInfoCache[assetId] = info
 		return info
-  end
-
-  error("Error occured while trying to get product info"..tostring(info), 2)
+	end
+	
+	error("Error occured while trying to get product info"..tostring(info), 2)
 end
 
 local function isImageAsset(assetType: Enum.AssetType)
