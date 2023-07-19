@@ -23,6 +23,22 @@ local PLUGIN_ICON  = "rbxassetid://425778638"
 local WIDGET_ID = "QuickInsertGui"
 local WIDGET_INFO = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
 
+local ASSET_ID_MATCHES = {
+	"^(%d+)$",
+	-- CDN asset links
+	"^rbxassetid://(%d+)",
+	"^%w*%.?roblox%.com%.?/asset/%?id=(%d+)",
+	-- Website asset links
+	"^%w*%.?roblox%.com%.?/library/(%d+)",
+	"^%w*%.?roblox%.com%.?/catalog/(%d+)",
+	"^%w*%.?roblox%.com%.?/[%w_%-]+%-item%?[&=%w%-_%%%+]*id=(%d+)",
+	"^%w*%.?roblox%.com%.?/[Mm]y/[Ii]tem%.aspx%?[&=%w%-_%%%+]*[Ii][Dd]=(%d+)",
+	"^create%.roblox%.com%.?/dashboard/creations/catalog/(%d+)",
+	"^create%.roblox%.com%.?/dashboard/creations/marketplace/(%d+)",
+	"^create%.roblox%.com%.?/marketplace/asset/(%d+)",
+	"^%w*%.?roblox%.com%.?/plugins/(%d+)",
+}
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -67,6 +83,29 @@ ui.Parent = pluginGui
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- UTF-8 BOMs were the worst invention ever
+local function stripBom(str: string): string
+	return string.gsub(string.gsub(str, "^\226\129\160", ""), "^\239\187\191", "")
+end
+
+local function sanitiseLink(link: string): string
+	return string.gsub(string.match(stripBom(link) :: string, "^%s*(.-)%s*$") :: string, "^https?://", "")
+end
+
+local function getIdFromLink(link: string): number?
+	link = sanitiseLink(link)
+
+	for _, v in ipairs(ASSET_ID_MATCHES) do
+		local assetId = tonumber(string.match(link, v) :: string)
+
+		if assetId then
+			return assetId
+		end
+	end
+
+	return nil
+end
 
 local function onThemeChanged()
 	local theme: StudioTheme = Studio.Theme
@@ -115,22 +154,30 @@ end
 local function getProductInfo(assetId)
 	if assetInfoCache[assetId] then
 		return assetInfoCache[assetId]
-	else
-		local success, info = pcall(MarketplaceService.GetProductInfo, MarketplaceService, assetId)
-
-		if success and info then
-			assetInfoCache[assetId] = info
-			return info
-		else
-			error("Error occured while trying to get product info"..tostring(info), 2)
-		end
 	end
+ 
+	local success, info = pcall(MarketplaceService.GetProductInfo, MarketplaceService, assetId)
+
+	if success and info then
+		assetInfoCache[assetId] = info
+		return info
+  end
+
+  error("Error occured while trying to get product info"..tostring(info), 2)
+end
+
+local function isImageAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-5) == "Image"
+end
+
+local function isAudioAsset(assetType: Enum.AssetType)
+	return assetType.Name:sub(-5) == "Audio"
 end
 
 local function onFocusLost(enterPressed)
 	if enterPressed then
 		local success, errorMsg = pcall(function ()
-			local assetId = tonumber(input.Text:match("%d+"))
+			local assetId = getIdFromLink(input.Text)
 			ChangeHistoryService:SetWaypoint("Insert")
 			
 			if not (assetId and assetId > 770) then
@@ -143,10 +190,11 @@ local function onFocusLost(enterPressed)
 			local isHead = isHeadAsset(assetType)
 			local isAccessory = isAccessoryAsset(assetType)
 			
-			local success, errorMsg = pcall(function ()
-				local asset: Instance
-				
+			local success, errorMsg = pcall(function()
+				local everything: {Instance} = {}
+
 				if isHead or isAccessory then
+					local asset: Instance
 					local hDesc = Instance.new("HumanoidDescription")
 					
 					if isHead then
@@ -173,7 +221,7 @@ local function onFocusLost(enterPressed)
 						end
 					end
 					
-					for i, desc in asset:GetDescendants() do
+					for _, desc in asset:GetDescendants() do
 						if desc:IsA("Vector3Value") then
 							local parent = desc.Parent
 
@@ -186,13 +234,27 @@ local function onFocusLost(enterPressed)
 							end
 						end
 					end
+
+					everything = asset:GetChildren()
+				elseif isImageAsset(assetType) then
+					local decal = Instance.new("Decal")
+
+					decal.Name = tostring(info.Name)
+					decal.Texture = "rbxassetid://"..tostring(assetId)
+
+					table.insert(everything, decal)
+				elseif isAudioAsset(assetType) then
+					local sound = Instance.new("Sound")
+
+					sound.Name = tostring(info.Name)
+					sound.SoundId = "rbxassetid://"..tostring(assetId)
+
+					table.insert(everything, sound)
 				else
-					asset = InsertService:LoadAsset(assetId)
+					everything = game:GetObjects("rbxassetid://"..tostring(assetId))
 				end
 
-				local everything = asset:GetChildren()
-
-				for i, item in everything do
+				for _, item in everything do
 					item.Parent = workspace
 				end
 
