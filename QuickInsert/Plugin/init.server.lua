@@ -23,6 +23,22 @@ local PLUGIN_ICON  = "rbxassetid://425778638"
 local WIDGET_ID = "QuickInsertGui"
 local WIDGET_INFO = DockWidgetPluginGuiInfo.new(Enum.InitialDockState.Left, true, false)
 
+local ASSET_ID_MATCHES = {
+	"^(%d+)$",
+	-- CDN asset links
+	"^rbxassetid://(%d+)",
+	"^%w*%.?roblox%.com%.?/asset/%?id=(%d+)",
+	-- Website asset links
+	"^%w*%.?roblox%.com%.?/library/(%d+)",
+	"^%w*%.?roblox%.com%.?/catalog/(%d+)",
+	"^%w*%.?roblox%.com%.?/[%w_%-]+%-item%?[&=%w%-_%%%+]*id=(%d+)",
+	"^%w*%.?roblox%.com%.?/[Mm]y/[Ii]tem%.aspx%?[&=%w%-_%%%+]*[Ii][Dd]=(%d+)",
+	"^create%.roblox%.com%.?/dashboard/creations/catalog/(%d+)",
+	"^create%.roblox%.com%.?/dashboard/creations/marketplace/(%d+)",
+	"^create%.roblox%.com%.?/marketplace/asset/(%d+)",
+	"^%w*%.?roblox%.com%.?/plugins/(%d+)",
+}
+
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Interface
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -66,6 +82,29 @@ ui.Parent = pluginGui
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-- UTF-8 BOMs were the worst invention ever
+local function stripBom(str: string): string
+	return string.gsub(string.gsub(str, "^\226\129\160", ""), "^\239\187\191", "")
+end
+
+local function sanitiseLink(link: string): string
+	return string.gsub(string.match(stripBom(link) :: string, "^%s*(.-)%s*$") :: string, "^https?://", "")
+end
+
+local function getIdFromLink(link: string): number?
+	link = sanitiseLink(link)
+
+	for _, v in ipairs(ASSET_ID_MATCHES) do
+		local assetId = tonumber(string.match(link, v) :: string)
+
+		if assetId then
+			return assetId
+		end
+	end
+
+	return nil
+end
 
 local function onThemeChanged()
 	local theme: StudioTheme = Studio.Theme
@@ -123,7 +162,7 @@ end
 local function onFocusLost(enterPressed)
 	if enterPressed then
 		local success, errorMsg = pcall(function ()
-			local assetId = tonumber(input.Text:match("%d+"))
+			local assetId = getIdFromLink(input.Text)
 			ChangeHistoryService:SetWaypoint("Insert")
 			
 			if not (assetId and assetId > 770) then
