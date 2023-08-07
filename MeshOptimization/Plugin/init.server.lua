@@ -1,5 +1,5 @@
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
--- @ MaximumADHD, 2016-2022
+-- @ MaximumADHD, 2016-2023
 --   Mesh Optimization Tools
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Setup
@@ -7,7 +7,6 @@
 --!strict
 
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
-local CollectionService = game:GetService("CollectionService")
 local Selection = game:GetService("Selection")
 local CoreGui = game:GetService("CoreGui")
 
@@ -43,12 +42,12 @@ local function onDecompClick()
 	PhysicsSettings.ShowDecompositionGeometry = not PhysicsSettings.ShowDecompositionGeometry
 end
 
-local function updateGeometry(init)
+local function updateGeometry(init: boolean?)
 	decompOn = PhysicsSettings.ShowDecompositionGeometry
 	decompButton:SetActive(decompOn)
 	
 	if not init then
-		for _,desc in pairs(workspace:GetDescendants()) do
+		for _, desc in pairs(workspace:GetDescendants()) do
 			if desc:IsA("TriangleMeshPart") then
 				local t = desc.Transparency
 				desc.Transparency = t + .01
@@ -73,7 +72,6 @@ local boxButton = toolbar:CreateButton(
 )
 
 local boxBin
-
 local boxOn = false
 local boxes = {}
 
@@ -235,7 +233,7 @@ local function onEnabledChanged()
 	patcherButton:SetActive(pluginGui.Enabled)
 end
 
-local function applyList(element)
+local function applyList(element: GuiObject)
 	local list = element:FindFirstChildWhichIsA("UIListLayout")
 
 	if list then
@@ -253,31 +251,28 @@ local function applyTheme()
 	local theme = Studio.Theme
 
 	for _,element in pairs(pluginGui:GetDescendants()) do
-		local tags = CollectionService:GetTags(element)
+		local themeType = element:GetAttribute("Theme")
+		local config = themes[themeType]
 
-		for _,tag in pairs(tags) do
-			local config = themes[tag]
-
-			if not config then
-				continue
-			end
-			
-			for prop, style in pairs(config) do
-				local color = theme:GetColor(style)
-				element[prop] = color
-			end
+		if not config then
+			continue
+		end
+		
+		for prop, style in pairs(config) do
+			local color = theme:GetColor(style);
+			(element :: any)[prop] = color
 		end
 	end
 end
 
-local function registerCheckBox(button, title, init, callback, group)
+local function registerCheckBox(button: TextButton, title: string, init: boolean, callback: (boolean, string, string?) -> (), group: string?)
 	local checked
 
 	local function setChecked(value)
 		if typeof(value) ~= "boolean" then
 			value = (not not value)
 		end
-		
+
 		if checked == value then
 			return
 		else
@@ -305,7 +300,7 @@ local function registerCheckBox(button, title, init, callback, group)
 end
 
 local function registerCheckBoxes(bin, ...)
-	for _,check in pairs(bin:GetChildren()) do
+	for _, check in pairs(bin:GetChildren()) do
 		if check:IsA("TextButton") then
 			registerCheckBox(check, check.Name, ...)
 		end
@@ -428,7 +423,7 @@ end)
 
 registerCheckBoxes(collisionTypes, false, onSingleToggle, "CollisionFidelity")
 registerCheckBoxes(renderingTypes, false, onSingleToggle, "RenderFidelity")
-registerCheckBoxes(otherTypes,     true,  onMultiToggle,  "Other")
+registerCheckBoxes(otherTypes, true,  onMultiToggle, "Other")
 
 patch.Activated:Connect(onPatch)
 Studio.ThemeChanged:Connect(applyTheme)
