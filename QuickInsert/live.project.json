@@ -1,0 +1,27 @@
+{
+    "name": "QuickInsert",
+
+    "tree": {
+        "$className": "DataModel",
+
+        "ReplicatedStorage": {
+            "$className": "ReplicatedStorage",
+
+            "QuickInsert": {
+                "$path": "Plugin"
+            }
+        },
+
+        "StarterGui": {
+            "$className": "StarterGui",
+            
+            "Gui": {
+                "$className": "ScreenGui",
+                
+                "UI": {
+                    "$path": "Plugin/UI.model.json"
+                }
+            }
+        }
+    }
+}

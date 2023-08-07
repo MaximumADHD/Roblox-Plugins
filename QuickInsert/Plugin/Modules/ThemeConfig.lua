@@ -13,11 +13,11 @@ return {
 		TextColor3 = "ErrorText",
 	},
 
-	Info = {
-		TextColor3 = "MainText",
-	},
-
 	Title = {
 		TextColor3 = "TitlebarText",
+	},
+
+	Template = {
+		BackgroundColor3 = "DialogMainButton"
 	},
 }

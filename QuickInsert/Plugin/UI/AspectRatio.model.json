@@ -1,8 +1,0 @@
-{
-    "ClassName": "UIAspectRatioConstraint",
-
-    "Properties":
-    {
-        "AspectRatio": 1.5
-    }
-}

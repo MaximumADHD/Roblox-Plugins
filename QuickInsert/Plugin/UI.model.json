@@ -1,0 +1,208 @@
+{
+    "className": "Frame",
+
+    "properties": {
+        "AnchorPoint": [0.5, 0.5],
+        "BackgroundTransparency": 1,
+
+        "Size": {
+            "UDim2": [
+                [1, 0],
+                [0.9, 0]
+            ]
+        },
+
+        "Position": {
+            "UDim2": [
+                [0.5, 0],
+                [0.5, 0]
+            ]
+        }
+    },
+
+    "children": [
+        {
+            "name": "AspectRatio",
+            "className": "UIAspectRatioConstraint",
+
+            "properties": {
+                "AspectRatio": 1.5
+            }
+        },
+
+        {
+            "name": "Background",
+            "className": "Frame",
+
+            "properties": {
+                "AnchorPoint": [0.5, 0.5],
+
+                "Size": {
+                    "UDim2": [
+                        [20, 0],
+                        [20, 0]
+                    ]
+                },
+
+                "ZIndex": 0
+            }
+        },
+
+        {
+            "name": "Error",
+            "className": "TextLabel",
+
+            "properties": {
+                "AnchorPoint": [0.5, 0],
+                "BackgroundTransparency": 1,
+
+                "Position": {
+                    "UDim2": [
+                        [0.5, 0],
+                        [0.8, 0]
+                    ]
+                },
+
+                "Size": {
+                    "UDim2": [
+                        [0.9, 0],
+                        [0.15, 0]
+                    ]
+                },
+
+                "Font": "SourceSansBold",
+                "TextScaled": true,
+                "Text": ""
+            }
+        },
+
+        {
+            "name": "Input",
+            "className": "TextBox",
+        
+            "properties": {
+                "AnchorPoint": [0.5, 0.5],
+                "Font": "SourceSansSemibold",
+
+                "Position": {
+                    "UDim2": [
+                        [0.5, 0],
+                        [0.65, 0]
+                    ]
+                },
+
+                "Size": {
+                    "UDim2": [
+                        [0.7, 0],
+                        [0.2, 0]
+                    ]
+                },
+
+                "TextScaled": true,
+                "Text": ""
+            }
+        },
+
+        {
+            "name": "Options",
+            "className": "Frame",
+
+            "properties": {
+                "AnchorPoint": [0.5, 0.5],
+                "BackgroundTransparency": 1,
+
+                "Position": {
+                    "UDim2": [
+                        [0.5, 0],
+                        [0.375, 0]
+                    ]
+                },
+
+                "Size": {
+                    "UDim2": [
+                        [0.3, 0],
+                        [0.2, 0]
+                    ]
+                }
+            },
+
+            "children": [
+                {
+                    "name": "List",
+                    "className": "UIListLayout",
+
+                    "properties": {
+                        "FillDirection": "Horizontal",
+                        "HorizontalAlignment": "Center",
+                        
+                        "Padding": {
+                            "UDim": [0.05, 0]
+                        }
+                    }
+                },
+
+                {
+                    "name": "Template",
+                    "className": "TextButton",
+
+                    "properties": {
+                        "BackgroundColor3": [0.5, 0.5, 0.5],
+                        "Font": "SourceSansBold",
+
+                        "Size": {
+                            "UDim2": [
+                                [1, 0],
+                                [1, 0]
+                            ]
+                        },
+                        
+                        "TextColor3": [1, 1, 1],
+                        "TextScaled": true,
+                        "Text": ""
+                    },
+
+                    "children": [
+                        {
+                            "name": "Corner",
+                            "className": "UICorner",
+
+                            "properties": {
+                                "CornerRadius": {
+                                    "UDim": [0.1, 0]
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+
+        {
+            "name": "Title",
+            "className": "TextLabel",
+
+            "properties": {
+                "AnchorPoint": [0.5, 0],
+                "BackgroundTransparency": 1,
+                "Font": "SourceSansBold",
+
+                "Position": {
+                    "UDim2": [
+                        [0.5, 0],
+                        [0, 0]
+                    ]
+                },
+
+                "Size": {
+                    "UDim2": [
+                        [1, -10],
+                        [0.25, 0]
+                    ]
+                },
+
+                "Text": "Quick Insert",
+                "TextScaled": true
+            }
+        }
+    ]
+}
