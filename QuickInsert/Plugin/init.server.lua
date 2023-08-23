@@ -66,6 +66,7 @@ local template = options.Template
 local btnTween = TweenInfo.new(0.2)
 local activeOption: Option? = nil
 
+local assetInfoCache = {}
 local buttons = {} :: {
 	[Option]: {
 		Button: OptionButton,
@@ -101,17 +102,18 @@ template.Parent = nil
 -- Functions
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--- UTF-8 BOMs were the worst invention ever
-local function stripBom(str: string): string
-	return str:gsub("^\226\129\160", ""):gsub("^\239\187\191", "")
-end
+local function getProductInfo(assetid: number)
+	local info = assetInfoCache[assetId] or MarketplaceService:GetProductInfo(assetId)
 
-local function sanitiseLink(link: string): string
-	return (stripBom(link):match("^%s*(.-)%s*$") or ""):gsub("^https?://", "")
+	if not assetInfoCache[assetId] then
+		assetInfoCache[assetId] = info
+	end
+
+	return info
 end
 
 local function getIdFromLink(link: string): number?
-	link = sanitiseLink(link)
+	link = (link:match("^%s*(.-)%s*$") or ""):gsub("^https?://", "")
 
 	for _, fragment in ipairs(ASSET_ID_MATCHES) do
 		local match = link:match(fragment)
@@ -217,12 +219,13 @@ local function isAccessoryAsset(assetType: Enum.AssetType)
 end
 
 local function processAsset(assetId: number)
-	local info = MarketplaceService:GetProductInfo(assetId)
+	local info = getProductInfo(assetId)
 	local assetType = assetMap[info.AssetTypeId]
 
 	local isHead = isHeadAsset(assetType)
 	local isAccessory = isAccessoryAsset(assetType)
-	local asset: Instance
+	local isImage = (assetType == Enum.AssetType.Image)
+	local isAudio = (assetType == Enum.AssetType.Audio)
 		
 	if isHead or isAccessory then
 		local hDesc = Instance.new("HumanoidDescription")
@@ -234,7 +237,7 @@ local function processAsset(assetId: number)
 		end
 
 		local dummy = Players:CreateHumanoidModelFromDescription(hDesc, Enum.HumanoidRigType.R15)
-		asset = Instance.new("Folder")
+		local asset: Instance = Instance.new("Folder")
 
 		if isHead then
 			local head = dummy:FindFirstChild("Head")
@@ -264,11 +267,18 @@ local function processAsset(assetId: number)
 				end
 			end
 		end
-	else
-		asset = InsertService:LoadAsset(assetId)
-	end
 
-	return asset:GetChildren()
+		return asset:GetChildren()
+	elseif isImage or isAudio then
+		local asset = isImage and Instance.new("Decal") or Instance.new("Sound")
+
+		asset.Name = info.Name
+		asset[isImage and "Texture" or "SoundId"] = "rbxassetid://"..assetId
+
+		return {asset}
+	else
+		return game:GetObjects("rbxassetid://"..assetId)
+	end
 end
 
 local function processBundle(id: number)
