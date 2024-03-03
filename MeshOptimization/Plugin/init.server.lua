@@ -49,9 +49,9 @@ local function updateGeometry(init: boolean?)
 	if not init then
 		for _, desc in pairs(workspace:GetDescendants()) do
 			if desc:IsA("TriangleMeshPart") then
-				local t = desc.Transparency
-				desc.Transparency = t + .01
-				desc.Transparency = t
+				local t = desc.LocalTransparencyModifier
+				desc.LocalTransparencyModifier = t + .01
+				desc.LocalTransparencyModifier = t
 			end
 		end
 	end
