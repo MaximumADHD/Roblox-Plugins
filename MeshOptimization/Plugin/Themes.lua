@@ -1,5 +1,10 @@
+local Themes: {
+    [string]: {
+        [string]: any
+    }
+}
 
-return {
+Themes = {
     Div = {
         BackgroundColor3 = Enum.StudioStyleGuideColor.Border,
     },
@@ -20,8 +25,6 @@ return {
         BackgroundColor3 = Enum.StudioStyleGuideColor.MainBackground,
         ScrollBarImageColor3 = Enum.StudioStyleGuideColor.ScrollBar,
     }
-} :: {
-    [string]: {
-        [string]: any
-    }
 }
+
+return Themes

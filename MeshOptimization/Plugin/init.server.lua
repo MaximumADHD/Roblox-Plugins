@@ -73,7 +73,13 @@ local boxButton = toolbar:CreateButton(
 
 local boxBin
 local boxOn = false
+
 local boxes = {}
+local boxThread
+
+-- Capture regardless of CanQuery
+local overlap = OverlapParams.new();
+(overlap :: any).BruteForceAllSlow = true
 
 local function createBox(part: BasePart)
 	if boxes[part] then
@@ -129,7 +135,7 @@ local function updateBoxes()
 	local camera = assert(workspace.CurrentCamera)
 
 	local pos = camera.CFrame.Position
-	local parts = workspace:GetPartBoundsInRadius(pos, 400)
+	local parts = workspace:GetPartBoundsInRadius(pos, 400, overlap)
 
 	for i, part in pairs(parts) do
 		if part:IsA("TriangleMeshPart") then
@@ -164,6 +170,10 @@ local function clearBoxes()
 		boxBin:Destroy()
 		boxBin = nil
 	end
+
+	if boxThread then
+		task.cancel(boxThread)
+	end
 end
 
 local function onBoxClick()
@@ -171,10 +181,12 @@ local function onBoxClick()
 	boxButton:SetActive(boxOn)
 	
 	if boxOn then
-		while boxOn do
-			updateBoxes()
-			task.wait(1)
-		end
+		boxThread = task.spawn(function ()
+			while boxOn do
+				updateBoxes()
+				task.wait(1)
+			end
+		end)
 	else
 		clearBoxes()
 	end
@@ -220,7 +232,7 @@ pluginGui.Name = guiGuid
 
 local patcherButton = toolbar:CreateButton(PLUGIN_PATCH_TITLE, PLUGIN_PATCH_SUMMARY, PLUGIN_PATCH_ICON)
 local enabledChanged = pluginGui:GetPropertyChangedSignal("Enabled")
-local autoSet = false
+local autoSet = true
 
 local props = {}
 local setters = {}
@@ -275,16 +287,11 @@ local function registerCheckBox(button: TextButton, title: string, init: boolean
 
 		if checked == value then
 			return
-		else
-			checked = value
 		end
 
-		if checked then
-			button.Text = "☑ " .. title
-		else
-			button.Text = "☐ " .. title
-		end
-
+		checked = value
+		button.Text = `{checked and '☑' or '☐'} {title}`
+		
 		if callback then
 			callback(value, title, group)
 		end

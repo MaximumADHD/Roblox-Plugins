@@ -1,1 +1,0 @@
-rojo build --output "$env:localappdata\Roblox\Plugins\MeshOptimization.rbxmx"

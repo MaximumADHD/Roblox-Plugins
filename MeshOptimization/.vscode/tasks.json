@@ -6,10 +6,9 @@
         {
             "type": "shell",
             "label": "Build Local Plugin",
-            "command": "powershell -ExecutionPolicy ByPass -File build.ps1",
+            "command": "./build.sh",
             
-            "group":
-            {
+            "group": {
                 "kind": "build",
                 "isDefault": true
             }
