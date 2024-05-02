@@ -1,0 +1,7 @@
+<roblox version="4">
+	<Item class="MeshPart">
+		<Properties>
+			<bool name="HasSkinnedMesh">true</bool>
+		</Properties>
+	</Item>
+</roblox>

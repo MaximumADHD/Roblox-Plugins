@@ -1,0 +1,8 @@
+<roblox version="4">
+	<Item class="MeshPart">
+		<Properties>
+			<bool name="HasSkinnedMesh">true</bool>
+			<bool name="HasJointOffset">true</bool>
+		</Properties>
+	</Item>
+</roblox>
