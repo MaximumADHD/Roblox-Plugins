@@ -92,17 +92,6 @@ local function updateMeshPart(mesh: MeshPart)
         return
     end
 
-    -- HACK: Roblox doesn't correctly set HasSkinnedMesh when using CreateMeshPartAsync.
-    --       Use a premade MeshPart to fix this.
-    -- FIXME: This doesn't work >:(
-    local fork: MeshPart?
-
-    if mesh.HasJointOffset then
-        fork = script.JointOffset:Clone()
-    elseif mesh.HasSkinnedMesh then
-        fork = script.SkinnedMesh:Clone()
-    end
-
     if fork then
         fork:ApplyMesh(applyMesh)
         applyMesh = fork
