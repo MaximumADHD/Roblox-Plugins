@@ -456,6 +456,8 @@ end)
 
 registerCheckBox(preserveOptionsCheck, `Preserve original "other options"`, false, function(checked)
 	preserveOriginalOptions = checked
+
+	otherTypes.Visible = not checked
 end)
 
 registerCheckBoxes(collisionTypes, false, onSingleToggle, "CollisionFidelity")
