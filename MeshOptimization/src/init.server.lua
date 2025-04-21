@@ -13,9 +13,10 @@ local CoreGui = game:GetService("CoreGui")
 local Studio = settings().Studio
 local PhysicsSettings = settings().Physics
 
-local PLUGIN_PATCH_TITLE   = "Mesh Patcher"
-local PLUGIN_PATCH_SUMMARY = "Allows you to apply certain properties of each MeshPart in the Workspace with a select MeshId."
-local PLUGIN_PATCH_ICON    = "rbxassetid://6284437024"
+local PLUGIN_PATCH_TITLE = "Mesh Patcher"
+local PLUGIN_PATCH_SUMMARY =
+	"Allows you to apply certain properties of each MeshPart in the Workspace with a select MeshId."
+local PLUGIN_PATCH_ICON = "rbxassetid://6284437024"
 
 local PLUGIN_TOOLBAR = "Mesh Optimization Tools"
 
@@ -45,12 +46,12 @@ end
 local function updateGeometry(init: boolean?)
 	decompOn = PhysicsSettings.ShowDecompositionGeometry
 	decompButton:SetActive(decompOn)
-	
+
 	if not init then
 		for _, desc in pairs(workspace:GetDescendants()) do
 			if desc:IsA("TriangleMeshPart") then
 				local t = desc.LocalTransparencyModifier
-				desc.LocalTransparencyModifier = t + .01
+				desc.LocalTransparencyModifier = t + 0.01
 				desc.LocalTransparencyModifier = t
 			end
 		end
@@ -67,7 +68,7 @@ decompButton.Click:Connect(onDecompClick)
 
 local boxButton = toolbar:CreateButton(
 	"Transparent Boxes",
-	"Renders nearby TriangleMeshParts (which have their CollisionFidelity set to 'Box') as mostly-transparent boxes.", 
+	"Renders nearby TriangleMeshParts (which have their CollisionFidelity set to 'Box') as mostly-transparent boxes.",
 	"rbxassetid://5523395476"
 )
 
@@ -94,15 +95,15 @@ local function createBox(part: BasePart)
 		boxBin.Name = "CollisionProxies"
 		boxBin.Parent = CoreGui
 	end
-	
+
 	local box = Instance.new("BoxHandleAdornment")
 	box.Color3 = BrickColor.random().Color
 	box.Transparency = 0.875
 	box.Size = part.Size
 	box.Adornee = part
 	box.Parent = boxBin
-	
-	local signal = sizeListener:Connect(function ()
+
+	local signal = sizeListener:Connect(function()
 		box.Size = part.Size
 	end)
 
@@ -111,21 +112,21 @@ local function createBox(part: BasePart)
 		Signal = signal,
 		LastUpdate = 0,
 	}
-	
+
 	boxes[part] = data
 	part.LocalTransparencyModifier = 1
-	
+
 	return data
 end
 
 local function destroyBox(part)
 	local box = boxes[part]
-	
+
 	if box then
 		box.Adorn:Destroy()
 		box.Signal:Disconnect()
 	end
-	
+
 	boxes[part] = nil
 	part.LocalTransparencyModifier = 0
 end
@@ -147,7 +148,7 @@ local function updateBoxes()
 			end
 		end
 	end
-	
+
 	for part, box in boxes do
 		if box.LastUpdate ~= now then
 			destroyBox(part)
@@ -165,7 +166,7 @@ local function clearBoxes()
 			break
 		end
 	end
-	
+
 	if boxBin then
 		boxBin:Destroy()
 		boxBin = nil
@@ -179,9 +180,9 @@ end
 local function onBoxClick()
 	boxOn = not boxOn
 	boxButton:SetActive(boxOn)
-	
+
 	if boxOn then
-		boxThread = task.spawn(function ()
+		boxThread = task.spawn(function()
 			while boxOn do
 				updateBoxes()
 				task.wait(1)
@@ -209,13 +210,14 @@ local renderingTypes = ui.Rendering
 
 local input = meshId.Input
 local autoCheck = meshId.AutoSet
+local preserveOptionsCheck = meshId.PreserveOtherOptions
 
 local widgetInfo = DockWidgetPluginGuiInfo.new(
 	Enum.InitialDockState.Left,
-	false,  -- Widget will be initially disabled
-	true,   -- Override the previous enabled state
-	250,    -- Default width of the floating window
-	500     -- Default height of the floating window
+	false, -- Widget will be initially disabled
+	true, -- Override the previous enabled state
+	250, -- Default width of the floating window
+	500 -- Default height of the floating window
 )
 
 local guiGuid = "MeshPatcher"
@@ -223,7 +225,7 @@ local themes = require(script.Themes)
 
 if plugin.Name:find(".rbxm") then
 	guiGuid ..= " (LOCAL)"
-end  
+end
 
 local pluginGui = plugin:CreateDockWidgetPluginGui(guiGuid, widgetInfo)
 pluginGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -233,6 +235,7 @@ pluginGui.Name = guiGuid
 local patcherButton = toolbar:CreateButton(PLUGIN_PATCH_TITLE, PLUGIN_PATCH_SUMMARY, PLUGIN_PATCH_ICON)
 local enabledChanged = pluginGui:GetPropertyChangedSignal("Enabled")
 local autoSet = true
+local preserveOriginalOptions = false
 
 local props = {}
 local setters = {}
@@ -250,7 +253,7 @@ local function applyList(element: GuiObject)
 
 	if list then
 		local size = list.AbsoluteContentSize
-		
+
 		if element:IsA("ScrollingFrame") then
 			element.CanvasSize = UDim2.new(0, 0, 0, size.Y + 50)
 		else
@@ -262,14 +265,14 @@ end
 local function applyTheme()
 	local theme = Studio.Theme
 
-	for _,element in pairs(pluginGui:GetDescendants()) do
+	for _, element in pairs(pluginGui:GetDescendants()) do
 		local themeType = element:GetAttribute("Theme")
 		local config = themes[themeType]
 
 		if not config then
 			continue
 		end
-		
+
 		for prop, style in pairs(config) do
 			local color = theme:GetColor(style);
 			(element :: any)[prop] = color
@@ -277,12 +280,18 @@ local function applyTheme()
 	end
 end
 
-local function registerCheckBox(button: TextButton, title: string, init: boolean, callback: (boolean, string, string?) -> (), group: string?)
+local function registerCheckBox(
+	button: TextButton,
+	title: string,
+	init: boolean,
+	callback: (boolean, string, string?) -> (),
+	group: string?
+)
 	local checked
 
 	local function setChecked(value)
 		if typeof(value) ~= "boolean" then
-			value = (not not value)
+			value = not not value
 		end
 
 		if checked == value then
@@ -290,8 +299,8 @@ local function registerCheckBox(button: TextButton, title: string, init: boolean
 		end
 
 		checked = value
-		button.Text = `{checked and '☑' or '☐'} {title}`
-		
+		button.Text = `{checked and "☑" or "☐"} {title}`
+
 		if callback then
 			callback(value, title, group)
 		end
@@ -300,7 +309,7 @@ local function registerCheckBox(button: TextButton, title: string, init: boolean
 	local function onActivated()
 		setChecked(not checked)
 	end
-	
+
 	setChecked(init)
 	setters[title] = setChecked
 	button.Activated:Connect(onActivated)
@@ -322,11 +331,11 @@ local function onSingleToggle(checked, newValue, prop)
 	if checked then
 		local oldValue = props[prop]
 		local setOld = setters[oldValue]
-		
+
 		if setOld then
 			setOld(false)
 		end
-		
+
 		props[prop] = newValue
 	else
 		props[prop] = nil
@@ -363,14 +372,14 @@ local function onSelectionChanged()
 
 	local rendering = target.RenderFidelity.Name
 	setters[rendering](true)
-	
+
 	local collision = target.CollisionFidelity.Name
 	setters[collision](true)
-	
+
 	for prop, set in pairs(props) do
 		local value = target[prop]
 		local valueType = typeof(value)
-		
+
 		if valueType == "boolean" then
 			setters[prop](value)
 		end
@@ -387,21 +396,38 @@ local function onPatch()
 
 	local targets = {}
 
-	for _,desc in pairs(workspace:GetDescendants()) do
+	for _, desc in pairs(workspace:GetDescendants()) do
 		if desc:IsA("MeshPart") and desc.MeshId == targetId then
 			targets[desc] = true
 		end
 	end
-	
+
 	if not next(targets) then
 		warn("No MeshParts found with Target MeshId:", targetId)
 		return
 	end
-	
+
 	ChangeHistoryService:SetWaypoint("Before Mesh Patch")
+
+	
+	local TypesToSkip = {}
+
+	if preserveOriginalOptions then
+		for _, type in otherTypes:GetChildren() do
+			if type:IsA("GuiButton") then
+				table.insert(TypesToSkip, type.Name)
+			end
+		end
+
+		warn(`The following properties will be preserved: {table.concat(TypesToSkip, ", ")}`)
+	end
 
 	for meshPart in pairs(targets) do
 		for prop, value in pairs(props) do
+			if table.find(TypesToSkip, prop) then
+				continue
+			end
+
 			meshPart[prop] = value
 		end
 	end
@@ -411,16 +437,16 @@ end
 
 ui.Parent = pluginGui
 
-for _,frame in pairs(ui:GetChildren()) do
-	if frame:IsA("Frame") then
-		applyList(frame)
-	end
-end
+-- for _,frame in pairs(ui:GetChildren()) do
+-- 	if frame:IsA("Frame") then
+-- 		applyList(frame)
+-- 	end
+-- end
 
 applyTheme()
-applyList(ui)
+-- applyList(ui)
 
-registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", true, function (checked)
+registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", true, function(checked)
 	autoSet = checked
 
 	if autoSet then
@@ -428,9 +454,15 @@ registerCheckBox(autoCheck, "Auto-set from selected MeshPart?", true, function (
 	end
 end)
 
+registerCheckBox(preserveOptionsCheck, `Preserve original "other options"`, false, function(checked)
+	preserveOriginalOptions = checked
+
+	otherTypes.Visible = not checked
+end)
+
 registerCheckBoxes(collisionTypes, false, onSingleToggle, "CollisionFidelity")
 registerCheckBoxes(renderingTypes, false, onSingleToggle, "RenderFidelity")
-registerCheckBoxes(otherTypes, true,  onMultiToggle, "Other")
+registerCheckBoxes(otherTypes, true, onMultiToggle, "Other")
 
 patch.Activated:Connect(onPatch)
 Studio.ThemeChanged:Connect(applyTheme)
