@@ -7,11 +7,14 @@
 --!strict
 
 local ChangeHistoryService = game:GetService("ChangeHistoryService")
+local ContentProvider = game:GetService("ContentProvider")
 local Selection = game:GetService("Selection")
 local CoreGui = game:GetService("CoreGui")
+local AssetService = game:GetService("AssetService")
 
 local Studio = settings().Studio
 local PhysicsSettings = settings().Physics
+local RenderingSettings = settings().Rendering
 
 local PLUGIN_PATCH_TITLE = "Mesh Patcher"
 local PLUGIN_PATCH_SUMMARY =
@@ -61,6 +64,62 @@ end
 updateGeometry(true)
 updateSignal:Connect(updateGeometry)
 decompButton.Click:Connect(onDecompClick)
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- Mesh LOD Previewer
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+local Levels = {
+	[0] = Enum.MeshPartDetailLevel.DistanceBased,
+	[1] = Enum.MeshPartDetailLevel.Level00,
+	[2] = Enum.MeshPartDetailLevel.Level01,
+	[3] = Enum.MeshPartDetailLevel.Level02,
+	[4] = Enum.MeshPartDetailLevel.Level03,
+	[5] = Enum.MeshPartDetailLevel.Level04,
+}
+
+local Icons = {
+	[0] = "rbxassetid://121685663861927", -- DISTANCE BASED
+	[1] = "rbxassetid://81793100631219", -- LOD 00
+	[2] = "rbxassetid://86385579484788", -- LOD 01
+	[3] = "rbxassetid://134582475129399", -- LOD 02
+	[4] = "rbxassetid://118710837638919", -- LOD 03
+	[5] = "rbxassetid://85552618740314", -- LOD 04
+}
+
+local LODButton = toolbar:CreateButton(
+	"Toggle LOD Level",
+	"Jumps to the next LOD level ",
+	"rbxassetid://100954789557055"
+)
+
+local function updateLODIcon()
+	local CurrentValue = RenderingSettings.MeshPartDetailLevel.Value
+
+	LODButton.Icon = Icons[CurrentValue] or Icons[1]
+
+	LODButton.Enabled = false
+	LODButton:SetActive(false)
+	LODButton.Enabled = true
+end
+
+local function onLODClick()
+	local CurrentValue = RenderingSettings.MeshPartDetailLevel.Value
+
+	local NextValue = CurrentValue + 1
+
+	if NextValue > #Levels then
+		NextValue = 0
+	end
+
+	RenderingSettings.MeshPartDetailLevel = Levels[NextValue]
+
+	updateLODIcon()
+end
+
+updateLODIcon()
+LODButton.Click:Connect(onLODClick)
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -- Transparent Boxes
