@@ -1,15 +1,33 @@
 local PrimitiveBuilder = {}
 
+local function getFaceAxes(normalId: Enum.NormalId): (Vector3, Vector3, Vector3)
+	if normalId == Enum.NormalId.Front then
+		return -Vector3.zAxis, Vector3.xAxis, Vector3.yAxis
+	elseif normalId == Enum.NormalId.Back then
+		return Vector3.zAxis, -Vector3.xAxis, Vector3.yAxis
+	elseif normalId == Enum.NormalId.Left then
+		return -Vector3.xAxis, -Vector3.zAxis, Vector3.yAxis
+	elseif normalId == Enum.NormalId.Right then
+		return Vector3.xAxis, Vector3.zAxis, Vector3.yAxis
+	elseif normalId == Enum.NormalId.Top then
+		return Vector3.yAxis, Vector3.xAxis, Vector3.zAxis
+	elseif normalId == Enum.NormalId.Bottom then
+		return -Vector3.yAxis, Vector3.xAxis, -Vector3.zAxis
+	else
+		local normal = Vector3.fromNormalId(normalId)
+		local axis = CFrame.lookAlong(Vector3.zero, normal)
+		return normal, axis.RightVector, axis.UpVector
+	end
+end
+
 function PrimitiveBuilder.Block(mesh: EditableMesh, size: Vector3)
 	local halfSize = size / 2
 
 	for i, normalId in Enum.NormalId:GetEnumItems() do
-		local normal = Vector3.fromNormalId(normalId)
+		local normal, uAxis, vAxis = getFaceAxes(normalId)
 		local center = normal * halfSize
-
-		local axis = CFrame.lookAlong(Vector3.zero, normal)
-		local uAxis = axis.RightVector * halfSize
-		local vAxis = axis.UpVector * halfSize
+		uAxis *= halfSize
+		vAxis *= halfSize
 
 		local verts = {
 			center - uAxis + vAxis,
@@ -39,11 +57,7 @@ function PrimitiveBuilder.Ball(mesh: EditableMesh, size: Vector3)
 		local faceVerts = {}
 		local faceNorms = {}
 
-		local normal = Vector3.fromNormalId(normalId)
-		local axis = CFrame.lookAlong(Vector3.zero, normal)
-
-		local uAxis = axis.RightVector
-		local vAxis = axis.UpVector
+		local normal, uAxis, vAxis = getFaceAxes(normalId)
 
 		for u = -3, 3 do
 			faceVerts[u] = {}
@@ -60,11 +74,21 @@ function PrimitiveBuilder.Ball(mesh: EditableMesh, size: Vector3)
 
 		for u = -3, 2 do
 			for v = -3, 2 do
-				local f1 = mesh:AddTriangle(faceVerts[u + 1][v + 1], faceVerts[u + 1][v], faceVerts[u][v])
-				mesh:SetFaceNormals(f1, { faceNorms[u + 1][v + 1], faceNorms[u + 1][v], faceNorms[u][v] })
+				local a = faceVerts[u][v]
+				local b = faceVerts[u + 1][v]
+				local c = faceVerts[u][v + 1]
+				local d = faceVerts[u + 1][v + 1]
 
-				local f2 = mesh:AddTriangle(faceVerts[u][v], faceVerts[u][v + 1], faceVerts[u + 1][v + 1])
-				mesh:SetFaceNormals(f2, { faceNorms[u][v], faceNorms[u][v + 1], faceNorms[u + 1][v + 1] })
+				local aNorm = faceNorms[u][v]
+				local bNorm = faceNorms[u + 1][v]
+				local cNorm = faceNorms[u][v + 1]
+				local dNorm = faceNorms[u + 1][v + 1]
+
+				local f1 = mesh:AddTriangle(a, d, b)
+				mesh:SetFaceNormals(f1, { aNorm, dNorm, bNorm })
+
+				local f2 = mesh:AddTriangle(a, c, d)
+				mesh:SetFaceNormals(f2, { aNorm, cNorm, dNorm })
 			end
 		end
 	end
@@ -119,24 +143,14 @@ function PrimitiveBuilder.Cylinder(mesh: EditableMesh, size: Vector3)
 end
 
 function PrimitiveBuilder.Wedge(mesh: EditableMesh, size: Vector3)
-	--[[
-
-	  E----F
-	  |\   |\
-	  | \  | \
-	  D--\-C. \
-	   `. \| `.\
-	      `A -- B
-	]]
-
 	local hs = size / 2
 
 	local a = mesh:AddVertex(Vector3.new(-hs.X, -hs.Y, -hs.Z))
 	local b = mesh:AddVertex(Vector3.new(hs.X, -hs.Y, -hs.Z))
 	local c = mesh:AddVertex(Vector3.new(hs.X, -hs.Y, hs.Z))
 	local d = mesh:AddVertex(Vector3.new(-hs.X, -hs.Y, hs.Z))
-	local e = mesh:AddVertex(Vector3.new(-hs.X, hs.Y, -hs.Z))
-	local f = mesh:AddVertex(Vector3.new(hs.X, hs.Y, -hs.Z))
+	local e = mesh:AddVertex(Vector3.new(-hs.X, hs.Y, hs.Z))
+	local f = mesh:AddVertex(Vector3.new(hs.X, hs.Y, hs.Z))
 
 	local bt1 = mesh:AddTriangle(a, b, c)
 	local bt2 = mesh:AddTriangle(a, c, d)
@@ -152,15 +166,15 @@ function PrimitiveBuilder.Wedge(mesh: EditableMesh, size: Vector3)
 	local rtn = mesh:AddNormal(-Vector3.xAxis)
 	mesh:SetFaceNormals(rt, { rtn, rtn, rtn })
 
-	local bk1 = mesh:AddTriangle(d, f, e)
-	local bk2 = mesh:AddTriangle(f, d, c)
-	local bkn = mesh:AddNormal((Vector3.yAxis * size.Z + Vector3.zAxis * size.Y).Unit)
+	local bk1 = mesh:AddTriangle(d, c, f)
+	local bk2 = mesh:AddTriangle(d, f, e)
+	local bkn = mesh:AddNormal(Vector3.zAxis)
 	mesh:SetFaceNormals(bk1, { bkn, bkn, bkn })
 	mesh:SetFaceNormals(bk2, { bkn, bkn, bkn })
 
 	local ft1 = mesh:AddTriangle(a, e, f)
-	local ft2 = mesh:AddTriangle(f, b, a)
-	local ftn = mesh:AddNormal(-Vector3.zAxis)
+	local ft2 = mesh:AddTriangle(a, f, b)
+	local ftn = mesh:AddNormal((Vector3.yAxis * size.Z - Vector3.zAxis * size.Y).Unit)
 	mesh:SetFaceNormals(ft1, { ftn, ftn, ftn })
 	mesh:SetFaceNormals(ft2, { ftn, ftn, ftn })
 
@@ -168,24 +182,13 @@ function PrimitiveBuilder.Wedge(mesh: EditableMesh, size: Vector3)
 end
 
 function PrimitiveBuilder.CornerWedge(mesh: EditableMesh, size: Vector3)
-    --[[
-    
-          E 
-         /|\
-        / |`\ 
-       /  |. \ 
-      D --|-C \
-       `. |/ `.\
-          A --- B
-    ]]
-
 	local hs = size / 2
 
 	local a = mesh:AddVertex(Vector3.new(-hs.X, -hs.Y, -hs.Z))
 	local b = mesh:AddVertex(Vector3.new(hs.X, -hs.Y, -hs.Z))
 	local c = mesh:AddVertex(Vector3.new(hs.X, -hs.Y, hs.Z))
 	local d = mesh:AddVertex(Vector3.new(-hs.X, -hs.Y, hs.Z))
-	local e = mesh:AddVertex(Vector3.new(hs.X, hs.Y, hs.Z))
+	local e = mesh:AddVertex(Vector3.new(hs.X, hs.Y, -hs.Z))
 
 	local bt1 = mesh:AddTriangle(a, b, c)
 	local bt2 = mesh:AddTriangle(a, c, d)
@@ -199,15 +202,15 @@ function PrimitiveBuilder.CornerWedge(mesh: EditableMesh, size: Vector3)
 	mesh:SetFaceNormals(lf, { lfn, lfn, lfn })
 
 	local bk = mesh:AddTriangle(d, c, e)
-	local bkn = mesh:AddNormal(Vector3.zAxis)
+	local bkn = mesh:AddNormal((Vector3.yAxis * size.Z + Vector3.zAxis * size.Y).Unit)
 	mesh:SetFaceNormals(bk, { bkn, bkn, bkn })
 
 	local rt = mesh:AddTriangle(a, d, e)
-	local rtn = mesh:AddNormal((Vector3.yAxis * size.Z + Vector3.xAxis * size.Y).Unit)
+	local rtn = mesh:AddNormal((Vector3.yAxis * size.X - Vector3.xAxis * size.Z).Unit)
 	mesh:SetFaceNormals(rt, { rtn, rtn, rtn })
 
 	local ft = mesh:AddTriangle(a, e, b)
-	local ftn = mesh:AddNormal((Vector3.yAxis * size.Z - Vector3.xAxis * size.Y).Unit)
+	local ftn = mesh:AddNormal(-Vector3.zAxis)
 	mesh:SetFaceNormals(ft, { ftn, ftn, ftn })
 
 	mesh:MergeVertices(0.001)

@@ -49,9 +49,6 @@ local DECAL_CLIP_MINUSV = 2
 local DECAL_CLIP_PLUSU = 4
 local DECAL_CLIP_PLUSV = 8
 
-local FRONT_FACING = 1
-local VALID_AREA = 2
-
 local CLIP_PLANES = {
 	{ Axis = "X", Clips = { [0.0] = DECAL_CLIP_MINUSU, [1.0] = DECAL_CLIP_PLUSU } },
 	{ Axis = "Y", Clips = { [0.0] = DECAL_CLIP_MINUSV, [1.0] = DECAL_CLIP_PLUSV } },
@@ -67,17 +64,15 @@ export type DecalParams = {
 	Size: Vector2,
 	CFrame: CFrame,
 	Texture: IDecal,
-}
-
-type VertInfo = {
-	Flags: number,
-	UV: number,
+	DepthMultiplier: number?,
 }
 
 type Vertex = {
-	Position: number,
-	Normal: number,
-	UV: number,
+	Position: Vector3,
+	Normal: Vector3,
+	UV: Vector2,
+	VertexId: number?,
+	NormalId: number?,
 }
 
 type ClipState = {
@@ -108,6 +103,7 @@ DecalProjector.__index = DecalProjector
 export type Class = setmetatable<{
 	_target: BasePart?,
 	_targetMesh: EditableMesh?,
+	_targetTriCount: number?,
 	_targetScale: Vector3,
 
 	_decalMesh: EditableMesh,
@@ -116,8 +112,6 @@ export type Class = setmetatable<{
 	_idRemap: {
 		[number]: number
 	},
-
-	_vertInfo: { VertInfo },
 	_buildThread: thread?,
 
 	_debug: WireframeHandleAdornment?,
@@ -149,22 +143,19 @@ local function decalify(decal: IDecal)
 	end
 end
 
-local function computeClipFlags(mesh: EditableMesh, uvId: number)
+local function computeClipFlags(uv: Vector2)
 	local flags = 0
-	local uv = mesh:GetUV(uvId)
 
-	if uv then
-		if uv.X < 0 then
-			flags += DECAL_CLIP_MINUSU
-		elseif uv.X > 1 then
-			flags += DECAL_CLIP_PLUSU
-		end
+	if uv.X < 0 then
+		flags += DECAL_CLIP_MINUSU
+	elseif uv.X > 1 then
+		flags += DECAL_CLIP_PLUSU
+	end
 
-		if uv.Y < 0 then
-			flags += DECAL_CLIP_MINUSV
-		elseif uv.Y > 1 then
-			flags += DECAL_CLIP_PLUSV
-		end
+	if uv.Y < 0 then
+		flags += DECAL_CLIP_MINUSV
+	elseif uv.Y > 1 then
+		flags += DECAL_CLIP_PLUSV
 	end
 
 	return flags
@@ -183,20 +174,19 @@ local function getRemap(self: Class, value: number, handler: (number) -> number)
 end
 
 local function intersectPlane(self: Class, state: ClipState, startAt: number, endAt: number, planeAxis: Axis, planeVal: number)
-	local mesh = self._decalMesh
 	local newIndex = #state.ClipVerts + 1
 
 	local startVert = state.ClipVerts[startAt]
 	local endVert = state.ClipVerts[endAt]
 
-	local startPos = mesh:GetPosition(startVert.Position)
-	local endPos = mesh:GetPosition(endVert.Position)
+	local startPos = startVert.Position
+	local endPos = endVert.Position
 
-	local startNorm = mesh:GetNormal(startVert.Normal) or Vector3.yAxis
-	local endNorm = mesh:GetNormal(endVert.Normal) or Vector3.yAxis
+	local startNorm = startVert.Normal
+	local endNorm = endVert.Normal
 
-	local startUV = mesh:GetUV(startVert.UV) or Vector2.zero
-	local endUV = mesh:GetUV(endVert.UV) or Vector2.zero
+	local startUV = startVert.UV
+	local endUV = endVert.UV
 
 	local dir = endUV - startUV
 	assert(if planeAxis == "X" then dir.X ~= 0 else dir.Y ~= 0)
@@ -209,16 +199,13 @@ local function intersectPlane(self: Class, state: ClipState, startAt: number, en
 	local newPos = startPos:Lerp(endPos, t)
 	local newUV = startUV:Lerp(endUV, t)
 
-	local newMesh = self._decalMesh
-	local uvId = newMesh:AddUV(newUV)
-
 	state.ClipVerts[newIndex] = {
-		Position = newMesh:AddVertex(newPos),
-		Normal = newMesh:AddNormal(newNorm),
-		UV = uvId,
+		Position = newPos,
+		Normal = newNorm,
+		UV = newUV,
 	}
 
-	state.ClipFlags[newIndex] = computeClipFlags(newMesh, uvId)
+	state.ClipFlags[newIndex] = computeClipFlags(newUV)
 	return newIndex
 end
 
@@ -296,20 +283,40 @@ local function clipDecal(self: Class, clipVerts: { Vertex }, clipFlags: { number
 
 	for i = 2, clipState.VertCount - 1 do
 		local a, b, c = verts[1], verts[i], verts[i + 1]
-		local faceId = newMesh:AddTriangle(a.Position, b.Position, c.Position)
+		local aPos = if a.VertexId then getRemap(self, a.VertexId, function ()
+			return newMesh:AddVertex(a.Position)
+		end) else newMesh:AddVertex(a.Position)
+		local bPos = if b.VertexId then getRemap(self, b.VertexId, function ()
+			return newMesh:AddVertex(b.Position)
+		end) else newMesh:AddVertex(b.Position)
+		local cPos = if c.VertexId then getRemap(self, c.VertexId, function ()
+			return newMesh:AddVertex(c.Position)
+		end) else newMesh:AddVertex(c.Position)
 
-		newMesh:SetFaceNormals(faceId, { a.Normal, b.Normal, c.Normal })
-		newMesh:SetFaceUVs(faceId, { a.UV, b.UV, c.UV })
+		local faceId = newMesh:AddTriangle(aPos, bPos, cPos)
+
+		local aNorm = if a.NormalId then getRemap(self, a.NormalId, function ()
+			return newMesh:AddNormal(a.Normal)
+		end) else newMesh:AddNormal(a.Normal)
+		local bNorm = if b.NormalId then getRemap(self, b.NormalId, function ()
+			return newMesh:AddNormal(b.Normal)
+		end) else newMesh:AddNormal(b.Normal)
+		local cNorm = if c.NormalId then getRemap(self, c.NormalId, function ()
+			return newMesh:AddNormal(c.Normal)
+		end) else newMesh:AddNormal(c.Normal)
+
+		local aUV = newMesh:AddUV(a.UV)
+		local bUV = newMesh:AddUV(b.UV)
+		local cUV = newMesh:AddUV(c.UV)
+
+		newMesh:SetFaceNormals(faceId, { aNorm, bNorm, cNorm })
+		newMesh:SetFaceUVs(faceId, { aUV, bUV, cUV })
 
 		if wireframe then
-			local uvA = newMesh:GetUV(a.UV) or Vector2.zero
-			local uvB = newMesh:GetUV(b.UV) or Vector2.zero
-			local uvC = newMesh:GetUV(c.UV) or Vector2.zero
-
 			wireframe:AddPath({
-				Vector3.new(uvA.X - 0.5, 0.5 - uvA.Y),
-				Vector3.new(uvB.X - 0.5, 0.5 - uvB.Y),
-				Vector3.new(uvC.X - 0.5, 0.5 - uvC.Y),
+				Vector3.new(a.UV.X - 0.5, 0.5 - a.UV.Y),
+				Vector3.new(b.UV.X - 0.5, 0.5 - b.UV.Y),
+				Vector3.new(c.UV.X - 0.5, 0.5 - c.UV.Y),
 			}, true)
 		end
 	end
@@ -319,25 +326,30 @@ local function clipDecal(self: Class, clipVerts: { Vertex }, clipFlags: { number
 	end
 end
 
+local function faceOverlapsDepthRange(points: { Vector3 }, depth: number): boolean
+	local minDepth = points[1].Z
+	local maxDepth = points[1].Z
+
+	for i = 2, #points do
+		local depth = points[i].Z
+		minDepth = math.min(minDepth, depth)
+		maxDepth = math.max(maxDepth, depth)
+	end
+
+	return minDepth <= depth and maxDepth >= -depth
+end
+
 function DecalProjector.new(): Class
 	local decalMesh = AssetService:CreateEditableMesh()
 
-	local self: Class = setmetatable({
+	local self = setmetatable({
 		_idRemap = {},
-		_vertInfo = {},
-
-		_target = nil :: BasePart?,
-		_targetMesh = nil :: EditableMesh?,
-		_targetScale = Vector3.one,
 
 		_decalMesh = decalMesh,
-		_decal = nil :: MeshPart?,
-
-		_debug = nil :: WireframeHandleAdornment?,
-		_buildThread = nil :: thread?,
+		_targetScale = Vector3.one,
 	}, DecalProjector)
 
-	return self
+	return self :: Class
 end
 
 function DecalProjector.SetDebugger(self: Class, adornee: PVInstance?)
@@ -365,6 +377,14 @@ function DecalProjector.GetTarget(self: Class): BasePart?
 	return self._target
 end
 
+function DecalProjector.GetTargetMesh(self: Class): EditableMesh?
+	return self._targetMesh
+end
+
+function DecalProjector.GetTargetTriCount(self: Class): number
+	return self._targetTriCount or 0
+end
+
 function DecalProjector.SetTargetAsync(self: Class, target: BasePart): (boolean, string?)
 	if self._target == target then
 		return true, nil
@@ -385,7 +405,7 @@ function DecalProjector.SetTargetAsync(self: Class, target: BasePart): (boolean,
 
 		if buildMesh then
 			local mesh = AssetService:CreateEditableMesh()
-			meshSize = target.Size
+			meshSize = target.ExtentsSize
 
 			buildMesh(mesh, meshSize)
 			content = Content.fromObject(mesh)
@@ -404,6 +424,7 @@ function DecalProjector.SetTargetAsync(self: Class, target: BasePart): (boolean,
 		self._target = target
 		self._targetMesh = targetMesh
 		self._targetScale = meshSize
+		self._targetTriCount = #targetMesh:GetFaces()
 	end
 
 	return success, nil
@@ -499,35 +520,29 @@ function DecalProjector.ProjectDecalAsync(self: Class, params: DecalParams): App
 	local clipRight = (clipRelative.XVector * toMeshSpace).Unit
 	local clipLocal = CFrame.fromMatrix(clipOrigin, clipRight, clipUp, clipBack)
 
-	local vertInfo = self._vertInfo
-	table.clear(vertInfo)
+	local uvMin = Vector2.one
+	local uvMax = Vector2.zero
+	local depth = clipSize.Z
 
-	local halfWidth = clipSize.X / 2
-	local halfHeight = clipSize.Y / 2
-	local halfDepth = clipSize.Z / 2
+	if params.DepthMultiplier then
+		depth *= params.DepthMultiplier
+	end
 
-	local normalIds = targetMesh:GetNormals()
-	local vertIds = targetMesh:GetVertices()
+	for _, faceId in targetMesh:GetFaces() do
+		local faceVertIds = targetMesh:GetFaceVertices(faceId)
+		local faceNormIds = targetMesh:GetFaceNormals(faceId)
 
-    local uvMin = Vector2.one
-    local uvMax = Vector2.zero
+		local facePoints = table.create<<Vector3>>(3)
+		local faceLocalPoints = table.create<<Vector3>>(3)
+		
+		local clipFlags = table.create<<number>>(3)
+		local clipVerts = table.create<<Vertex>>(3)
 
-	for i, vertId in vertIds do
-		if vertInfo[vertId] then
-			continue
-		end
+		for i = 1, 3 do
+			local vertId = faceVertIds[i]
 
-		local normalId = normalIds[i]
-		local vertNormal = targetMesh:GetNormal(normalId)
-
-		local info = {
-			Flags = 0,
-			UV = 0,
-		}
-
-		if vertNormal and clipBack:Dot(vertNormal) >= 1e-6 then
 			local pos = targetMesh:GetPosition(vertId)
-			info.Flags += FRONT_FACING
+			facePoints[i] = pos
 
 			local relative = clipLocal:PointToObjectSpace(pos)
 			relative *= toPartSpace
@@ -537,78 +552,50 @@ function DecalProjector.ProjectDecalAsync(self: Class, params: DecalParams): App
 				0.5 - (relative.Y / clipSize.Y)
 			)
 
-			info.UV = newMesh:AddUV(uv)
+			faceLocalPoints[i] = relative
+			clipFlags[i] = computeClipFlags(uv)
 
-            uvMin = Vector2.min(uvMin, uv)
-            uvMin = Vector2.max(uvMin, Vector2.zero)
-            
-            uvMax = Vector2.max(uvMax, uv)
-            uvMax = Vector2.min(uvMax, Vector2.one)
+			clipVerts[i] = {
+				Position = pos,
+				Normal = Vector3.zero,
+				UV = uv,
+				VertexId = vertId,
+			}
 
-			if math.abs(relative.X) < halfWidth and math.abs(relative.Y) < halfHeight and math.abs(relative.Z) < halfDepth then
-				info.Flags += VALID_AREA
-			end
+			uvMin = Vector2.max(Vector2.min(uvMin, uv), Vector2.zero)
+			uvMax = Vector2.min(Vector2.max(uvMax, uv), Vector2.one)
 		end
 
-		vertInfo[vertId] = info
-	end
-
-	for i, faceId in targetMesh:GetFaces() do
-		local vertIds = targetMesh:GetFaceVertices(faceId)
-		local normIds = targetMesh:GetFaceNormals(faceId)
-		local vertA, vertB, vertC = unpack(vertIds)
-
-		local infoA = vertInfo[vertA]
-		local infoB = vertInfo[vertB]
-		local infoC = vertInfo[vertC]
-
-		if not bit32.btest(FRONT_FACING, infoA.Flags, infoB.Flags, infoC.Flags) then
+		if not faceOverlapsDepthRange(faceLocalPoints, depth) then
 			continue
 		end
 
-		local allNotInValidArea = bit32.bor(infoA.Flags, infoB.Flags, infoC.Flags)
+		local faceNormal = (facePoints[2] - facePoints[1]):Cross(facePoints[3] - facePoints[1])
 
-		if not bit32.btest(VALID_AREA, allNotInValidArea) then
+		if faceNormal.Magnitude <= 1e-6 then
 			continue
 		end
 
-		local clipFlags = {
-			computeClipFlags(newMesh, infoA.UV),
-			computeClipFlags(newMesh, infoB.UV),
-			computeClipFlags(newMesh, infoC.UV),
-		}
+		faceNormal = faceNormal.Unit
+
+		if clipBack:Dot(faceNormal) < 1e-6 then
+			continue
+		end
 
 		if bit32.btest(unpack(clipFlags)) then
 			continue
 		end
 
-		local clipVerts = table.create(3) :: { Vertex }
-
 		for i = 1, 3 do
-			local vertId = vertIds[i]
-			local normId = normIds[i]
-			local info = vertInfo[vertId]
+			local normId = faceNormIds[i]
+			local norm = targetMesh:GetNormal(normId) or faceNormal
 
-			clipVerts[i] = {
-				Position = getRemap(self, vertIds[i], function ()
-					local pos = targetMesh:GetPosition(vertId)
-					return newMesh:AddVertex(pos)
-				end),
-
-				Normal = getRemap(self, normId, function ()
-					local norm = targetMesh:GetNormal(normId)
-					return newMesh:AddNormal(norm)
-				end),
-
-				UV = info.UV,
-			}
+			clipVerts[i].Normal = norm
+			clipVerts[i].NormalId = normId
 		end
 
 		clipDecal(self, clipVerts, clipFlags)
 	end
-
-	-- Remove any verts that aren't connected to a face after clipping.
-	newMesh:RemoveUnused()
 
 	-- Begin space transformation of the decal.
 	local verts = newMesh:GetVertices()
@@ -651,7 +638,7 @@ function DecalProjector.ProjectDecalAsync(self: Class, params: DecalParams): App
 
 		if vertDisp.Magnitude > 0 then
 			local vert = newMesh:GetPosition(vertId)
-			newMesh:SetPosition(vertId, vert + (vertDisp.Unit / 500))
+			newMesh:SetPosition(vertId, vert + (vertDisp.Unit / 100))
 		end
 	end
 
@@ -659,9 +646,22 @@ function DecalProjector.ProjectDecalAsync(self: Class, params: DecalParams): App
 		avgNormal = avgNormal.Unit
 	end
 
+	newMesh:MergeVertices(0.02)
+
 	-- Recompute the bounding-box center in the final local basis,
 	-- then recenter the geometry around that.
-	local center = newMesh:GetCenter()
+	local center = Vector3.zero
+	local samples = 0
+
+	for _, vertId in newMesh:GetVertices() do
+		local pos = newMesh:GetPosition(vertId)
+		center += pos
+		samples += 1
+	end
+
+	if samples > 0 then
+		center /= samples
+	end
 
 	for _, vertId in newMesh:GetVertices() do
 		local pos = newMesh:GetPosition(vertId)

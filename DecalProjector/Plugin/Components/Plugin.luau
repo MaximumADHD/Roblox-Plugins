@@ -1,7 +1,6 @@
 local AssetService = game:GetService("AssetService")
 local RunService = game:GetService("RunService")
 local Selection = game:GetService("Selection")
-local CoreGui = game:GetService("CoreGui")
 
 local Components = script.Parent
 local Root = Components.Parent
@@ -114,9 +113,7 @@ local function RibbonTool(props: { RibbonTool: Enum.RibbonTool, OnActivated: (rb
 end
 
 local function Plugin()
-    local theme = useTheme()
     local selection = useSelection()
-
     local projector = React.useMemo(DecalProjector.new, {})
     local showDebug, setShowDebug = React.useState(true)
 
@@ -150,6 +147,12 @@ local function Plugin()
         if projectorDecal then
             projectorDecal.ColorMap = "rbxassetid://15658721128"
             projectorDecal.AlphaMode = Enum.AlphaMode.Transparency
+        end
+
+        return function ()
+            if projectorPart then
+                projectorPart:Destroy()
+            end
         end
     end, {})
 
@@ -325,7 +328,7 @@ local function Plugin()
     return React.createElement<<any>>(React.Fragment, {}, {
         Portal = ReactRoblox.createPortal({
             Projector = React.createElement("MeshPart", {
-                Size = Vector3.one * 2,
+                Size = Vector3.one,
                 Transparency = 0.5,
                 CanCollide = false,
                 CastShadow = false,
@@ -336,16 +339,15 @@ local function Plugin()
                 Decal = React.createElement("SurfaceAppearance", {
                     ref = decalRef,
                 }),
-            }),
 
-            FocusHighlight = React.createElement("Highlight", {
-                Enabled = showDebug,
-                DepthMode = Enum.HighlightDepthMode.AlwaysOnTop,
-                FillTransparency = 1,
-                OutlineColor = Color3.new(1, 1, 0),
-                OutlineTransparency = 0,
-                ref = highlightRef,
-            })
+                Focus = showDebug and React.createElement("Highlight", {
+                    DepthMode = Enum.HighlightDepthMode.AlwaysOnTop,
+                    FillTransparency = 1,
+                    OutlineColor = Color3.new(1, 1, 0),
+                    OutlineTransparency = 0,
+                    ref = highlightRef,
+                })
+            }),
         }, camera),
 
         Root = React.createElement("ScrollingFrame", {
