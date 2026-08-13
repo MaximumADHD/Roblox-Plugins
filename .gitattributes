@@ -1,1 +1,2 @@
 *.rbxmx linguist-language=XML
+*.lua linguist-language=Luau
